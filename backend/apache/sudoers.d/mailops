@@ -1,0 +1,6 @@
+Defaults:apache !requiretty
+# 注意：此文件为模板，实际部署时 start.sh 会将 ${BASE_DIR} 替换为实际路径
+# 如果手动部署，请将 ${BASE_DIR} 替换为实际的项目根目录路径
+Cmnd_Alias MAIL_OPS = ${BASE_DIR}/backend/scripts/mail_setup.sh *, ${BASE_DIR}/backend/scripts/security.sh *, ${BASE_DIR}/backend/scripts/db_setup.sh *, ${BASE_DIR}/backend/scripts/user_manage.sh *, ${BASE_DIR}/backend/scripts/app_user.sh *
+apache ALL=(root) NOPASSWD: MAIL_OPS
+

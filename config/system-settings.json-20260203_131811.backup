@@ -1,0 +1,80 @@
+{
+  "general": {
+    "systemName": "XM邮件管理系统",
+    "adminEmail": "xm@xm666.fun",
+    "timezone": "Asia/Shanghai",
+    "language": "zh-CN",
+    "logRetention": 30,
+    "userPageSize": 10,
+    "icp": {
+      "enabled": true,
+      "number": "",
+      "url": "https://beian.miit.gov.cn/"
+    }
+  },
+  "security": {
+    "enableSSL": true,
+    "forceHTTPS": false,
+    "sessionTimeout": 30,
+    "maxLoginAttempts": 5,
+    "passwordMinLength": 6,
+    "requireSpecialChars": false
+  },
+  "mail": {
+    "maxMailboxSize": 1024,
+    "maxMessageSize": 25,
+    "enableSpamFilter": true,
+    "enableVirusScan": true,
+    "quarantineDays": 7,
+    "autoDeleteSpam": false,
+    "pageSize": 8,
+    "domains": [
+      {
+        "id": 1,
+        "name": "localhost",
+        "isDefault": true
+      }
+    ]
+  },
+  "notifications": {
+    "emailAlerts": true,
+    "systemAlerts": true,
+    "securityAlerts": true,
+    "maintenanceAlerts": true,
+    "alertEmail": "xm@xm666.fun",
+    "thresholds": {
+      "cpu": {
+        "warning": 80,
+        "critical": 90
+      },
+      "memory": {
+        "warning": 80,
+        "critical": 90
+      },
+      "disk": {
+        "warning": 80,
+        "critical": 90
+      },
+      "network": {
+        "warning": 80,
+        "critical": 90
+      }
+    },
+    "enabled": true,
+    "cpuThreshold": 80,
+    "memoryThreshold": 80,
+    "diskThreshold": 80,
+    "networkThreshold": 80
+  },
+  "performance": {
+    "maxConnections": 1000,
+    "connectionTimeout": 30,
+    "enableCompression": true,
+    "cacheSize": 256,
+    "enableCaching": true,
+    "timeout": 30
+  },
+  "broadcast": {
+    "message": "欢迎使用XM邮件管理系统，请您在使用过程中遵守服务规范，与我们携手共建清朗网络空间。"
+  }
+}

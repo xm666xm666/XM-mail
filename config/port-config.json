@@ -1,0 +1,16 @@
+{
+  "api": {
+    "port": 8081,
+    "description": "后端API服务端口"
+  },
+  "frontend": {
+    "devPort": 5173,
+    "description": "前端开发服务器端口（仅开发环境使用）"
+  },
+  "apache": {
+    "httpPort": 80,
+    "httpsPort": 443,
+    "description": "Apache Web服务器端口（HTTP和HTTPS）"
+  },
+  "updatedAt": "2026-01-15T00:00:00.000Z"
+}

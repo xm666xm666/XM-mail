@@ -1,0 +1,27 @@
+[Unit]
+Description=Mail Ops Dispatcher
+After=network.target
+
+[Service]
+Type=simple
+# 注意：此文件为模板，实际部署时 start.sh 会将 ${BASE_DIR} 替换为实际路径
+# 如果手动部署，请将 ${BASE_DIR} 替换为实际的项目根目录路径
+# PORT环境变量会在部署时由start.sh根据config/port-config.json自动注入
+# API_PASS环境变量会在部署时由start.sh从/etc/mail-ops/xm-admin.pass文件读取后注入
+Environment=SCRIPTS_DIR=${BASE_DIR}/backend/scripts
+Environment=LOG_DIR=/var/log/mail-ops
+Environment=API_USER=xm
+# API_PASS环境变量：start.sh会在部署时从/etc/mail-ops/xm-admin.pass文件读取后自动添加
+# 格式：Environment=API_PASS=从文件读取的密码（如果文件不存在，使用默认值xm666@）
+Environment=SUDO_USER=xm
+# PORT环境变量：start.sh会在部署时根据config/port-config.json自动添加
+# 格式：Environment=PORT=8081（默认值，实际值由start.sh读取配置文件后注入）
+User=xm
+Group=xm
+WorkingDirectory=${BASE_DIR}/backend/dispatcher
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
