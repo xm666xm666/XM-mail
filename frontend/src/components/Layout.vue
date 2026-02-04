@@ -1,16 +1,16 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
     <!-- 左侧导航栏 - 仅管理员可见 -->
-    <div v-if="isAdmin" class="fixed inset-y-0 left-0 z-50 w-full sm:w-64 bg-white shadow-lg transform transition-all duration-300 ease-in-out hover:shadow-xl" :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }" :style="{ opacity: isInitialized ? 1 : 0 }">
+    <div v-if="isAdmin" class="fixed inset-y-0 left-0 z-50 w-full sm:w-64 bg-white dark:bg-gray-800 shadow-lg transform transition-all duration-300 ease-in-out hover:shadow-xl" :class="{ '-translate-x-full': !sidebarOpen, 'translate-x-0': sidebarOpen }" :style="{ opacity: isInitialized ? 1 : 0 }">
       <!-- 导航栏头部 -->
-      <div class="flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6 border-b border-gray-200">
+      <div class="flex items-center justify-between h-14 sm:h-16 px-4 sm:px-6 border-b border-gray-200 dark:border-gray-700">
         <div class="flex items-center">
           <div class="h-7 w-7 sm:h-8 sm:w-8 rounded-lg flex items-center justify-center">
             <img src="/favicon.ico" alt="XM邮件系统" class="h-7 w-7 sm:h-8 sm:w-8 rounded-lg" />
           </div>
-          <span class="ml-2 sm:ml-3 text-base sm:text-lg font-bold text-gray-900">XM邮件系统</span>
+          <span class="ml-2 sm:ml-3 text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">XM邮件系统</span>
         </div>
-        <button @click="toggleSidebar" class="p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100">
+        <button @click="toggleSidebar" class="p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700">
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
@@ -26,7 +26,7 @@
             to="/dashboard" 
             @click="() => { userLogger.logButtonClick('仪表板', '左侧导航'); toggleSidebar() }"
             class="group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-md"
-            :class="$route.path === '/dashboard' ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700 shadow-sm' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'"
+            :class="$route.path === '/dashboard' ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700 dark:border-blue-400 shadow-sm' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100'"
           >
             <svg class="mr-3 h-5 w-5 transition-all duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"></path>
@@ -41,7 +41,7 @@
             to="/mail" 
             @click="() => { userLogger.logButtonClick('邮件管理', '左侧导航'); toggleSidebar() }"
             class="group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-md"
-            :class="$route.path === '/mail' ? 'bg-blue-50 text-blue-700 border-r-2 border-blue-700 shadow-sm' : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'"
+            :class="$route.path === '/mail' ? 'bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border-r-2 border-blue-700 dark:border-blue-400 shadow-sm' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100'"
           >
             <svg class="mr-3 h-5 w-5 transition-all duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
@@ -53,15 +53,15 @@
           <!-- 系统监控 -->
           <div class="pt-4">
             <div class="px-3 mb-2">
-              <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider">系统管理</h3>
+              <h3 class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">系统管理</h3>
             </div>
             
             <button 
-              @click="() => { userLogger.logButtonClick('系统状态', '左侧导航'); showSystemStatus(); toggleSidebar() }"
-              class="group flex items-center w-full px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-md relative overflow-hidden"
+              @click="() => { userLogger.logButtonClick('系统状态', '左侧导航'); showSystemStatus(); sidebarOpen.value = false }"
+              class="group flex items-center w-full px-3 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:bg-gradient-to-r hover:from-blue-500 hover:to-cyan-500 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-md relative overflow-hidden"
             >
               <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <svg class="mr-3 h-5 w-5 transition-all duration-300 group-hover:rotate-12 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="mr-3 h-5 w-5 transition-all duration-300 group-hover:rotate-12 group-hover:text-white text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
               </svg>
               <span class="relative z-10 transition-all duration-300 group-hover:font-semibold">系统状态</span>
@@ -69,11 +69,11 @@
             </button>
 
             <button 
-              @click="() => { userLogger.logButtonClick('日志查看', '左侧导航'); showLogViewer(); toggleSidebar() }"
-              class="group flex items-center w-full px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-md relative overflow-hidden"
+              @click="() => { userLogger.logButtonClick('日志查看', '左侧导航'); showLogViewer(); sidebarOpen.value = false }"
+              class="group flex items-center w-full px-3 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 hover:bg-gradient-to-r hover:from-green-500 hover:to-emerald-500 hover:text-white dark:hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-md relative overflow-hidden border border-transparent dark:border-gray-600 hover:border-green-500/30 dark:hover:border-emerald-500/50"
             >
-              <div class="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <svg class="mr-3 h-5 w-5 transition-all duration-300 group-hover:rotate-12 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 opacity-0 group-hover:opacity-10 dark:group-hover:opacity-20 transition-opacity duration-300"></div>
+              <svg class="mr-3 h-5 w-5 transition-all duration-300 group-hover:rotate-12 group-hover:text-white text-gray-500 dark:text-gray-400 dark:group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
               </svg>
               <span class="relative z-10 transition-all duration-300 group-hover:font-semibold">日志查看</span>
@@ -81,16 +81,15 @@
             </button>
 
             <button 
-              @click="() => { userLogger.logButtonClick('命令终端', '左侧导航'); showCommandTerminal(); toggleSidebar() }"
-              class="group flex items-center w-full px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-md relative overflow-hidden"
-              title="命令终端（用户 euser）"
+              @click="() => { userLogger.logButtonClick('命令终端', '左侧导航'); showCommandTerminal(); sidebarOpen.value = false }"
+              class="group flex items-center w-full px-3 py-2 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 hover:text-white transition-all duration-300 transform hover:scale-105 hover:shadow-md relative overflow-hidden"
+              title="命令终端"
             >
               <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <svg class="mr-3 h-5 w-5 transition-all duration-300 group-hover:rotate-12 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="mr-3 h-5 w-5 transition-all duration-300 group-hover:rotate-12 group-hover:text-white text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
               </svg>
               <span class="relative z-10 transition-all duration-300 group-hover:font-semibold">命令终端</span>
-              <span class="relative z-10 ml-1 text-xs text-gray-500 group-hover:text-orange-100">(euser)</span>
               <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
             </button>
 
@@ -99,14 +98,14 @@
           <!-- 设置 -->
           <div class="pt-4">
             <div class="px-3 mb-2">
-              <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider">设置</h3>
+              <h3 class="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">设置</h3>
             </div>
             
             <router-link 
               to="/settings" 
               @click="() => { userLogger.logButtonClick('系统设置', '左侧导航'); toggleSidebar() }"
               class="group flex items-center w-full px-3 py-2 text-sm font-medium rounded-md transition-all duration-300 relative overflow-hidden transform hover:scale-105 hover:shadow-lg"
-              :class="$route.path === '/settings' ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-sm' : 'text-gray-700 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white'"
+              :class="$route.path === '/settings' ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-sm' : 'text-gray-700 dark:text-gray-200 hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white'"
             >
               <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
               <svg class="mr-3 h-5 w-5 transition-all duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -127,7 +126,7 @@
       </nav>
 
       <!-- 底部用户信息 -->
-      <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 border-t border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
+      <div class="absolute bottom-0 left-0 right-0 p-3 sm:p-4 border-t border-gray-200 dark:border-gray-600 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-700 dark:to-gray-800">
         <div class="flex items-center">
           <div class="h-9 w-9 sm:h-10 sm:w-10 rounded-full overflow-hidden bg-gradient-to-r from-green-500 to-blue-500 flex items-center justify-center shadow-lg">
             <img 
@@ -142,8 +141,8 @@
             </svg>
           </div>
           <div class="ml-2 sm:ml-3 flex-1 min-w-0">
-            <p class="text-xs sm:text-sm font-semibold text-gray-900 truncate">{{ currentUser || '未知用户' }}</p>
-            <p class="text-xs text-green-600 font-medium flex items-center truncate">
+            <p class="text-xs sm:text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">{{ currentUser || '未知用户' }}</p>
+            <p class="text-xs text-green-600 dark:text-green-400 font-medium flex items-center truncate">
               <svg class="h-3 w-3 mr-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
@@ -151,15 +150,15 @@
             </p>
           </div>
           <div class="text-right flex-shrink-0 ml-2">
-            <div class="text-xs text-gray-500">在线</div>
+            <div class="text-xs text-gray-500 dark:text-gray-400">在线</div>
             <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse mx-auto mt-0.5"></div>
           </div>
         </div>
         
         <!-- 邮件统计信息 -->
-        <div class="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-200">
+        <div class="mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-gray-200 dark:border-gray-600">
           <div class="flex items-center justify-between text-xs">
-            <div class="flex items-center text-gray-600">
+            <div class="flex items-center text-gray-600 dark:text-gray-300">
               <svg class="h-3 w-3 sm:h-4 sm:w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
               </svg>
@@ -173,87 +172,162 @@
 
     <!-- 主内容区域 -->
     <div class="flex-1 flex flex-col transition-all duration-300 ease-in-out" :class="{ 'sm:ml-64': sidebarOpen && isAdmin, 'ml-0': !sidebarOpen || !isAdmin }">
-      <!-- 顶部导航栏 -->
-      <header class="bg-white shadow-sm border-b border-gray-200">
-        <div class="flex items-center justify-between h-14 sm:h-16 px-3 sm:px-4 lg:px-6 xl:px-8">
+      <!-- 顶部导航栏：整行适配手机端 -->
+      <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 transition-colors duration-200">
+        <div class="flex items-center justify-between gap-2 sm:gap-4 h-12 sm:h-14 md:h-16 px-2 sm:px-4 lg:px-6 xl:px-8 min-h-0">
+          <!-- 左侧：菜单 + 标题 -->
           <div class="flex items-center min-w-0 flex-1">
-            <button v-if="isAdmin" @click="toggleSidebar" class="p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 flex-shrink-0">
+            <button v-if="isAdmin" @click="toggleSidebar" class="p-1.5 sm:p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700 flex-shrink-0 touch-manipulation" aria-label="切换侧栏">
               <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
             </button>
-            <h1 class="ml-2 sm:ml-4 text-base sm:text-lg lg:text-xl font-semibold text-gray-900 truncate">{{ pageTitle }}</h1>
+            <h1 class="ml-1.5 sm:ml-4 text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900 dark:text-gray-100 truncate">{{ pageTitle }}</h1>
           </div>
-          <div class="flex items-center space-x-4">
-            <!-- 用户信息 -->
-            <div class="flex items-center space-x-2">
-              <div class="h-8 w-8 rounded-full overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
-                <img 
-                  v-if="userAvatar" 
-                  :src="userAvatar" 
-                  alt="用户头像" 
-                  class="h-full w-full object-cover"
-                  @error="handleAvatarError"
-                />
-                <svg v-else class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <!-- 右侧：用户与操作（桌面端整行 / 手机端图标+下拉） -->
+          <div class="flex items-center flex-shrink-0">
+            <!-- 桌面端：完整显示用户信息 + 布局/个人资料/退出 -->
+            <div class="hidden md:flex items-center space-x-2 lg:space-x-4">
+              <div class="flex items-center space-x-2">
+                <div class="h-7 w-7 lg:h-8 lg:w-8 rounded-full overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+                  <img v-if="userAvatar" :src="userAvatar" alt="用户头像" class="h-full w-full object-cover" @error="handleAvatarError" />
+                  <svg v-else class="h-3.5 w-3.5 lg:h-4 lg:w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                  </svg>
+                </div>
+                <div class="text-xs lg:text-sm">
+                  <span class="font-medium text-gray-900 dark:text-gray-100">{{ currentUser || '未知用户' }}</span>
+                  <span :class="['ml-1.5 text-xs', isAdmin ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400']">
+                    {{ isAdmin ? '管理员' : '普通用户' }}
+                  </span>
+                </div>
+              </div>
+              <button
+                @click="() => { userLogger.logButtonClick('布局', '顶部导航'); showLayoutDrawer = true }"
+                class="flex items-center px-2.5 py-1.5 lg:px-3 lg:py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 dark:text-gray-300 dark:hover:text-gray-100 dark:hover:bg-gray-700"
+                title="布局设置"
+              >
+                <svg class="h-4 w-4 lg:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                </svg>
+                <span class="hidden xl:inline">布局</span>
+              </button>
+              <router-link
+                to="/profile"
+                @click="() => { userLogger.logButtonClick('个人资料', '顶部导航') }"
+                class="flex items-center px-2.5 py-1.5 lg:px-3 lg:py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 dark:text-gray-300 dark:hover:text-gray-100 dark:hover:bg-gray-700"
+              >
+                <svg class="h-4 w-4 lg:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                 </svg>
+                <span class="hidden xl:inline">个人资料</span>
+              </router-link>
+              <button
+                @click="() => { userLogger.logButtonClick('退出登录', '顶部导航'); logout() }"
+                class="flex items-center px-2.5 py-1.5 lg:px-3 lg:py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200 dark:text-gray-300 dark:hover:text-gray-100 dark:hover:bg-gray-700"
+              >
+                <svg class="h-4 w-4 lg:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                </svg>
+                <span class="hidden xl:inline">退出登录</span>
+              </button>
+            </div>
+            <!-- 手机端：头像 + 更多菜单下拉 -->
+            <div class="relative flex items-center md:hidden">
+              <div class="flex items-center gap-1 sm:gap-2">
+                <div class="h-8 w-8 rounded-full overflow-hidden bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0 ring-2 ring-white dark:ring-gray-700 shadow">
+                  <img v-if="userAvatar" :src="userAvatar" alt="用户头像" class="h-full w-full object-cover" @error="handleAvatarError" />
+                  <svg v-else class="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                  </svg>
+                </div>
+                <span class="max-w-[4.5rem] sm:max-w-[6rem] text-xs font-medium text-gray-900 dark:text-gray-100 truncate">{{ currentUser || '用户' }}</span>
+                <button
+                  type="button"
+                  @click="headerMenuOpen = !headerMenuOpen"
+                  class="p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700 touch-manipulation"
+                  :aria-expanded="headerMenuOpen"
+                  aria-haspopup="true"
+                  aria-label="更多操作"
+                >
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                  </svg>
+                </button>
               </div>
-              <div class="text-sm">
-                <span class="font-medium text-gray-900">{{ currentUser || '未知用户' }}</span>
-                <span :class="['ml-2 text-xs', isAdmin ? 'text-green-600' : 'text-gray-500']">
-                  {{ isAdmin ? '管理员' : '普通用户' }}
-                </span>
+              <!-- 手机端下拉菜单 -->
+              <div
+                v-show="headerMenuOpen"
+                class="absolute right-0 top-full mt-1 py-1 w-48 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 shadow-lg z-50"
+              >
+                <div class="px-3 py-2 border-b border-gray-100 dark:border-gray-600">
+                  <p class="text-xs font-medium text-gray-900 dark:text-gray-100 truncate">{{ currentUser || '未知用户' }}</p>
+                  <p :class="['text-xs', isAdmin ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400']">
+                    {{ isAdmin ? '管理员' : '普通用户' }}
+                  </p>
+                </div>
+                <router-link
+                  to="/profile"
+                  @click="() => { userLogger.logButtonClick('个人资料', '顶部导航'); headerMenuOpen = false }"
+                  class="flex items-center px-3 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700"
+                >
+                  <svg class="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                  </svg>
+                  个人资料
+                </router-link>
+                <button
+                  type="button"
+                  @click="() => { userLogger.logButtonClick('布局', '顶部导航'); showLayoutDrawer = true; headerMenuOpen = false }"
+                  class="flex items-center w-full px-3 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 text-left"
+                >
+                  <svg class="h-4 w-4 mr-2 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                  </svg>
+                  布局
+                </button>
+                <button
+                  type="button"
+                  @click="() => { userLogger.logButtonClick('退出登录', '顶部导航'); logout(); headerMenuOpen = false }"
+                  class="flex items-center w-full px-3 py-2.5 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-gray-700 text-left"
+                >
+                  <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                  </svg>
+                  退出登录
+                </button>
               </div>
             </div>
-            <!-- 个人资料按钮 -->
-            <router-link
-              to="/profile"
-              @click="() => { userLogger.logButtonClick('个人资料', '顶部导航') }"
-              class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-            >
-              <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-              </svg>
-              个人资料
-            </router-link>
-            <button 
-              @click="() => { userLogger.logButtonClick('退出登录', '顶部导航'); logout() }" 
-              class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors duration-200"
-            >
-              <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-              </svg>
-              退出登录
-            </button>
           </div>
         </div>
+        <!-- 点击空白关闭手机端下拉 -->
+        <div v-if="headerMenuOpen" class="fixed inset-0 z-40 md:hidden" @click="headerMenuOpen = false" aria-hidden="true"></div>
       </header>
 
       <!-- 页面内容 -->
-      <main class="flex-1 overflow-auto">
+      <main class="flex-1 overflow-auto bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-200">
         <slot></slot>
       </main>
     </div>
 
     <!-- 版权信息 -->
-    <footer class="bg-gray-50 border-t border-gray-200 py-4 px-6">
+    <footer class="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-4 px-6 transition-colors duration-200">
       <div class="max-w-7xl mx-auto">
-        <div class="text-center text-sm text-gray-600">
+        <div class="text-center text-sm text-gray-600 dark:text-gray-400">
           <div class="flex items-center justify-center space-x-2 mb-2">
-            <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20">
               <path d="M10 2C5.58 2 2 5.58 2 10s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/>
               <text x="10" y="14" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold">C</text>
             </svg>
             <span class="font-medium">2024-2026 XM.</span>
             <!-- 备案号显示 -->
-            <span v-if="icpSettings.enabled && icpSettings.number" class="text-gray-500 text-xs ml-2">
-              <a :href="icpSettings.url" target="_blank" rel="noopener noreferrer" class="hover:text-gray-700 transition-colors duration-200">
+            <span v-if="icpSettings.enabled && icpSettings.number" class="text-gray-500 dark:text-gray-400 text-xs ml-2">
+              <a :href="icpSettings.url" target="_blank" rel="noopener noreferrer" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors duration-200">
                 {{ icpSettings.number }}
               </a>
             </span>
           </div>
-          <div class="text-gray-500 mb-1">XM邮件管理平台 | 欢迎使用</div>
+          <div class="text-gray-500 dark:text-gray-400 mb-1">XM邮件管理平台 | 欢迎使用</div>
           <div class="text-gray-400 text-xs">Powered by XM <span class="version-text">{{ currentVersion }}</span></div>
         </div>
       </div>
@@ -266,63 +340,130 @@
       class="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
     ></div>
 
+    <!-- 右侧布局设置抽屉 -->
+    <div v-if="showLayoutDrawer" class="fixed inset-0 z-50 overflow-hidden">
+      <div class="absolute inset-0 bg-black/30 dark:bg-black/50 transition-opacity" @click="showLayoutDrawer = false"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white dark:bg-gray-800 shadow-xl flex flex-col animate-slide-in-right">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+          <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-100">布局设置</h2>
+          <button @click="showLayoutDrawer = false" class="p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="flex-1 overflow-y-auto px-4 py-4 space-y-6">
+          <!-- 全局主题 -->
+          <div>
+            <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">全局主题</h3>
+            <div class="space-y-3">
+              <div>
+                <label class="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">暗黑模式</label>
+                <div class="flex rounded-lg border border-gray-200 dark:border-gray-600 overflow-hidden">
+                  <button
+                    @click="setLayoutTheme('light')"
+                    :class="['flex-1 px-3 py-2 text-sm font-medium transition-colors', layoutTheme === 'light' ? 'bg-blue-600 text-white dark:bg-blue-500' : 'bg-gray-50 text-gray-700 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600']"
+                  >
+                    浅色（默认）
+                  </button>
+                  <button
+                    @click="setLayoutTheme('dark')"
+                    :class="['flex-1 px-3 py-2 text-sm font-medium transition-colors', layoutTheme === 'dark' ? 'bg-blue-600 text-white dark:bg-blue-500' : 'bg-gray-50 text-gray-700 hover:bg-gray-100 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600']"
+                  >
+                    深色
+                  </button>
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300">灰色模式</span>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">无色彩模式</p>
+                </div>
+                <button
+                  @click="layoutGrayscale = !layoutGrayscale; applyLayoutGrayscale()"
+                  :class="['relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2', layoutGrayscale ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-600']"
+                >
+                  <span :class="['pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition', layoutGrayscale ? 'translate-x-5' : 'translate-x-1']"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- 界面设置 -->
+          <div>
+            <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">界面设置</h3>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">菜单折叠</span>
+                <p class="text-xs text-gray-500 dark:text-gray-400">左侧导航栏是否常驻</p>
+              </div>
+              <button
+                @click="toggleSidebarCollapsed"
+                :class="['relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2', sidebarCollapsed ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-600']"
+              >
+                <span :class="['pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition', sidebarCollapsed ? 'translate-x-5' : 'translate-x-1']"></span>
+              </button>
+            </div>
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">开启后侧栏默认收起，需点击菜单按钮展开；关闭则侧栏常驻显示。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 系统状态对话框 -->
     <div v-if="showSystemStatusDialog" class="fixed inset-0 z-50 overflow-y-auto">
       <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="showSystemStatusDialog = false"></div>
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
-          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="fixed inset-0 bg-gray-500 dark:bg-gray-900/75 bg-opacity-75 transition-opacity" @click="showSystemStatusDialog = false"></div>
+        <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full border border-gray-200 dark:border-gray-600">
+          <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="sm:flex sm:items-start">
-              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
-                <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 dark:bg-blue-900/50 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                 </svg>
               </div>
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
                 <div class="flex items-center justify-between mb-4">
-                  <h3 class="text-lg leading-6 font-medium text-gray-900">系统状态监控</h3>
+                  <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">系统状态监控</h3>
                   <div class="flex items-center space-x-2">
                     <div v-if="systemStatus.loading" class="flex items-center space-x-2">
-                      <svg class="animate-spin h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24">
+                      <svg class="animate-spin h-4 w-4 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      <span class="text-sm text-gray-500">更新中...</span>
+                      <span class="text-sm text-gray-500 dark:text-gray-400">更新中...</span>
                     </div>
-                    <div v-if="systemStatus.lastUpdate" class="text-xs text-gray-500">
+                    <div v-if="systemStatus.lastUpdate" class="text-xs text-gray-500 dark:text-gray-400">
                       最后更新: {{ new Date(systemStatus.lastUpdate).toLocaleTimeString('zh-CN') }}
                     </div>
                   </div>
                 </div>
                 
                 <!-- 错误提示 -->
-                <div v-if="systemStatus.error" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+                <div v-if="systemStatus.error" class="mb-4 p-3 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-700 rounded-lg">
                   <div class="flex items-center">
-                    <svg class="h-5 w-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="h-5 w-5 text-red-400 dark:text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <span class="text-sm text-red-600">{{ systemStatus.error }}</span>
+                    <span class="text-sm text-red-600 dark:text-red-300">{{ systemStatus.error }}</span>
                   </div>
                 </div>
                 
                 <div class="mt-4">
                   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- 服务状态 -->
-                    <div class="bg-white p-4 rounded-lg border">
+                    <div class="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
                       <div class="flex items-center justify-between mb-3">
-                        <h4 class="text-sm font-medium text-gray-900">服务状态</h4>
+                        <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">服务状态</h4>
                         <div class="flex items-center space-x-2 text-xs">
                           <div class="flex items-center space-x-1">
                             <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                            <span class="text-gray-600">运行中: {{ getServiceCount('running') }}</span>
+                            <span class="text-gray-600 dark:text-gray-400">运行中: {{ getServiceCount('running') }}</span>
                           </div>
                           <div class="flex items-center space-x-1">
                             <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                            <span class="text-gray-600">已关闭: {{ getServiceCount('stopped') }}</span>
+                            <span class="text-gray-600 dark:text-gray-400">已关闭: {{ getServiceCount('stopped') }}</span>
                           </div>
                           <div class="flex items-center space-x-1">
                             <div class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-                            <span class="text-gray-600">错误: {{ getServiceCount('error') }}</span>
+                            <span class="text-gray-600 dark:text-gray-400">错误: {{ getServiceCount('error') }}</span>
                           </div>
                         </div>
                       </div>
@@ -330,7 +471,7 @@
                       <!-- 紧凑的服务状态网格 -->
                       <div class="grid grid-cols-2 gap-2">
                         <div v-for="(service, name) in systemStatus.services" :key="name" 
-                             class="flex items-center space-x-2 p-2 rounded-lg transition-all duration-300 hover:bg-gray-50 cursor-pointer" 
+                             class="flex items-center space-x-2 p-2 rounded-lg transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-600/50 cursor-pointer" 
                              @click="debugServiceStatus(name, service)">
                           <div class="relative">
                             <div :class="['w-2 h-2 rounded-full', getServiceStatusDotColor(service.status)]"></div>
@@ -338,78 +479,81 @@
                             <div v-if="service.status === 'error'" class="absolute inset-0 w-2 h-2 rounded-full bg-orange-400 animate-ping opacity-75"></div>
                           </div>
                           <div class="flex-1 min-w-0">
-                            <div class="text-xs font-medium text-gray-700 truncate">{{ getServiceDisplayName(name) }}</div>
-                            <div class="text-xs text-gray-500">{{ getServiceStatusText(service.status) }}</div>
+                            <div class="text-xs font-medium text-gray-700 dark:text-gray-200 truncate">{{ getServiceDisplayName(name) }}</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">{{ getServiceStatusText(service.status) }}</div>
                           </div>
                         </div>
                       </div>
                     </div>
             
-            <!-- DNS状态 -->
-            <div class="bg-white p-4 rounded-lg border">
-              <h4 class="text-sm font-medium text-gray-900 mb-3">DNS解析状态</h4>
+            <!-- DNS状态（支持公网 DNS / Bind） -->
+            <div class="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+              <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">DNS解析状态</h4>
               <div v-if="systemStatus.dns" class="space-y-2">
+                <div v-if="systemStatus.dns?.dns_type === 'public'" class="mb-2 px-2 py-1.5 rounded bg-blue-50 dark:bg-blue-900/30 text-xs text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-700">
+                  当前为公网 DNS，以下记录为公网解析结果，请在域名服务商处配置 MX/A/SPF/DKIM/DMARC 等记录。
+                </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">配置域名</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">{{ systemStatus.dns?.dns_type === 'public' ? '公网域名' : '配置域名' }}</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.dns.configuredDomain || '未配置' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">配置主机名</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">{{ systemStatus.dns?.dns_type === 'public' ? '公网主机名' : '配置主机名' }}</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.dns.configuredHostname || '未配置' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">DNS健康度</span>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">DNS健康度</span>
                   <span :class="['text-sm font-medium', getDnsHealthColor(systemStatus.dns.healthScore)]">
                     {{ systemStatus.dns.healthScore || 0 }}%
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">整体状态</span>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">整体状态</span>
                   <span :class="['text-sm font-medium', getDnsStatusColor(systemStatus.dns.overallStatus)]">
                     {{ getDnsStatusText(systemStatus.dns.overallStatus) }}
                   </span>
                 </div>
                 
                 <!-- DNS记录详情 -->
-                <div v-if="systemStatus.dns.configuredDomain" class="mt-3 pt-2 border-t border-gray-200">
-                  <div class="text-xs font-medium text-gray-500 mb-2">DNS记录详情</div>
+                <div v-if="systemStatus.dns.configuredDomain" class="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                  <div class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">DNS记录详情</div>
                   <div class="space-y-1 text-xs">
                     <div class="flex justify-between">
-                      <span class="text-gray-500">MX记录</span>
+                      <span class="text-gray-500 dark:text-gray-400">MX记录</span>
                       <span :class="['font-medium', getDnsRecordColor(systemStatus.dns.mxStatus)]">
                         {{ getDnsRecordText(systemStatus.dns.mxStatus) }}
                       </span>
                     </div>
                     <div class="flex justify-between">
-                      <span class="text-gray-500">A记录</span>
+                      <span class="text-gray-500 dark:text-gray-400">A记录</span>
                       <span :class="['font-medium', getDnsRecordColor(systemStatus.dns.aStatus)]">
                         {{ getDnsRecordText(systemStatus.dns.aStatus) }}
                       </span>
                     </div>
                     <div class="flex justify-between">
-                      <span class="text-gray-500">PTR记录</span>
+                      <span class="text-gray-500 dark:text-gray-400">PTR记录</span>
                       <span :class="['font-medium', getDnsRecordColor(systemStatus.dns.ptrStatus)]">
                         {{ getDnsRecordText(systemStatus.dns.ptrStatus) }}
                       </span>
                     </div>
                     <div class="flex justify-between">
-                      <span class="text-gray-500">SPF记录</span>
+                      <span class="text-gray-500 dark:text-gray-400">SPF记录</span>
                       <span :class="['font-medium', getDnsRecordColor(systemStatus.dns.spfStatus)]">
                         {{ getDnsRecordText(systemStatus.dns.spfStatus) }}
                       </span>
                     </div>
                     <div class="flex justify-between">
-                      <span class="text-gray-500">DKIM记录</span>
+                      <span class="text-gray-500 dark:text-gray-400">DKIM记录</span>
                       <span :class="['font-medium', getDnsRecordColor(systemStatus.dns.dkimStatus)]">
                         {{ getDnsRecordText(systemStatus.dns.dkimStatus) }}
                       </span>
                     </div>
                     <div class="flex justify-between">
-                      <span class="text-gray-500">DMARC记录</span>
+                      <span class="text-gray-500 dark:text-gray-400">DMARC记录</span>
                       <span :class="['font-medium', getDnsRecordColor(systemStatus.dns.dmarcStatus)]">
                         {{ getDnsRecordText(systemStatus.dns.dmarcStatus) }}
                       </span>
@@ -417,100 +561,100 @@
                   </div>
                   
                   <!-- DNS统计信息 -->
-                  <div v-if="systemStatus.dns.summary" class="mt-2 pt-2 border-t border-gray-200">
-                    <div class="text-xs text-gray-500 mb-1">记录统计</div>
+                  <div v-if="systemStatus.dns.summary" class="mt-2 pt-2 border-t border-gray-200 dark:border-gray-600">
+                    <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">记录统计</div>
                     <div class="grid grid-cols-2 gap-1 text-xs">
                       <div class="flex justify-between">
-                        <span class="text-gray-500">总计</span>
-                        <span class="font-medium">{{ systemStatus.dns.summary.total }}</span>
+                        <span class="text-gray-500 dark:text-gray-400">总计</span>
+                        <span class="font-medium text-gray-900 dark:text-gray-100">{{ systemStatus.dns.summary.total }}</span>
                       </div>
                       <div class="flex justify-between">
-                        <span class="text-gray-500">已配置</span>
-                        <span class="font-medium text-green-600">{{ systemStatus.dns.summary.configured }}</span>
+                        <span class="text-gray-500 dark:text-gray-400">已配置</span>
+                        <span class="font-medium text-green-600 dark:text-green-400">{{ systemStatus.dns.summary.configured }}</span>
                       </div>
                       <div class="flex justify-between">
-                        <span class="text-gray-500">缺失</span>
-                        <span class="font-medium text-yellow-600">{{ systemStatus.dns.summary.missing }}</span>
+                        <span class="text-gray-500 dark:text-gray-400">缺失</span>
+                        <span class="font-medium text-yellow-600 dark:text-yellow-400">{{ systemStatus.dns.summary.missing }}</span>
                       </div>
                       <div class="flex justify-between">
-                        <span class="text-gray-500">错误</span>
-                        <span class="font-medium text-red-600">{{ systemStatus.dns.summary.errors }}</span>
+                        <span class="text-gray-500 dark:text-gray-400">错误</span>
+                        <span class="font-medium text-red-600 dark:text-red-400">{{ systemStatus.dns.summary.errors }}</span>
                       </div>
                     </div>
                   </div>
                 </div>
                 
                 <!-- 错误信息 -->
-                <div v-if="systemStatus.dns.error" class="mt-2 p-2 bg-red-50 rounded text-xs text-red-600">
+                <div v-if="systemStatus.dns.error" class="mt-2 p-2 bg-red-50 dark:bg-red-900/30 rounded text-xs text-red-600 dark:text-red-300">
                   {{ systemStatus.dns.error }}
                 </div>
               </div>
-              <div v-else class="text-sm text-gray-500">
+              <div v-else class="text-sm text-gray-500 dark:text-gray-400">
                 DNS状态信息不可用
               </div>
             </div>
             
             <!-- 系统信息 -->
-            <div class="bg-white p-4 rounded-lg border">
-              <h4 class="text-sm font-medium text-gray-900 mb-3">系统信息</h4>
+            <div class="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+              <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">系统信息</h4>
               <div class="space-y-2">
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">主机名</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">主机名</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.systemInfo.hostname || 'Unknown' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">操作系统</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">操作系统</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.systemInfo.osVersion || 'Unknown' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">内核版本</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">内核版本</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.systemInfo.kernelVersion || 'Unknown' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">架构</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">架构</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.systemInfo.architecture || 'Unknown' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">时区</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">时区</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.systemInfo.timezone || 'Unknown' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">启动时间</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">启动时间</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.systemInfo.bootTime || 'Unknown' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">运行时间</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">运行时间</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ formatUptime(systemStatus.systemInfo.uptime || 0) }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">当前用户</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">当前用户</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.systemInfo.currentUser || 'Unknown' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">Node版本</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">Node版本</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.systemInfo.nodeVersion || 'Unknown' }}
                   </span>
                 </div>
                 <div class="flex justify-between">
-                  <span class="text-sm text-gray-600">系统负载</span>
-                  <span class="text-sm font-medium text-blue-600">
+                  <span class="text-sm text-gray-600 dark:text-gray-400">系统负载</span>
+                  <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                     {{ systemStatus.systemInfo.loadAverage || 'Unknown' }}
                   </span>
                 </div>
@@ -518,68 +662,68 @@
             </div>
             
             <!-- 系统资源 -->
-            <div class="bg-white p-4 rounded-lg border">
-              <h4 class="text-sm font-medium text-gray-900 mb-3">系统资源</h4>
+            <div class="bg-white dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+              <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">系统资源</h4>
                              <div class="space-y-2">
                                <div class="flex justify-between">
-                                 <span class="text-sm text-gray-600">CPU使用率</span>
+                                 <span class="text-sm text-gray-600 dark:text-gray-400">CPU使用率</span>
                                  <span :class="['text-sm font-medium', getResourceColor(systemStatus.resources.cpu)]">
                                    {{ systemStatus.resources.cpu?.toFixed(1) || 0 }}%
                                  </span>
                                </div>
                                <div class="flex justify-between">
-                                 <span class="text-sm text-gray-600">内存使用率</span>
+                                 <span class="text-sm text-gray-600 dark:text-gray-400">内存使用率</span>
                                  <span :class="['text-sm font-medium', getResourceColor(systemStatus.resources.memory)]">
                                    {{ systemStatus.resources.memory?.toFixed(1) || 0 }}%
                                  </span>
                                </div>
                                <div class="flex justify-between">
-                                 <span class="text-sm text-gray-600">磁盘使用率</span>
+                                 <span class="text-sm text-gray-600 dark:text-gray-400">磁盘使用率</span>
                                  <span :class="['text-sm font-medium', getResourceColor(systemStatus.resources.disk)]">
                                    {{ systemStatus.resources.disk?.toFixed(1) || 0 }}%
                                  </span>
                                </div>
                                <div class="flex justify-between">
-                                 <span class="text-sm text-gray-600">负载平均值</span>
+                                 <span class="text-sm text-gray-600 dark:text-gray-400">负载平均值</span>
                                  <span :class="['text-sm font-medium', getResourceColor(systemStatus.resources.loadAverage * 100)]">
                                    {{ systemStatus.resources.loadAverage?.toFixed(2) || 0 }}
                                  </span>
                                </div>
                                
                                <!-- 内存详细信息 -->
-                               <div v-if="systemStatus.resources.memoryDetails" class="mt-3 pt-2 border-t border-gray-200">
-                                 <div class="text-xs font-medium text-gray-500 mb-2">内存详情</div>
+                               <div v-if="systemStatus.resources.memoryDetails" class="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
+                                 <div class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">内存详情</div>
                                  <div class="grid grid-cols-2 gap-2 text-xs">
                                    <div class="flex justify-between">
-                                     <span class="text-gray-500">总计</span>
-                                     <span class="font-medium">{{ systemStatus.resources.memoryDetails.total }}</span>
+                                     <span class="text-gray-500 dark:text-gray-400">总计</span>
+                                     <span class="font-medium text-gray-900 dark:text-gray-100">{{ systemStatus.resources.memoryDetails.total }}</span>
                                    </div>
                                    <div class="flex justify-between">
-                                     <span class="text-gray-500">已用</span>
-                                     <span class="font-medium text-red-600">{{ systemStatus.resources.memoryDetails.used }}</span>
+                                     <span class="text-gray-500 dark:text-gray-400">已用</span>
+                                     <span class="font-medium text-red-600 dark:text-red-400">{{ systemStatus.resources.memoryDetails.used }}</span>
                                    </div>
                                    <div class="flex justify-between">
-                                     <span class="text-gray-500">空闲</span>
-                                     <span class="font-medium text-green-600">{{ systemStatus.resources.memoryDetails.free }}</span>
+                                     <span class="text-gray-500 dark:text-gray-400">空闲</span>
+                                     <span class="font-medium text-green-600 dark:text-green-400">{{ systemStatus.resources.memoryDetails.free }}</span>
                                    </div>
                                    <div class="flex justify-between">
-                                     <span class="text-gray-500">可用</span>
-                                     <span class="font-medium text-blue-600">{{ systemStatus.resources.memoryDetails.available }}</span>
+                                     <span class="text-gray-500 dark:text-gray-400">可用</span>
+                                     <span class="font-medium text-blue-600 dark:text-blue-400">{{ systemStatus.resources.memoryDetails.available }}</span>
                                    </div>
                                  </div>
                                </div>
                                
                                <!-- 网络连接和进程信息 -->
-                               <div class="mt-3 pt-2 border-t border-gray-200">
+                               <div class="mt-3 pt-2 border-t border-gray-200 dark:border-gray-600">
                                  <div class="flex justify-between">
-                                   <span class="text-sm text-gray-600">网络连接</span>
-                                   <span class="text-sm font-medium text-blue-600">
+                                   <span class="text-sm text-gray-600 dark:text-gray-400">网络连接</span>
+                                   <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                                      {{ systemStatus.network.connections || 0 }}
                                    </span>
                                  </div>
                                  <div class="flex justify-between">
-                                   <span class="text-sm text-gray-600">进程数</span>
-                                   <span class="text-sm font-medium text-blue-600">
+                                   <span class="text-sm text-gray-600 dark:text-gray-400">进程数</span>
+                                   <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
                                      {{ systemStatus.processes.count || 0 }}
                                    </span>
                                  </div>
@@ -589,47 +733,47 @@
                                <div class="mt-3">
                                  <button 
                                    @click="toggleResourceDetails" 
-                                   class="text-xs text-blue-600 hover:text-blue-800 underline"
+                                   class="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
                                  >
                                    {{ showResourceDetails ? '隐藏详细信息' : '显示详细信息' }}
                                  </button>
                                </div>
                                
                                <!-- 详细信息面板 -->
-                               <div v-if="showResourceDetails" class="mt-3 p-3 bg-gray-50 rounded-lg text-xs">
+                               <div v-if="showResourceDetails" class="mt-3 p-3 bg-gray-50 dark:bg-gray-600/50 rounded-lg text-xs">
                                  <div v-if="systemStatus.resources.cpuDetails" class="mb-3">
-                                   <div class="font-medium text-gray-700 mb-1">CPU信息</div>
-                                   <pre class="text-gray-600 whitespace-pre-wrap">{{ systemStatus.resources.cpuDetails }}</pre>
+                                   <div class="font-medium text-gray-700 dark:text-gray-200 mb-1">CPU信息</div>
+                                   <pre class="text-gray-600 dark:text-gray-300 whitespace-pre-wrap">{{ systemStatus.resources.cpuDetails }}</pre>
                                  </div>
                                  
                                  <div v-if="systemStatus.resources.diskDetails" class="mb-3">
-                                   <div class="font-medium text-gray-700 mb-1">磁盘使用</div>
-                                   <pre class="text-gray-600 whitespace-pre-wrap">{{ systemStatus.resources.diskDetails }}</pre>
+                                   <div class="font-medium text-gray-700 dark:text-gray-200 mb-1">磁盘使用</div>
+                                   <pre class="text-gray-600 dark:text-gray-300 whitespace-pre-wrap">{{ systemStatus.resources.diskDetails }}</pre>
                                  </div>
                                  
                                  <div v-if="systemStatus.resources.networkInterfaces" class="mb-3">
-                                   <div class="font-medium text-gray-700 mb-1">网络接口</div>
-                                   <pre class="text-gray-600 whitespace-pre-wrap">{{ systemStatus.resources.networkInterfaces }}</pre>
+                                   <div class="font-medium text-gray-700 dark:text-gray-200 mb-1">网络接口</div>
+                                   <pre class="text-gray-600 dark:text-gray-300 whitespace-pre-wrap">{{ systemStatus.resources.networkInterfaces }}</pre>
                                  </div>
                                  
                                  <div v-if="systemStatus.resources.temperature" class="mb-3">
-                                   <div class="font-medium text-gray-700 mb-1">系统温度</div>
-                                   <pre class="text-gray-600 whitespace-pre-wrap">{{ systemStatus.resources.temperature }}</pre>
+                                   <div class="font-medium text-gray-700 dark:text-gray-200 mb-1">系统温度</div>
+                                   <pre class="text-gray-600 dark:text-gray-300 whitespace-pre-wrap">{{ systemStatus.resources.temperature }}</pre>
                                  </div>
                                  
                                  <div v-if="systemStatus.resources.topProcesses" class="mb-3">
-                                   <div class="font-medium text-gray-700 mb-1">CPU占用最高的进程</div>
-                                   <pre class="text-gray-600 whitespace-pre-wrap">{{ systemStatus.resources.topProcesses }}</pre>
+                                   <div class="font-medium text-gray-700 dark:text-gray-200 mb-1">CPU占用最高的进程</div>
+                                   <pre class="text-gray-600 dark:text-gray-300 whitespace-pre-wrap">{{ systemStatus.resources.topProcesses }}</pre>
                                  </div>
                                  
                                  <div v-if="systemStatus.resources.swapInfo" class="mb-3">
-                                   <div class="font-medium text-gray-700 mb-1">交换空间</div>
-                                   <pre class="text-gray-600 whitespace-pre-wrap">{{ systemStatus.resources.swapInfo }}</pre>
+                                   <div class="font-medium text-gray-700 dark:text-gray-200 mb-1">交换空间</div>
+                                   <pre class="text-gray-600 dark:text-gray-300 whitespace-pre-wrap">{{ systemStatus.resources.swapInfo }}</pre>
                                  </div>
                                  
                                  <div v-if="systemStatus.resources.mountInfo" class="mb-3">
-                                   <div class="font-medium text-gray-700 mb-1">文件系统</div>
-                                   <pre class="text-gray-600 whitespace-pre-wrap">{{ systemStatus.resources.mountInfo }}</pre>
+                                   <div class="font-medium text-gray-700 dark:text-gray-200 mb-1">文件系统</div>
+                                   <pre class="text-gray-600 dark:text-gray-300 whitespace-pre-wrap">{{ systemStatus.resources.mountInfo }}</pre>
                                  </div>
                                </div>
                              </div>
@@ -639,8 +783,8 @@
               </div>
             </div>
           </div>
-          <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-            <button @click="showSystemStatusDialog = false; stopSystemStatusPolling()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+          <div class="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t border-gray-200 dark:border-gray-600">
+            <button @click="showSystemStatusDialog = false; stopSystemStatusPolling()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 sm:ml-3 sm:w-auto sm:text-sm">
               关闭
             </button>
           </div>
@@ -803,59 +947,59 @@
     <!-- 日志查看对话框 -->
     <div v-if="showLogViewerDialog" class="fixed inset-0 z-50 overflow-y-auto">
       <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="showLogViewerDialog = false"></div>
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-6xl sm:w-full">
-          <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="fixed inset-0 bg-gray-500 dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-80 transition-opacity" @click="showLogViewerDialog = false"></div>
+        <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-6xl sm:w-full border border-gray-200 dark:border-gray-600">
+          <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <div class="sm:flex sm:items-start">
-              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 dark:bg-green-900/50 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                 </svg>
               </div>
               <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">用户操作日志查看器</h3>
+                <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">用户操作日志查看器</h3>
                 
                 <!-- 日志过滤器 -->
                 <div class="mt-4 space-y-4">
                   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <!-- 日志类型过滤 -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">日志类型</label>
-                      <select v-model="logFilters.type" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">日志类型</label>
+                      <select v-model="logFilters.type" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100">
                         <option v-for="type in logTypes" :key="type.value" :value="type.value">{{ type.label }}</option>
                       </select>
                     </div>
                     
                     <!-- 操作分类过滤 -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">操作分类</label>
-                      <select v-model="logFilters.category" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">操作分类</label>
+                      <select v-model="logFilters.category" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100">
                         <option v-for="category in logCategories" :key="category.value" :value="category.value">{{ category.label }}</option>
                       </select>
                     </div>
                     
                     <!-- 用户过滤 -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">用户过滤</label>
-                      <input v-model="logFilters.user" type="text" placeholder="输入用户名" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">用户过滤</label>
+                      <input v-model="logFilters.user" type="text" placeholder="输入用户名" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400">
                     </div>
                     
                     <!-- 操作过滤 -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">操作过滤</label>
-                      <input v-model="logFilters.action" type="text" placeholder="输入操作类型" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">操作过滤</label>
+                      <input v-model="logFilters.action" type="text" placeholder="输入操作类型" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400">
                     </div>
                     
                     <!-- 搜索关键词 -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">搜索关键词</label>
-                      <input v-model="logFilters.search" type="text" placeholder="输入搜索关键词" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">搜索关键词</label>
+                      <input v-model="logFilters.search" type="text" placeholder="输入搜索关键词" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400">
                     </div>
                     
                     <!-- 显示条数 -->
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">显示条数</label>
-                      <select v-model="logFilters.limit" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">显示条数</label>
+                      <select v-model="logFilters.limit" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100">
                         <option value="20">20条</option>
                         <option value="50">50条</option>
                         <option value="100">100条</option>
@@ -866,16 +1010,16 @@
                   
                   <!-- 操作按钮 -->
                   <div class="flex flex-wrap gap-2">
-                    <button @click="applyLogFilters" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button @click="applyLogFilters" class="px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400">
                       应用过滤器
                     </button>
-                    <button @click="exportLogs('csv')" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <button @click="exportLogs('csv')" class="px-4 py-2 bg-green-600 dark:bg-green-500 text-white rounded-md hover:bg-green-700 dark:hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 dark:focus:ring-green-400">
                       导出CSV
                     </button>
-                    <button @click="exportLogs('txt')" class="px-4 py-2 bg-yellow-600 text-white rounded-md hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                    <button @click="exportLogs('txt')" class="px-4 py-2 bg-yellow-600 dark:bg-yellow-500 text-white rounded-md hover:bg-yellow-700 dark:hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:focus:ring-yellow-400">
                       导出TXT
                     </button>
-                    <button @click="exportLogs('json')" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <button @click="exportLogs('json')" class="px-4 py-2 bg-purple-600 dark:bg-purple-500 text-white rounded-md hover:bg-purple-700 dark:hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 dark:focus:ring-purple-400">
                       导出JSON
                     </button>
                   </div>
@@ -883,19 +1027,19 @@
                 
                 <!-- 日志统计信息 -->
                 <div class="mt-4">
-                  <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+                  <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg p-3 mb-4">
                     <div class="flex items-center justify-between">
                       <div class="flex items-center space-x-4">
                         <div class="flex items-center space-x-2">
-                          <span class="text-blue-600 font-medium">📊 日志统计</span>
+                          <span class="text-blue-600 dark:text-blue-300 font-medium">📊 日志统计</span>
                         </div>
                         <div class="flex items-center space-x-4 text-sm">
-                          <span class="text-gray-600">总日志数: <span class="font-bold text-blue-600" id="total-logs">-</span></span>
-                          <span class="text-gray-600">未知日志: <span class="font-bold text-red-600" id="unknown-logs">-</span></span>
-                          <span class="text-gray-600">解析率: <span class="font-bold text-green-600" id="parse-rate">-</span></span>
+                          <span class="text-gray-600 dark:text-gray-300">总日志数: <span class="font-bold text-blue-600 dark:text-blue-400" id="total-logs">-</span></span>
+                          <span class="text-gray-600 dark:text-gray-300">未知日志: <span class="font-bold text-red-600 dark:text-red-400" id="unknown-logs">-</span></span>
+                          <span class="text-gray-600 dark:text-gray-300">解析率: <span class="font-bold text-green-600 dark:text-green-400" id="parse-rate">-</span></span>
                         </div>
                       </div>
-                      <div class="text-xs text-gray-500">
+                      <div class="text-xs text-gray-500 dark:text-gray-400">
                         最后更新: <span id="last-update">-</span>
                       </div>
                     </div>
@@ -904,9 +1048,9 @@
                 
                 <!-- 日志显示区域 -->
                 <div class="mt-4">
-                  <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm h-96 overflow-y-auto log-viewer-content">
+                  <div class="bg-gray-900 text-green-400 dark:text-green-300 p-4 rounded-lg font-mono text-sm h-96 overflow-y-auto log-viewer-content border border-gray-700 dark:border-gray-600">
                     <div class="flex items-center justify-center h-full">
-                      <div class="text-gray-500">
+                      <div class="text-gray-500 dark:text-gray-400">
                         <svg class="animate-spin h-8 w-8 mx-auto mb-2" fill="none" viewBox="0 0 24 24">
                           <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                           <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -919,8 +1063,8 @@
               </div>
             </div>
           </div>
-          <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-            <button @click="showLogViewerDialog = false" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+          <div class="bg-gray-50 dark:bg-gray-700/50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse border-t border-gray-200 dark:border-gray-600">
+            <button @click="showLogViewerDialog = false" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 dark:bg-green-500 text-base font-medium text-white hover:bg-green-700 dark:hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 dark:focus:ring-offset-gray-700 sm:ml-3 sm:w-auto sm:text-sm">
               关闭
             </button>
           </div>
@@ -1007,6 +1151,30 @@
 .group:hover .animate-pulse-glow {
   animation: pulse-glow 1s ease-in-out infinite;
 }
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.animate-slide-in-right {
+  animation: slide-in-right 0.25s ease-out;
+}
+</style>
+
+<style>
+/* 全局：灰色模式作用于整页 */
+html.xm-grayscale-mode {
+  filter: grayscale(100%);
+}
+html.xm-grayscale-mode body {
+  filter: grayscale(100%);
+}
 </style>
 
 <script setup lang="ts">
@@ -1017,9 +1185,57 @@ import { versionManager } from '../utils/versionManager'
 import { activityTracker } from '../utils/activityTracker'
 import Terminal from './Terminal.vue'
 
+const LAYOUT_STORAGE_KEY = 'xm-layout'
+
 const route = useRoute()
 const sidebarOpen = ref(false)
 const isInitialized = ref(false)
+
+// 布局设置（右侧抽屉）
+const showLayoutDrawer = ref(false)
+const headerMenuOpen = ref(false) // 手机端顶部右侧下拉菜单
+const layoutTheme = ref<'light' | 'dark'>('light')
+const layoutGrayscale = ref(false)
+const sidebarCollapsed = ref(true) // 所有用户默认菜单折叠（侧栏收起），需点击菜单按钮展开
+
+function loadLayoutFromStorage() {
+  try {
+    const raw = localStorage.getItem(LAYOUT_STORAGE_KEY)
+    if (!raw) return
+    const data = JSON.parse(raw)
+    if (data.theme === 'dark' || data.theme === 'light') layoutTheme.value = data.theme
+    if (typeof data.grayscale === 'boolean') layoutGrayscale.value = data.grayscale
+    if (typeof data.sidebarCollapsed === 'boolean') sidebarCollapsed.value = data.sidebarCollapsed
+  } catch (_) {}
+}
+
+function saveLayoutToStorage() {
+  try {
+    localStorage.setItem(LAYOUT_STORAGE_KEY, JSON.stringify({
+      theme: layoutTheme.value,
+      grayscale: layoutGrayscale.value,
+      sidebarCollapsed: sidebarCollapsed.value
+    }))
+  } catch (_) {}
+}
+
+function setLayoutTheme(theme: 'light' | 'dark') {
+  layoutTheme.value = theme
+  saveLayoutToStorage()
+  document.documentElement.classList.toggle('dark', theme === 'dark')
+}
+
+function applyLayoutGrayscale() {
+  saveLayoutToStorage()
+  document.documentElement.classList.toggle('xm-grayscale-mode', layoutGrayscale.value)
+}
+
+function toggleSidebarCollapsed() {
+  sidebarCollapsed.value = !sidebarCollapsed.value
+  saveLayoutToStorage()
+  // 菜单折叠 = 侧栏默认收起；不折叠 = 侧栏常驻
+  sidebarOpen.value = !sidebarCollapsed.value
+}
 
 // 备案号设置
 const icpSettings = ref({
@@ -1458,6 +1674,12 @@ const loadVersion = async () => {
 }
 
 onMounted(() => {
+  // 加载并应用布局设置
+  loadLayoutFromStorage()
+  document.documentElement.classList.toggle('dark', layoutTheme.value === 'dark')
+  document.documentElement.classList.toggle('xm-grayscale-mode', layoutGrayscale.value)
+  sidebarOpen.value = !sidebarCollapsed.value
+
   // 立即检查认证状态，避免闪烁
   const auth = sessionStorage.getItem('apiAuth')
   if (auth) {

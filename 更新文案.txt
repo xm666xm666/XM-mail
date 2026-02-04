@@ -1,4 +1,4 @@
-更新readme和UPDATE_GUIDE至5.0.3，要求需要readme仅保留最新版本和更新版本列表，UPDATE_GUIDE需要保留历史版本并且更新最新版本。
+更新readme和UPDATE_GUIDE至5.1.1，要求需要readme仅保留最新版本和更新版本列表，UPDATE_GUIDE需要保留历史版本并且更新最新版本。
 
 
 E:\bash\backend\scripts读取该目录下所有脚本，更新并读取按照实际情况修改该目录下所有脚本的全部开头注释以达到目前脚本的最新状态，不更新版本号和时间

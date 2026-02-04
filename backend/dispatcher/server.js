@@ -4834,24 +4834,40 @@ app.get('/api/system-status', auth, async (req, res) => {
         }
       }
       
-      dnsStatus.configuredDomain = configuredDomain
-      dnsStatus.configuredHostname = configuredHostname
-      
-      // 根据 DNS 类型选择解析服务器：公网解析用公网 DNS，Bind 用本机
+      // 根据 DNS 类型选择解析服务器，公网 DNS 时用配置的域名/主机名；无 dns 配置时根据 named 是否运行推断
       let dnsResolver = '127.0.0.1'
+      let inferredPublicDns = false
       try {
         const settingsFile = path.join(ROOT_DIR, 'config', 'system-settings.json')
         if (fs.existsSync(settingsFile)) {
           const systemSettings = JSON.parse(fs.readFileSync(settingsFile, 'utf8'))
           const dnsType = systemSettings.dns?.type
           const hasPublicDomain = systemSettings.dns?.public?.domain && systemSettings.dns.public.domain.trim() !== ''
+          const hasBindDomain = systemSettings.dns?.bind?.domain && systemSettings.dns.bind.domain.trim() !== ''
           if (dnsType === 'public' || (hasPublicDomain && dnsType !== 'bind')) {
-            dnsResolver = '8.8.8.8' // 公网解析时使用公网 DNS 查询，否则本地 Bind 无记录会全部显示缺失
+            dnsResolver = '8.8.8.8' // 公网解析时使用公网 DNS 查询
+            if (hasPublicDomain) {
+              configuredDomain = systemSettings.dns.public.domain.trim()
+              configuredHostname = (systemSettings.dns.public.hostname && systemSettings.dns.public.hostname.trim()) || `mail.${configuredDomain}`
+            }
+          } else if (configuredDomain && !hasBindDomain && !hasPublicDomain) {
+            // 配置文件无 dns 或未配置域名：若 named 未运行则按公网 DNS 处理（兼容重装/仅配 Postfix 场景）
+            const namedRunning = services.named?.status === 'running'
+            if (!namedRunning) {
+              dnsResolver = '8.8.8.8'
+              inferredPublicDns = true
+            }
           }
+        } else if (configuredDomain && services.named?.status !== 'running') {
+          dnsResolver = '8.8.8.8'
+          inferredPublicDns = true
         }
       } catch (e) {
         // 读取失败时保持默认 127.0.0.1
       }
+      
+      dnsStatus.configuredDomain = configuredDomain
+      dnsStatus.configuredHostname = configuredHostname
       
       // 检查DNS解析（并行执行，避免阻塞）
       if (configuredDomain) {
@@ -4969,14 +4985,18 @@ app.get('/api/system-status', auth, async (req, res) => {
               dnsStatus.dns_configured = false
             }
             console.log('检测到DNS配置但缺少configured标记，自动识别为已配置:', dnsStatus.dns_type)
+          } else if (configuredDomain && inferredPublicDns) {
+            // 无 dns 配置但根据 named 未运行推断为公网 DNS（如重装后仅 Postfix 域名、未写 system-settings）
+            dnsStatus.dns_configured = true
+            dnsStatus.dns_type = 'public'
           } else {
             dnsStatus.dns_configured = false
           }
         } else {
-          // 如果配置文件不存在，但有域名，也认为已配置（兼容旧配置）
+          // 如果配置文件不存在，但有域名，按推断或默认 bind（兼容旧配置）
           dnsStatus.dns_configured = !!configuredDomain
           if (configuredDomain) {
-            dnsStatus.dns_type = 'bind' // 默认假设是bind
+            dnsStatus.dns_type = inferredPublicDns ? 'public' : 'bind'
           }
         }
       } catch (settingsError) {
@@ -4984,7 +5004,7 @@ app.get('/api/system-status', auth, async (req, res) => {
         // 如果读取失败，但有域名，也认为已配置（兼容旧配置）
         dnsStatus.dns_configured = !!configuredDomain
         if (configuredDomain) {
-          dnsStatus.dns_type = 'bind' // 默认假设是bind
+          dnsStatus.dns_type = inferredPublicDns ? 'public' : 'bind'
         }
       }
       
@@ -9408,9 +9428,63 @@ app.get('/api/mail/service-status', auth, (req, res) => {
     // 检查DNS解析（支持公网DNS和本地Bind）
     const checkDNSResolution = () => {
       return new Promise((resolve) => {
-        // 首先尝试从系统设置获取域名和DNS类型
         let domain = null
         let dnsType = null
+        
+        function getDomainFromSystem(cb) {
+          exec("grep -E '^myhostname|^mydomain' /etc/postfix/main.cf 2>/dev/null | head -2", (e1, out1) => {
+            let d = null
+            if (!e1 && out1) {
+              const lines = out1.trim().split('\n')
+              for (const line of lines) {
+                if (line.includes('mydomain=')) d = line.split('=')[1]?.trim()
+                else if (line.includes('myhostname=') && !d) {
+                  const h = line.split('=')[1]?.trim()
+                  if (h && h.includes('.')) d = h.split('.').slice(1).join('.')
+                }
+              }
+            }
+            if (d) return cb(null, d)
+            exec('hostname -f', (e2, out2) => {
+              if (e2) return cb(e2, null)
+              const h = (out2 || '').trim()
+              d = h.includes('.') ? h.split('.').slice(1).join('.') : null
+              cb(null, d || null)
+            })
+          })
+        }
+        
+        function checkDomainResolution(domain, type) {
+          const mailDomain = domain
+          if (type === 'public') {
+            const cmdPublic = `nslookup ${mailDomain} 8.8.8.8`
+            exec(cmdPublic, (err, out) => {
+              const configured = !err && /Address:\s*[0-9a-fA-F:\.]+/m.test(out || '')
+              resolve({ dns_configured: configured, domain, mail_domain: mailDomain, dns_type: 'public' })
+            })
+          } else {
+            exec('systemctl is-active --quiet named', (bindErr) => {
+              const tryLocal = !bindErr
+              const cmdLocal = `nslookup ${mailDomain} 127.0.0.1`
+              const cmdPublic = `nslookup ${mailDomain} 8.8.8.8`
+              const execNs = (cmdA, fallback, cb) => {
+                exec(cmdA, (errA, outA) => {
+                  const okA = !errA && /Address:\s*[0-9a-fA-F:\.]+/m.test(outA || '')
+                  if (okA) return cb(true)
+                  exec(fallback, (errB, outB) => {
+                    const okB = !errB && /Address:\s*[0-9a-fA-F:\.]+/m.test(outB || '')
+                    cb(okB)
+                  })
+                })
+              }
+              if (tryLocal) {
+                execNs(cmdLocal, cmdPublic, (configured) => resolve({ dns_configured: configured, domain, mail_domain: mailDomain, dns_type: 'bind' }))
+              } else {
+                execNs(cmdPublic, cmdLocal, (configured) => resolve({ dns_configured: configured, domain, mail_domain: mailDomain, dns_type: 'public' }))
+              }
+            })
+          }
+        }
         
         try {
           const systemSettings = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'config', 'system-settings.json'), 'utf8'))
@@ -9455,67 +9529,37 @@ app.get('/api/mail/service-status', auth, (req, res) => {
             domain = null
           }
         } catch (error) {
-          // 如果无法读取系统设置，尝试从hostname获取
-          exec('hostname -f', (error, stdout) => {
-            if (error) {
+          // 如果无法读取系统设置，从本机获取域名并推断公网/本地
+          getDomainFromSystem((err, sysDomain) => {
+            if (err || !sysDomain) {
               return resolve({ dns_configured: false, domain: null, mail_domain: null, dns_type: 'bind' })
             }
-            const hostname = (stdout || '').trim()
-            domain = hostname.includes('.') ? hostname.split('.').slice(1).join('.') : ''
-            
-            if (!domain) {
-              resolve({ dns_configured: false, domain: null, mail_domain: null, dns_type: 'bind' })
-              return
-            }
-            
-            checkDomainResolution(domain, 'bind')
+            domain = sysDomain
+            exec('systemctl is-active --quiet named', (namedErr) => {
+              const inferredType = namedErr ? 'public' : 'bind'
+              checkDomainResolution(domain, inferredType)
+            })
           })
           return
         }
         
         if (!domain) {
-          resolve({ dns_configured: false, domain: null, mail_domain: null, dns_type: dnsType })
+          // 无 system-settings 中的 dns 时，从本机获取域名并推断公网/本地（与 system-status 一致）
+          getDomainFromSystem((err, sysDomain) => {
+            if (err || !sysDomain) {
+              return resolve({ dns_configured: false, domain: null, mail_domain: null, dns_type: dnsType || 'bind' })
+            }
+            domain = sysDomain
+            exec('systemctl is-active --quiet named', (namedErr) => {
+              const namedRunning = !namedErr
+              const inferredType = namedRunning ? 'bind' : 'public'
+              checkDomainResolution(domain, inferredType)
+            })
+          })
           return
         }
         
         checkDomainResolution(domain, dnsType)
-        
-        function checkDomainResolution(domain, type) {
-          const mailDomain = domain
-          
-          if (type === 'public') {
-            // 公网DNS：直接使用公共DNS检查
-            const cmdPublic = `nslookup ${mailDomain} 8.8.8.8`
-            exec(cmdPublic, (err, out) => {
-              const configured = !err && /Address:\s*[0-9a-fA-F:\.]+/m.test(out || '')
-              resolve({ dns_configured: configured, domain, mail_domain: mailDomain, dns_type: 'public' })
-            })
-          } else {
-            // 本地DNS：先检测本地 named
-            exec('systemctl is-active --quiet named', (bindErr) => {
-              const tryLocal = !bindErr
-              const cmdLocal = `nslookup ${mailDomain} 127.0.0.1`
-              const cmdPublic = `nslookup ${mailDomain} 8.8.8.8`
-
-              const execNs = (cmdA, fallback, cb) => {
-                exec(cmdA, (errA, outA) => {
-                  const okA = !errA && /Address:\s*[0-9a-fA-F:\.]+/m.test(outA || '')
-                  if (okA) return cb(true)
-                  exec(fallback, (errB, outB) => {
-                    const okB = !errB && /Address:\s*[0-9a-fA-F:\.]+/m.test(outB || '')
-                    cb(okB)
-                  })
-                })
-              }
-
-              if (tryLocal) {
-                execNs(cmdLocal, cmdPublic, (configured) => resolve({ dns_configured: configured, domain, mail_domain: mailDomain, dns_type: 'bind' }))
-              } else {
-                execNs(cmdPublic, cmdLocal, (configured) => resolve({ dns_configured: configured, domain, mail_domain: mailDomain, dns_type: 'public' }))
-              }
-            })
-          }
-        }
       })
     }
     
@@ -9534,11 +9578,30 @@ app.get('/api/mail/service-status', auth, (req, res) => {
       })
     }
     
+    // 从系统设置读取 DNS 类型（用于 DNS 检查失败时的 fallback，与系统状态监控口径一致）
+    function getDnsTypeFromSettings() {
+      try {
+        const systemSettings = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'config', 'system-settings.json'), 'utf8'))
+        const hasPublic = systemSettings.dns?.public?.domain && systemSettings.dns.public.domain.trim() !== ''
+        const hasBind = systemSettings.dns?.bind?.domain && systemSettings.dns.bind.domain.trim() !== ''
+        if (systemSettings.dns?.type === 'public' && hasPublic) return { dns_type: 'public', domain: systemSettings.dns.public.domain }
+        if (systemSettings.dns?.type === 'bind' && hasBind) return { dns_type: 'bind', domain: systemSettings.dns.bind.domain }
+        if (hasPublic && !hasBind) return { dns_type: 'public', domain: systemSettings.dns.public.domain }
+        if (hasBind) return { dns_type: 'bind', domain: systemSettings.dns.bind.domain }
+      } catch (e) { /* ignore */ }
+      return { dns_type: 'bind', domain: null }
+    }
+
     // 执行所有检查（容错：任一失败不至于500）
     Promise.allSettled([checkServices(), checkDNSResolution(), checkMailDatabase()])
       .then((results) => {
         const services = results[0].status === 'fulfilled' ? results[0].value : { postfix: false, dovecot: false, named: false, mariadb: false }
-        const dns = results[1].status === 'fulfilled' ? results[1].value : { dns_configured: false, domain: null, mail_domain: null }
+        let dns = results[1].status === 'fulfilled' ? results[1].value : { dns_configured: false, domain: null, mail_domain: null }
+        // DNS 检查未返回或失败时，从系统设置补全 dns_type/domain，使公网用户不误判为需 Bind
+        if (dns.dns_type == null) {
+          const fromSettings = getDnsTypeFromSettings()
+          dns = { ...dns, dns_type: fromSettings.dns_type, domain: dns.domain || fromSettings.domain, mail_domain: dns.mail_domain || fromSettings.domain }
+        }
         const db = results[2].status === 'fulfilled' ? results[2].value : { db_configured: false }
 
         // 统一与 /api/system-status 的前端展示口径
@@ -9570,15 +9633,15 @@ app.get('/api/mail/service-status', auth, (req, res) => {
       })
       .catch((error) => {
         console.error('Service status check error (unhandled):', error)
-        // 最后兜底：返回默认状态，避免前端500
+        const fallbackDns = { dns_configured: false, domain: null, mail_domain: null, ...getDnsTypeFromSettings() }
         res.json({
           success: true,
           services: { postfix: false, dovecot: false, named: false, mariadb: false },
           system_services: { postfix: 'stopped', dovecot: 'stopped', mariadb: 'stopped', named: 'stopped' },
-          dns: { dns_configured: false, domain: null, mail_domain: null },
+          dns: fallbackDns,
           database: { db_configured: false },
           mail_system_ready: false,
-          recommendations: generateRecommendations({ postfix: false, dovecot: false, named: false, mariadb: false }, { dns_configured: false }, { db_configured: false })
+          recommendations: generateRecommendations({ postfix: false, dovecot: false, named: false, mariadb: false }, fallbackDns, { db_configured: false })
         })
       })
     

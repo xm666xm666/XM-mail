@@ -63,7 +63,7 @@
 set -uo pipefail
 
 # 版本信息
-SCRIPT_VERSION="5.0.2"
+SCRIPT_VERSION="5.1.0"
 
 # 颜色定义
 RED='\033[0;31m'

@@ -1,33 +1,34 @@
-# XM邮件管理系统 - 更新操作指南 V5.0.2
+# XM邮件管理系统 - 更新操作指南 V5.1.0
 
 ## 概述
 
 本文档详细记录了XM邮件管理系统的所有更新操作、版本升级步骤和系统维护指南。适用于系统管理员进行版本升级、功能更新和系统维护。
 
-## 🎉 最新版本 - V5.0.2 (2026-02-03) - HTTP 跳转状态与邮件页/草稿箱完善
+## 🎉 最新版本 - V5.1.0 (2026-02-04) - 公网 DNS 适配、顶部栏手机端与默认菜单折叠
 
 ### 🎊 版本亮点
 
-**V5.0.2 将 README 与 UPDATE_GUIDE 统一更新至 5.0.2；HTTP 自动跳转 HTTPS 按钮状态识别完善；邮件页主内容区「共 N 封」与侧栏仅收件箱计数；草稿箱去重、权限与点击即编辑。**
+**V5.1.0 将 README 与 UPDATE_GUIDE 统一更新至 5.1.0；系统状态与 Mail 页公网 DNS 自动识别与展示；顶部导航栏个人资料/布局/退出等适配手机端（下拉菜单）；所有用户默认侧栏折叠。**
 
 ### 📋 最新更新
 
-- **版本号与文档**：README 与 UPDATE_GUIDE 统一更新至 5.0.2；README 仅保留最新版本与版本列表，UPDATE_GUIDE 保留历史版本并更新最新版本
-- **HTTP 跳转状态识别**：后端 /api/cert/http-redirect-status 增加 parseHttpRedirectConfig 统一解析、fs 读取失败时 sudo 回退读取 *_http.conf、无 *_http.conf 时检测 mailmgmt.conf/mail-ops.conf 跳转块，按钮能正确识别已配置/未配置
-- **邮件页统计**：主内容区收件箱/已发送/草稿箱/垃圾邮件/已删除/自定义文件夹标题旁显示「共 N 封」；侧栏除收件箱外删除邮件统计（仅收件箱保留未读角标）
-- **草稿箱列表与编辑**：列表去重对草稿箱/已删除按 email.id 区分，避免同主题同时间被合并；mail_db.sh get_email_detail 对 folder_id=3（草稿箱）按发件人校验权限，草稿作者可读取/编辑；草稿列表点击卡片直接 editDraft 进入写邮件界面
+- **版本号与文档**：README 与 UPDATE_GUIDE 统一更新至 5.1.0；README 仅保留最新版本与版本列表，UPDATE_GUIDE 保留历史版本并更新最新版本
+- **公网 DNS 适配**：系统状态（左侧导航）DNS 解析在公网 DNS 时显示公网域名/公网主机名及蓝色提示；无 system-settings 的 dns 时根据 named 是否运行自动推断公网/本地（使用 8.8.8.8 解析并返回 dns_type）；Mail 页服务检查（/api/mail/service-status）同步从本机获取域名并推断公网，推荐语与「请安装 Bind」区分，域名显示使用实际配置
+- **顶部导航栏手机端适配**：右上角整行适配手机端；手机端采用头像+用户名+「更多」下拉菜单（个人资料、布局、退出登录），桌面端保持完整显示；整行高度与间距响应式，点击空白关闭下拉
+- **默认菜单折叠**：所有用户默认侧栏折叠（sidebarCollapsed 默认 true），需点击菜单按钮展开
 
 ### 📋 主要更新内容
 
-- **README.md**：标题与「版本更新」章节更新为 V5.0.2；版本历史表新增 V5.0.2 行
-- **UPDATE_GUIDE.md**：标题更新为 V5.0.2；新增「最新版本 V5.0.2」章节；原 V5.0.1 内容移入「版本历史记录」
-- **backend/dispatcher/server.js**：http-redirect-status 中 parseHttpRedirectConfig、sudo 回退、mailmgmt/mail-ops 检测
-- **backend/scripts/mail_db.sh**：get_email_detail 中 folder_id=3 与 2 一同按发件人校验
-- **frontend/src/modules/Mail.vue**：主内容区「共 N 封」、侧栏删除非收件箱计数、草稿/已删除按 id 去重、草稿列表 @click 改为 editDraft
+- **README.md**：标题与「版本更新」章节更新为 V5.1.0；版本历史表新增 V5.1.0 行
+- **UPDATE_GUIDE.md**：标题更新为 V5.1.0；新增「最新版本 V5.1.0」章节；原 V5.0.4 内容移入「版本历史记录」
+- **backend/dispatcher/server.js**：/api/system-status 无 dns 时根据 named 推断公网、覆盖域名/主机名；/api/mail/service-status 中 checkDNSResolution 无 domain 时 getDomainFromSystem + named 推断，getDomainFromSystem/checkDomainResolution 提前定义
+- **frontend/src/components/Layout.vue**：顶部 header 响应式（md 下完整右侧、md 以下头像+用户名+下拉）；headerMenuOpen 状态与蒙层关闭；dns 区公网时提示与公网域名/公网主机名标签、dns_type 可选链
+- **frontend/src/modules/Mail.vue**：DNS 未配置时域名显示使用 dns.domain || dns.mail_domain
+- **frontend/src/components/Layout.vue**：sidebarCollapsed 默认值改为 true（默认菜单折叠）
 
 ### 🔄 升级步骤
 
-- 若已部署：拉取代码后无需数据库或配置迁移；重启调度层与前端生效：`./start.sh rebuild` 与 `./start.sh restart`（或仅重启 dispatcher 与刷新前端）。
+- 若已部署：拉取代码后无需数据库或配置迁移；重启调度层与前端生效：`./start.sh rebuild` 与 `./start.sh restart`（或仅刷新浏览器）。
 
 ```bash
 cd /bash
@@ -39,6 +40,105 @@ git pull
 ---
 
 ## 🎉 版本历史记录
+
+### V5.0.4 (2026-02-03) - 写邮件/列表深色、邮件移动与日志查看适配
+
+### 🎊 版本亮点（V5.0.4）
+
+**V5.0.4 将 README 与 UPDATE_GUIDE 统一更新至 5.0.4；写邮件页与邮件列表深色主题及可读性完善；邮件移动按钮与后端按 base_message_id 移动逻辑修复，避免刷新后出现在两个文件夹；左侧「日志查看」按钮及对话框深色适配。**
+
+#### 📋 最新更新（V5.0.4）
+
+- **版本号与文档**：README 与 UPDATE_GUIDE 统一更新至 5.0.4；README 仅保留最新版本与版本列表，UPDATE_GUIDE 保留历史版本并更新最新版本
+- **写邮件与列表深色主题**：写邮件页（标题栏、收件人/抄送/主题/附件/正文、草稿提示、操作栏、发送进度、通知）全面适配深色模式；深色主题下各文件夹邮件列表项（发件人、主题、日期、徽章、操作按钮）改为白色/浅色以提升可读性
+- **邮件移动与数据库逻辑**：详情页「移动到」使用 `selectedEmail.value?.id` 修复点击无反应；移动成功后从当前列表移除该邮件并关闭详情；后端 `move_email` 按 base_message_id 更新同封邮件所有记录，实现真实移动，刷新后不再在两个文件夹同时出现
+- **日志查看深色适配**：左侧导航栏「日志查看」按钮（边框与悬停）及日志查看对话框（遮罩、容器、筛选、统计、内容区、底部栏）全面适配深色主题
+
+#### 📋 主要更新内容（V5.0.4）
+
+- **README.md**：标题与「版本更新」章节更新为 V5.0.4；版本历史表新增 V5.0.4 行
+- **UPDATE_GUIDE.md**：标题更新为 V5.0.4；新增「最新版本 V5.0.4」章节；原 V5.0.3 内容移入「版本历史记录」
+- **frontend/src/modules/Mail.vue**：写邮件区深色样式；列表项发件人/主题/日期等 dark:text-white 等；moveEmailToFolder 成功时 filter 移除、closeEmailDetail；handleMoveFolderAction 使用 selectedEmail.value?.id
+- **frontend/src/components/Layout.vue**：日志查看按钮与日志查看对话框深色样式
+- **backend/scripts/mail_db.sh**：move_email 按 message_id 取 base_message_id，UPDATE 所有 SUBSTRING_INDEX(message_id,'_',1) 匹配记录，移动至已删除时写 original_folder_id
+
+#### 🔄 升级步骤（V5.0.4）
+
+- 若已部署：拉取代码后无需数据库或配置迁移；重启调度层与前端生效：`./start.sh rebuild` 与 `./start.sh restart`（或仅刷新浏览器）。
+
+```bash
+cd /bash
+git pull
+./start.sh rebuild
+./start.sh restart
+```
+
+---
+
+### V5.0.3 (2026-02-03) - 深色主题完善与对话框/左侧导航适配
+
+### 🎊 版本亮点（V5.0.3）
+
+**V5.0.3 将 README 与 UPDATE_GUIDE 统一更新至 5.0.3；邮件页与仪表盘深色主题完善；申请证书/管理SSL/安装服务等对话框底部留白收紧；左侧系统状态/日志查看/命令终端适配菜单折叠与深色主题；系统状态对话框深色适配。**
+
+#### 📋 最新更新（V5.0.3）
+
+- **版本号与文档**：README 与 UPDATE_GUIDE 统一更新至 5.0.3；README 仅保留最新版本与版本列表，UPDATE_GUIDE 保留历史版本并更新最新版本
+- **深色主题完善**：邮件页整体、邮件详情模态框（头部/发件人收件人/附件/正文/引用块/错误与空状态/底部操作栏）、各文件夹视图（收件箱/已发送/草稿/垃圾/已删除）及服务警告框全面适配深色模式；仪表盘高级功能卡片（备份功能、垃圾邮件过滤、广播）与申请证书、管理SSL 一致适配深色（彩色边框、图标背景与图标颜色）
+- **对话框留白与左侧导航**：申请证书、管理SSL、安装服务等对话框底部留白收紧；左侧导航「系统状态」「日志查看」「命令终端」点击后固定关闭侧栏以适配右侧「菜单折叠」，三按钮与系统状态对话框全面适配深色主题
+
+#### 📋 主要更新内容（V5.0.3）
+
+- **README.md**：标题与「版本更新」章节更新为 V5.0.3；版本历史表新增 V5.0.3 行
+- **UPDATE_GUIDE.md**：标题更新为 V5.0.3；新增「最新版本 V5.0.3」章节；原 V5.0.2 内容移入「版本历史记录」
+- **frontend**：Mail.vue 邮件页与详情模态框、各文件夹视图、服务警告框深色适配；Dashboard.vue 高级功能按钮与对话框底部留白；Layout.vue 左侧系统状态/日志查看/命令终端点击关闭侧栏及系统状态对话框深色适配
+
+#### 🔄 升级步骤（V5.0.3）
+
+- 若已部署：拉取代码后无需数据库或配置迁移；重启前端或刷新页面即可生效：`./start.sh rebuild` 与 `./start.sh restart`（或仅刷新浏览器）。
+
+```bash
+cd /bash
+git pull
+./start.sh rebuild
+./start.sh restart
+```
+
+---
+
+### V5.0.2 (2026-02-03) - HTTP 跳转状态与邮件页/草稿箱完善
+
+### 🎊 版本亮点（V5.0.2）
+
+**V5.0.2 将 README 与 UPDATE_GUIDE 统一更新至 5.0.2；HTTP 自动跳转 HTTPS 按钮状态识别完善；邮件页主内容区「共 N 封」与侧栏仅收件箱计数；草稿箱去重、权限与点击即编辑。**
+
+#### 📋 最新更新（V5.0.2）
+
+- **版本号与文档**：README 与 UPDATE_GUIDE 统一更新至 5.0.2；README 仅保留最新版本与版本列表，UPDATE_GUIDE 保留历史版本并更新最新版本
+- **HTTP 跳转状态识别**：后端 /api/cert/http-redirect-status 增加 parseHttpRedirectConfig 统一解析、fs 读取失败时 sudo 回退读取 *_http.conf、无 *_http.conf 时检测 mailmgmt.conf/mail-ops.conf 跳转块，按钮能正确识别已配置/未配置
+- **邮件页统计**：主内容区收件箱/已发送/草稿箱/垃圾邮件/已删除/自定义文件夹标题旁显示「共 N 封」；侧栏除收件箱外删除邮件统计（仅收件箱保留未读角标）
+- **草稿箱列表与编辑**：列表去重对草稿箱/已删除按 email.id 区分，避免同主题同时间被合并；mail_db.sh get_email_detail 对 folder_id=3（草稿箱）按发件人校验权限，草稿作者可读取/编辑；草稿列表点击卡片直接 editDraft 进入写邮件界面
+
+#### 📋 主要更新内容（V5.0.2）
+
+- **README.md**：标题与「版本更新」章节更新为 V5.0.2；版本历史表新增 V5.0.2 行
+- **UPDATE_GUIDE.md**：标题更新为 V5.0.2；新增「最新版本 V5.0.2」章节；原 V5.0.1 内容移入「版本历史记录」
+- **backend/dispatcher/server.js**：http-redirect-status 中 parseHttpRedirectConfig、sudo 回退、mailmgmt/mail-ops 检测
+- **backend/scripts/mail_db.sh**：get_email_detail 中 folder_id=3 与 2 一同按发件人校验
+- **frontend/src/modules/Mail.vue**：主内容区「共 N 封」、侧栏删除非收件箱计数、草稿/已删除按 id 去重、草稿列表 @click 改为 editDraft
+
+#### 🔄 升级步骤（V5.0.2）
+
+- 若已部署：拉取代码后无需数据库或配置迁移；重启调度层与前端生效：`./start.sh rebuild` 与 `./start.sh restart`（或仅重启 dispatcher 与刷新前端）。
+
+```bash
+cd /bash
+git pull
+./start.sh rebuild
+./start.sh restart
+```
+
+---
 
 ### V5.0.1 (2026-02-03) - SSL 证书管理完善
 

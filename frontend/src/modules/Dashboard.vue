@@ -1,9 +1,9 @@
 <template>
   <Layout>
     <!-- 动态背景 -->
-    <div class="relative min-h-screen overflow-hidden">
+    <div class="relative min-h-screen overflow-hidden dark:bg-gray-900">
       <!-- 背景装饰 -->
-      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <!-- 浮动圆形装饰 -->
         <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full opacity-20 animate-float"></div>
         <div class="absolute top-40 right-20 w-24 h-24 bg-gradient-to-r from-green-400 to-blue-500 rounded-full opacity-15 animate-float-delayed"></div>
@@ -17,10 +17,10 @@
       <!-- 主内容区域 -->
       <div class="relative z-10 p-3 sm:p-6">
       <!-- 系统操作卡片 -->
-      <div class="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl mb-6 border border-white/20 animate-fade-in-up">
+      <div class="bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm shadow-xl rounded-2xl mb-6 border border-white/20 dark:border-gray-600 animate-fade-in-up">
         <div class="px-4 py-5 sm:p-6">
-          <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 flex items-center">
-            <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
             </svg>
@@ -84,7 +84,7 @@
             <!-- 服务状态 -->
             <button @click="() => { userLogger.logButtonClick('服务状态', '系统管理'); openServiceStatusDialog() }" 
                     :disabled="loading"
-                    class="group relative overflow-hidden bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 hover:from-blue-600 hover:via-indigo-600 hover:to-purple-600 text-white px-3 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none animate-bounce-in" style="animation-delay: 0.6s">
+                    class="group relative overflow-hidden bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 hover:from-blue-600 hover:via-indigo-600 hover:to-purple-600 text-white px-3 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-500/60 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none animate-bounce-in" style="animation-delay: 0.6s">
               <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
               <div class="relative flex flex-col items-center space-y-1 sm:space-y-2">
                 <svg class="h-5 w-5 sm:h-6 sm:w-6 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -99,10 +99,10 @@
       </div>
 
       <!-- 高级功能卡片 -->
-      <div class="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl mb-6 border border-white/20 animate-fade-in-up" style="animation-delay: 0.2s">
+      <div class="bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm shadow-xl rounded-2xl mb-6 border border-white/20 dark:border-gray-600 animate-fade-in-up" style="animation-delay: 0.2s">
         <div class="px-4 py-5 sm:p-6">
-          <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 flex items-center">
-            <svg class="w-5 h-5 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
             高级功能
@@ -111,14 +111,14 @@
             <!-- 申请证书 -->
             <button @click="() => { userLogger.logButtonClick('申请证书', '高级功能'); openCertDialog() }" 
                     :disabled="loading"
-                    class="advanced-feature-card advanced-feature-card-amber group relative bg-white/90 backdrop-blur-sm border-2 border-amber-200 text-gray-800 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 animate-slide-in-left" style="animation-delay: 0.4s">
+                    class="advanced-feature-card advanced-feature-card-amber group relative bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm border-2 border-amber-200 dark:border-amber-600/60 text-gray-800 dark:text-gray-100 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 dark:disabled:border-gray-600 animate-slide-in-left" style="animation-delay: 0.4s">
               <div class="relative flex flex-col items-center space-y-1 sm:space-y-2 z-10">
-                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-amber-50 group-hover:bg-amber-100 transition-colors duration-300">
-                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-amber-50 group-hover:bg-amber-100 dark:bg-amber-900/40 dark:group-hover:bg-amber-800/50 transition-colors duration-300">
+                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                   </svg>
                 </div>
-                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700">申请证书</span>
+                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200">申请证书</span>
               </div>
             </button>
 
@@ -126,56 +126,56 @@
             <!-- 备份功能 -->
             <button @click="() => { userLogger.logButtonClick('备份功能', '高级功能'); openBackupManagementDialog() }" 
                     :disabled="loading"
-                    class="advanced-feature-card advanced-feature-card-blue group relative bg-white/90 backdrop-blur-sm border-2 border-blue-200 text-gray-800 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 animate-slide-in-left" style="animation-delay: 0.7s">
+                    class="advanced-feature-card advanced-feature-card-blue group relative bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm border-2 border-blue-200 dark:border-blue-600/60 text-gray-800 dark:text-gray-100 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 dark:disabled:border-gray-600 animate-slide-in-left" style="animation-delay: 0.7s">
               <div class="relative flex flex-col items-center space-y-1 sm:space-y-2 z-10">
-                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-blue-50 group-hover:bg-blue-100 transition-colors duration-300">
-                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-blue-50 group-hover:bg-blue-100 dark:bg-blue-900/40 dark:group-hover:bg-blue-800/50 transition-colors duration-300">
+                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
                   </svg>
                 </div>
-                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700">备份功能</span>
+                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200">备份功能</span>
               </div>
             </button>
 
             <!-- 管理SSL -->
             <button @click="() => { userLogger.logButtonClick('管理SSL', '高级功能'); openSslManagementDialog() }" 
                     :disabled="loading"
-                    class="advanced-feature-card advanced-feature-card-green group relative bg-white/90 backdrop-blur-sm border-2 border-green-200 text-gray-800 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 animate-slide-in-left" style="animation-delay: 0.9s">
+                    class="advanced-feature-card advanced-feature-card-green group relative bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm border-2 border-green-200 dark:border-green-600/60 text-gray-800 dark:text-gray-100 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 dark:disabled:border-gray-600 animate-slide-in-left" style="animation-delay: 0.9s">
               <div class="relative flex flex-col items-center space-y-1 sm:space-y-2 z-10">
-                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-green-50 group-hover:bg-green-100 transition-colors duration-300">
-                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-green-50 group-hover:bg-green-100 dark:bg-green-900/40 dark:group-hover:bg-green-800/50 transition-colors duration-300">
+                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                   </svg>
                 </div>
-                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700">管理SSL</span>
+                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200">管理SSL</span>
               </div>
             </button>
 
             <!-- 垃圾邮件过滤配置 -->
             <button @click="() => { userLogger.logButtonClick('垃圾邮件过滤', '高级功能'); openSpamFilterDialog() }" 
                     :disabled="loading"
-                    class="advanced-feature-card advanced-feature-card-orange group relative bg-white/90 backdrop-blur-sm border-2 border-rose-200 text-gray-800 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 animate-slide-in-left" style="animation-delay: 0.9s">
+                    class="advanced-feature-card advanced-feature-card-orange group relative bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm border-2 border-rose-200 dark:border-rose-600/60 text-gray-800 dark:text-gray-100 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 dark:disabled:border-gray-600 animate-slide-in-left" style="animation-delay: 0.9s">
               <div class="relative flex flex-col items-center space-y-1 sm:space-y-2 z-10">
-                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-rose-50 group-hover:bg-rose-100 transition-colors duration-300">
-                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-rose-50 group-hover:bg-rose-100 dark:bg-rose-900/40 dark:group-hover:bg-rose-800/50 transition-colors duration-300">
+                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-rose-600 dark:text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
                 </div>
-                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700">垃圾邮件过滤</span>
+                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200">垃圾邮件过滤</span>
               </div>
             </button>
 
             <!-- 广播 -->
             <button @click="() => { userLogger.logButtonClick('广播', '高级功能'); openBroadcastDialog() }" 
                     :disabled="loading"
-                    class="advanced-feature-card advanced-feature-card-blue group relative bg-white/90 backdrop-blur-sm border-2 border-blue-200 text-gray-800 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 animate-slide-in-left" style="animation-delay: 1.0s">
+                    class="advanced-feature-card advanced-feature-card-blue group relative bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm border-2 border-blue-200 dark:border-blue-600/60 text-gray-800 dark:text-gray-100 px-3 sm:px-6 py-3 sm:py-4 rounded-lg sm:rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:border-gray-200 dark:disabled:border-gray-600 animate-slide-in-left" style="animation-delay: 1.0s">
               <div class="relative flex flex-col items-center space-y-1 sm:space-y-2 z-10">
-                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-blue-50 group-hover:bg-blue-100 transition-colors duration-300">
-                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="advanced-feature-icon-wrapper p-1.5 sm:p-2 rounded-lg bg-blue-50 group-hover:bg-blue-100 dark:bg-blue-900/40 dark:group-hover:bg-blue-800/50 transition-colors duration-300">
+                  <svg class="advanced-feature-icon h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
                   </svg>
                 </div>
-                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700">广播</span>
+                <span class="advanced-feature-text text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-200">广播</span>
               </div>
             </button>
           </div>
@@ -185,10 +185,10 @@
       <!-- 备份管理对话框 -->
       <div v-if="showBackupManagementDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeBackupManagementDialog"></div>
-        <div class="relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-white/20 animate-scale-in">
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur-sm z-10">
-            <h3 class="text-base sm:text-lg font-medium text-gray-900">备份管理</h3>
-            <button @click="closeBackupManagementDialog" class="text-gray-400 hover:text-gray-600 transition-colors">
+        <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-white/20 dark:border-gray-600 animate-scale-in">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between sticky top-0 bg-white/95 dark:bg-gray-800 backdrop-blur-sm z-10">
+            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">备份管理</h3>
+            <button @click="closeBackupManagementDialog" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
               <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -197,13 +197,13 @@
           
           <div class="px-4 sm:px-6 py-4 sm:py-5">
             <!-- 标签页切换 -->
-            <div class="border-b border-gray-200 mb-6">
+            <div class="border-b border-gray-200 dark:border-gray-600 mb-6">
               <nav class="-mb-px flex space-x-4">
                 <button @click="backupTab = 'full'" 
                         :class="['py-2 px-4 text-sm font-medium border-b-2 transition-colors', 
                                  backupTab === 'full' 
-                                   ? 'border-blue-500 text-blue-600' 
-                                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300']">
+                                   ? 'border-blue-500 text-blue-600 dark:text-blue-400' 
+                                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500']">
                   <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
                   </svg>
@@ -212,8 +212,8 @@
                 <button @click="backupTab = 'scheduled'" 
                         :class="['py-2 px-4 text-sm font-medium border-b-2 transition-colors', 
                                  backupTab === 'scheduled' 
-                                   ? 'border-blue-500 text-blue-600' 
-                                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300']">
+                                   ? 'border-blue-500 text-blue-600 dark:text-blue-400' 
+                                   : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500']">
                   <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
@@ -224,21 +224,21 @@
             
             <!-- 完整备份标签页 -->
             <div v-if="backupTab === 'full'" class="space-y-4">
-              <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
                 <div class="flex items-center justify-between mb-4">
                   <div>
-                    <h4 class="text-lg font-medium text-blue-900 mb-2">立即执行完整备份</h4>
-                    <p class="text-sm text-blue-700">备份所有数据库、配置文件和邮件数据</p>
+                    <h4 class="text-lg font-medium text-blue-900 dark:text-blue-100 mb-2">立即执行完整备份</h4>
+                    <p class="text-sm text-blue-700 dark:text-blue-300">备份所有数据库、配置文件和邮件数据</p>
                   </div>
-                  <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-16 h-16 bg-blue-100 dark:bg-blue-800/50 rounded-full flex items-center justify-center">
+                    <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
                     </svg>
                   </div>
                 </div>
-                <div class="bg-white rounded-lg p-4 mb-4">
-                  <h5 class="text-sm font-medium text-gray-900 mb-3">备份内容</h5>
-                  <ul class="space-y-2 text-sm text-gray-600">
+                <div class="bg-white dark:bg-gray-700/50 rounded-lg p-4 mb-4">
+                  <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">备份内容</h5>
+                  <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                     <li class="flex items-center">
                       <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -275,51 +275,51 @@
             <div v-if="backupTab === 'scheduled'" class="space-y-6">
               <!-- 备份间隔设置 -->
               <div>
-                <h4 class="text-sm font-medium text-gray-900 mb-3">备份间隔设置</h4>
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">备份间隔设置</h4>
                 <div class="space-y-3">
                   <!-- 自定义天数 -->
-                  <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:bg-blue-50 transition-all cursor-pointer"
-                       :class="{ 'border-blue-500 bg-blue-50': backupInterval === 'custom' }"
+                  <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all cursor-pointer"
+                       :class="{ 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 dark:border-blue-600': backupInterval === 'custom' }"
                        @click="backupInterval = 'custom'">
                     <div class="flex items-start space-x-3">
-                      <input type="radio" :checked="backupInterval === 'custom'" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                      <input type="radio" :checked="backupInterval === 'custom'" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-500">
                       <div class="flex-1">
-                        <h5 class="text-sm font-medium text-gray-900">自定义间隔</h5>
-                        <p class="text-xs text-gray-500 mt-1">设置自定义的备份间隔天数</p>
+                        <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">自定义间隔</h5>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">设置自定义的备份间隔天数</p>
                         <div class="mt-3 flex items-center space-x-3">
                           <input v-model="customDays" type="number" min="1" max="365" placeholder="天数" 
-                                 class="w-20 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                          <span class="text-sm text-gray-600">天</span>
+                                 class="w-20 px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                          <span class="text-sm text-gray-600 dark:text-gray-300">天</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   <!-- 自定义执行时间 -->
-                  <div class="border border-gray-200 rounded-lg p-4">
+                  <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
                     <div class="flex items-start space-x-3">
-                      <input v-model="customTimeEnabled" type="checkbox" class="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300">
+                      <input v-model="customTimeEnabled" type="checkbox" class="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 dark:border-gray-500">
                       <div class="flex-1">
-                        <h5 class="text-sm font-medium text-gray-900">自定义执行时间</h5>
-                        <p class="text-xs text-gray-500 mt-1">设置具体的执行时间（时:分:秒）</p>
+                        <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">自定义执行时间</h5>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">设置具体的执行时间（时:分:秒）</p>
                         <div v-if="customTimeEnabled" class="mt-3 grid grid-cols-3 gap-2 sm:gap-3">
                           <div>
-                            <label class="block text-xs text-gray-600 mb-1">小时</label>
+                            <label class="block text-xs text-gray-600 dark:text-gray-400 mb-1">小时</label>
                             <input v-model="customHour" type="number" min="0" max="23" 
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
                           </div>
                           <div>
-                            <label class="block text-xs text-gray-600 mb-1">分钟</label>
+                            <label class="block text-xs text-gray-600 dark:text-gray-400 mb-1">分钟</label>
                             <input v-model="customMinute" type="number" min="0" max="59" 
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
                           </div>
                           <div>
-                            <label class="block text-xs text-gray-600 mb-1">秒</label>
+                            <label class="block text-xs text-gray-600 dark:text-gray-400 mb-1">秒</label>
                             <input v-model="customSecond" type="number" min="0" max="59" 
-                                   class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
+                                   class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500">
                           </div>
                         </div>
-                        <div v-if="customTimeEnabled" class="mt-2 text-xs text-purple-600">
+                        <div v-if="customTimeEnabled" class="mt-2 text-xs text-purple-600 dark:text-purple-400">
                           执行时间: {{ String(customHour).padStart(2, '0') }}:{{ String(customMinute).padStart(2, '0') }}:{{ String(customSecond).padStart(2, '0') }}
                         </div>
                       </div>
@@ -328,50 +328,50 @@
 
                   <!-- 预设间隔选项 -->
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
-                    <div class="border border-gray-200 rounded-lg p-3 hover:border-green-300 hover:bg-green-50 transition-all cursor-pointer"
-                         :class="{ 'border-green-500 bg-green-50': backupInterval === '1' }"
+                    <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-3 hover:border-green-300 dark:hover:border-green-600 hover:bg-green-50 dark:hover:bg-green-900/30 transition-all cursor-pointer"
+                         :class="{ 'border-green-500 bg-green-50 dark:bg-green-900/30 dark:border-green-600': backupInterval === '1' }"
                          @click="backupInterval = '1'">
                       <div class="flex items-center space-x-2">
-                        <input type="radio" :checked="backupInterval === '1'" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                        <input type="radio" :checked="backupInterval === '1'" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 dark:border-gray-500">
                         <div>
-                          <h5 class="text-sm font-medium text-gray-900">每日备份</h5>
-                          <p class="text-xs text-gray-500">每天凌晨2点执行</p>
+                          <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">每日备份</h5>
+                          <p class="text-xs text-gray-500 dark:text-gray-400">每天凌晨2点执行</p>
                         </div>
                       </div>
                     </div>
 
-                    <div class="border border-gray-200 rounded-lg p-3 hover:border-orange-300 hover:bg-orange-50 transition-all cursor-pointer"
-                         :class="{ 'border-orange-500 bg-orange-50': backupInterval === '3' }"
+                    <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-3 hover:border-orange-300 dark:hover:border-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/30 transition-all cursor-pointer"
+                         :class="{ 'border-orange-500 bg-orange-50 dark:bg-orange-900/30 dark:border-orange-600': backupInterval === '3' }"
                          @click="backupInterval = '3'">
                       <div class="flex items-center space-x-2">
-                        <input type="radio" :checked="backupInterval === '3'" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300">
+                        <input type="radio" :checked="backupInterval === '3'" class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 dark:border-gray-500">
                         <div>
-                          <h5 class="text-sm font-medium text-gray-900">每3天备份</h5>
-                          <p class="text-xs text-gray-500">每3天凌晨2点执行</p>
+                          <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">每3天备份</h5>
+                          <p class="text-xs text-gray-500 dark:text-gray-400">每3天凌晨2点执行</p>
                         </div>
                       </div>
                     </div>
 
-                    <div class="border border-gray-200 rounded-lg p-3 hover:border-purple-300 hover:bg-purple-50 transition-all cursor-pointer"
-                         :class="{ 'border-purple-500 bg-purple-50': backupInterval === '7' }"
+                    <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-3 hover:border-purple-300 dark:hover:border-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all cursor-pointer"
+                         :class="{ 'border-purple-500 bg-purple-50 dark:bg-purple-900/30 dark:border-purple-600': backupInterval === '7' }"
                          @click="backupInterval = '7'">
                       <div class="flex items-center space-x-2">
-                        <input type="radio" :checked="backupInterval === '7'" class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300">
+                        <input type="radio" :checked="backupInterval === '7'" class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 dark:border-gray-500">
                         <div>
-                          <h5 class="text-sm font-medium text-gray-900">每周备份</h5>
-                          <p class="text-xs text-gray-500">每周日凌晨2点执行</p>
+                          <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">每周备份</h5>
+                          <p class="text-xs text-gray-500 dark:text-gray-400">每周日凌晨2点执行</p>
                         </div>
                       </div>
                     </div>
 
-                    <div class="border border-gray-200 rounded-lg p-3 hover:border-red-300 hover:bg-red-50 transition-all cursor-pointer"
-                         :class="{ 'border-red-500 bg-red-50': backupInterval === '30' }"
+                    <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-3 hover:border-red-300 dark:hover:border-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 transition-all cursor-pointer"
+                         :class="{ 'border-red-500 bg-red-50 dark:bg-red-900/30 dark:border-red-600': backupInterval === '30' }"
                          @click="backupInterval = '30'">
                       <div class="flex items-center space-x-2">
-                        <input type="radio" :checked="backupInterval === '30'" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300">
+                        <input type="radio" :checked="backupInterval === '30'" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 dark:border-gray-500">
                         <div>
-                          <h5 class="text-sm font-medium text-gray-900">每月备份</h5>
-                          <p class="text-xs text-gray-500">每月1号凌晨2点执行</p>
+                          <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">每月备份</h5>
+                          <p class="text-xs text-gray-500 dark:text-gray-400">每月1号凌晨2点执行</p>
                         </div>
                       </div>
                     </div>
@@ -381,39 +381,39 @@
 
               <!-- 备份内容选择 -->
               <div>
-                <h4 class="text-sm font-medium text-gray-900 mb-3">备份内容</h4>
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">备份内容</h4>
                 <div class="space-y-2">
                   <label class="flex items-center space-x-3 cursor-pointer">
-                    <input v-model="backupDatabase" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                    <span class="text-sm text-gray-700">数据库备份 (MariaDB)</span>
+                    <input v-model="backupDatabase" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-500 rounded">
+                    <span class="text-sm text-gray-700 dark:text-gray-300">数据库备份 (MariaDB)</span>
                   </label>
                   <label class="flex items-center space-x-3 cursor-pointer">
-                    <input v-model="backupConfig" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                    <span class="text-sm text-gray-700">配置文件备份 (Postfix, Dovecot, Apache等)</span>
+                    <input v-model="backupConfig" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-500 rounded">
+                    <span class="text-sm text-gray-700 dark:text-gray-300">配置文件备份 (Postfix, Dovecot, Apache等)</span>
                   </label>
                   <label class="flex items-center space-x-3 cursor-pointer">
-                    <input v-model="backupMaildir" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                    <span class="text-sm text-gray-700">邮件目录备份 (/var/vmail)</span>
+                    <input v-model="backupMaildir" type="checkbox" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-500 rounded">
+                    <span class="text-sm text-gray-700 dark:text-gray-300">邮件目录备份 (/var/vmail)</span>
                   </label>
                 </div>
               </div>
 
               <!-- 备份保留设置 -->
               <div>
-                <h4 class="text-sm font-medium text-gray-900 mb-3">备份保留设置</h4>
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">备份保留设置</h4>
                 <div class="flex items-center space-x-3">
-                  <label class="text-sm text-gray-700">保留备份</label>
+                  <label class="text-sm text-gray-700 dark:text-gray-300">保留备份</label>
                   <input v-model="retentionDays" type="number" min="1" max="365" placeholder="7" 
-                         class="w-20 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                  <span class="text-sm text-gray-600">天</span>
+                         class="w-20 px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                  <span class="text-sm text-gray-600 dark:text-gray-300">天</span>
                 </div>
-                <p class="text-xs text-gray-500 mt-1">超过指定天数的备份文件将被自动删除</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">超过指定天数的备份文件将被自动删除</p>
               </div>
             </div>
           </div>
           
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 backdrop-blur-sm">
-            <button @click="closeBackupManagementDialog" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors order-2 sm:order-1">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 dark:border-gray-600 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 dark:bg-gray-800 backdrop-blur-sm">
+            <button @click="closeBackupManagementDialog" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md transition-colors order-2 sm:order-1">
               关闭
             </button>
             <button v-if="backupTab === 'scheduled'"
@@ -594,10 +594,10 @@
       <!-- 证书申请对话框 -->
       <div v-if="showCertDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeCertDialog"></div>
-        <div class="relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-white/20 animate-scale-in">
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between">
-            <h3 class="text-base sm:text-lg font-medium text-gray-900">申请SSL证书</h3>
-            <button @click="closeCertDialog" class="text-gray-400 hover:text-gray-600 transition-colors">
+        <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-white/20 dark:border-gray-600 animate-scale-in">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">申请SSL证书</h3>
+            <button @click="closeCertDialog" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
               <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -607,115 +607,115 @@
             <div class="space-y-6">
               <!-- 域名设置 -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">域名</label>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">域名</label>
                 <input v-model="certDomain" type="text" placeholder="输入域名，如：example.com" 
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
               </div>
 
               <!-- CA证书信息 -->
               <div>
-                <h4 class="text-sm font-medium text-gray-900 mb-3">CA根证书信息</h4>
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">CA根证书信息</h4>
                 <div class="grid grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">国家代码</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">国家代码</label>
                     <input v-model="caCountry" type="text" placeholder="CN" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">省份</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">省份</label>
                     <input v-model="caState" type="text" placeholder="Beijing" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">城市</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">城市</label>
                     <input v-model="caCity" type="text" placeholder="Beijing" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">组织</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">组织</label>
                     <input v-model="caOrganization" type="text" placeholder="skills" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">组织单位</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">组织单位</label>
                     <input v-model="caUnit" type="text" placeholder="system" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">通用名称</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">通用名称</label>
                     <input v-model="caCommonName" type="text" placeholder="CA Server" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">邮箱</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">邮箱</label>
                     <input v-model="caEmail" type="email" placeholder="ca@example.com" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">有效期（天）</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">有效期（天）</label>
                     <input v-model="caValidity" type="number" min="3650" max="36500" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
-                    <p class="text-xs text-gray-500 mt-1">默认30年（10950天）</p>
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">默认30年（10950天）</p>
                   </div>
                 </div>
               </div>
 
               <!-- 服务器证书信息 -->
               <div>
-                <h4 class="text-sm font-medium text-gray-900 mb-3">服务器证书信息</h4>
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">服务器证书信息</h4>
                 <div class="grid grid-cols-2 gap-4">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">国家代码</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">国家代码</label>
                     <input v-model="certCountry" type="text" placeholder="CN" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">省份</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">省份</label>
                     <input v-model="certState" type="text" placeholder="Beijing" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">城市</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">城市</label>
                     <input v-model="certCity" type="text" placeholder="Beijing" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">组织</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">组织</label>
                     <input v-model="certOrganization" type="text" placeholder="skills" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">组织单位</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">组织单位</label>
                     <input v-model="certUnit" type="text" placeholder="system" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">通用名称</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">通用名称</label>
                     <input v-model="certCommonName" type="text" placeholder="服务器域名或IP" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                     <p class="text-xs text-gray-500 mt-1">通常与域名相同</p>
                   </div>
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">邮箱</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">邮箱</label>
                     <input v-model="certEmail" type="email" placeholder="admin@example.com" 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                           class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                   </div>
                 </div>
               </div>
 
               <!-- 证书有效期 -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">证书有效期（天）</label>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">证书有效期（天）</label>
                 <input v-model="certValidity" type="number" min="365" max="3650" 
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
                 <p class="text-xs text-gray-500 mt-1">建议设置365-3650天（1-10年）</p>
               </div>
 
               <!-- 主题备用名称 -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">主题备用名称（SAN）</label>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">主题备用名称（SAN）</label>
                 <textarea v-model="certSAN" rows="3" placeholder="输入多个域名或IP，每行一个，如：&#10;*.example.com&#10;example.com&#10;192.168.1.100" 
-                          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+                          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
                 <p class="text-xs text-gray-500 mt-1">支持通配符域名和IP地址，每行一个</p>
               </div>
 
@@ -750,14 +750,14 @@
               </div>
             </div>
           </div>
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 backdrop-blur-sm">
+          <div class="px-4 sm:px-6 pt-3 pb-3 border-t border-gray-200 dark:border-gray-600 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-b-xl sm:rounded-b-2xl">
             <button @click="closeCertDialog" 
-                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors order-2 sm:order-1">
+                    class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md transition-colors order-2 sm:order-1">
               取消
             </button>
             <button @click="executeCertRequest"
                     :disabled="!certDomain"
-                    class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed rounded-md transition-colors order-1 sm:order-2">
+                    class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:text-gray-500 dark:disabled:text-gray-400 disabled:cursor-not-allowed rounded-md transition-colors order-1 sm:order-2">
               申请证书
             </button>
           </div>
@@ -767,14 +767,14 @@
       <!-- 垃圾邮件过滤配置对话框 -->
       <div v-if="showSpamFilterDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeSpamFilterDialog"></div>
-        <div class="relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-y-auto border border-white/20 animate-scale-in">
+        <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-6xl max-h-[90vh] overflow-y-auto border border-white/20 dark:border-gray-600 animate-scale-in">
           <!-- 通知消息 -->
           <div v-if="notice && showSpamFilterDialog" class="absolute top-4 right-4 z-50 max-w-md animate-slide-in-right">
             <div :class="{
-              'bg-green-50 border-green-200 text-green-800': noticeType === 'success',
-              'bg-red-50 border-red-200 text-red-800': noticeType === 'error',
-              'bg-yellow-50 border-yellow-200 text-yellow-800': noticeType === 'warning',
-              'bg-blue-50 border-blue-200 text-blue-800': noticeType === 'info'
+              'bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-800 text-green-800 dark:text-green-300': noticeType === 'success',
+              'bg-red-50 dark:bg-red-900/30 border-red-200 dark:border-red-800 text-red-800 dark:text-red-300': noticeType === 'error',
+              'bg-yellow-50 dark:bg-yellow-900/30 border-yellow-200 dark:border-yellow-800 text-yellow-800 dark:text-yellow-300': noticeType === 'warning',
+              'bg-blue-50 dark:bg-blue-900/30 border-blue-200 dark:border-blue-800 text-blue-800 dark:text-blue-300': noticeType === 'info'
             }" class="px-4 py-3 rounded-xl border-2 shadow-lg flex items-start space-x-3">
               <svg v-if="noticeType === 'success'" class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -791,7 +791,7 @@
               <div class="flex-1">
                 <p class="text-sm font-semibold whitespace-pre-line">{{ notice }}</p>
               </div>
-              <button @click="notice = ''" class="text-gray-400 hover:text-gray-600 flex-shrink-0">
+              <button @click="notice = ''" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 flex-shrink-0">
                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
@@ -799,9 +799,9 @@
             </div>
           </div>
           <!-- 头部 -->
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between">
-            <h3 class="text-base sm:text-lg font-medium text-gray-900">垃圾邮件过滤配置</h3>
-            <button @click="closeSpamFilterDialog" class="text-gray-400 hover:text-gray-600 transition-colors">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">垃圾邮件过滤配置</h3>
+            <button @click="closeSpamFilterDialog" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
               <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -809,42 +809,42 @@
           </div>
           
           <!-- 统计信息 -->
-          <div class="px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 border-b border-gray-200">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 dark:bg-gray-700/50 border-b border-gray-200 dark:border-gray-600">
             <div class="grid grid-cols-3 gap-4">
-              <div class="bg-white border border-gray-200 rounded-lg p-3">
+              <div class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-3">
                 <div class="flex items-center justify-between">
                   <div>
-                    <p class="text-xs text-gray-500 mb-1">关键词总数</p>
-                    <p class="text-xl font-semibold text-gray-900">{{ spamKeywords.length }}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">关键词总数</p>
+                    <p class="text-xl font-semibold text-gray-900 dark:text-gray-100">{{ spamKeywords.length }}</p>
                   </div>
-                  <div class="p-2 bg-orange-100 rounded-lg">
-                    <svg class="h-5 w-5 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="p-2 bg-orange-100 dark:bg-orange-900/50 rounded-lg">
+                    <svg class="h-5 w-5 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
                     </svg>
                   </div>
                 </div>
               </div>
-              <div class="bg-white border border-gray-200 rounded-lg p-3">
+              <div class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-3">
                 <div class="flex items-center justify-between">
                   <div>
-                    <p class="text-xs text-gray-500 mb-1">域名黑名单</p>
-                    <p class="text-xl font-semibold text-gray-900">{{ spamDomains.length }}</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">域名黑名单</p>
+                    <p class="text-xl font-semibold text-gray-900 dark:text-gray-100">{{ spamDomains.length }}</p>
                   </div>
-                  <div class="p-2 bg-red-100 rounded-lg">
-                    <svg class="h-5 w-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="p-2 bg-red-100 dark:bg-red-900/50 rounded-lg">
+                    <svg class="h-5 w-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                     </svg>
                   </div>
                 </div>
               </div>
-              <div class="bg-white border border-gray-200 rounded-lg p-3">
+              <div class="bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg p-3">
                 <div class="flex items-center justify-between">
                   <div>
-                    <p class="text-xs text-gray-500 mb-1">过滤规则</p>
-                    <p class="text-xl font-semibold text-gray-900">4</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">过滤规则</p>
+                    <p class="text-xl font-semibold text-gray-900 dark:text-gray-100">4</p>
                   </div>
-                  <div class="p-2 bg-blue-100 rounded-lg">
-                    <svg class="h-5 w-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                    <svg class="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     </svg>
@@ -860,27 +860,27 @@
               <!-- 关键词管理 -->
               <div>
                 <div class="flex items-center justify-between mb-3">
-                  <h4 class="text-sm font-medium text-gray-900">关键词管理</h4>
+                  <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">关键词管理</h4>
                   <div class="flex items-center space-x-2">
-                    <span class="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-medium">
+                    <span class="px-2 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300 rounded text-xs font-medium">
                       中文: {{ spamKeywords.filter(k => k.lang === 'cn').length }}
                     </span>
-                    <span class="px-2 py-1 bg-amber-100 text-amber-700 rounded text-xs font-medium">
+                    <span class="px-2 py-1 bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 rounded text-xs font-medium">
                       英文: {{ spamKeywords.filter(k => k.lang === 'en').length }}
                     </span>
                   </div>
                 </div>
-                <div class="border border-gray-200 rounded-lg p-4">
+                <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
                   <!-- 添加关键词 -->
                   <div class="mb-6">
                     <div class="flex items-center space-x-3">
                       <div class="flex-1">
                         <input v-model="newSpamKeyword" type="text" 
                                placeholder="输入垃圾邮件关键词..." 
-                               class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                               class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                @keyup.enter="addSpamKeyword">
                       </div>
-                      <select v-model="newSpamKeywordLang" class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                      <select v-model="newSpamKeywordLang" class="px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                         <option value="cn">中文</option>
                         <option value="en">英文</option>
                       </select>
@@ -895,23 +895,23 @@
                   <!-- 关键词列表 -->
                   <div v-if="spamKeywords.length > 0" class="space-y-2 max-h-64 overflow-y-auto mt-4">
                     <div v-for="(keyword, index) in spamKeywords" :key="index" 
-                         class="group flex items-center justify-between p-3 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
+                         class="group flex items-center justify-between p-3 border border-gray-200 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                       <div class="flex items-center space-x-3">
-                        <div :class="keyword.lang === 'cn' ? 'bg-orange-100 text-orange-700' : 'bg-amber-100 text-amber-700'" 
+                        <div :class="keyword.lang === 'cn' ? 'bg-orange-100 dark:bg-orange-900/50 text-orange-700 dark:text-orange-300' : 'bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300'" 
                              class="px-2 py-1 rounded text-xs font-medium">
                           {{ keyword.lang === 'cn' ? '中文' : 'English' }}
                         </div>
-                        <span class="text-sm text-gray-700">{{ keyword.text }}</span>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">{{ keyword.text }}</span>
                       </div>
                       <button @click="removeSpamKeyword(index)" 
-                              class="p-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded transition-colors">
+                              class="p-1 text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-gray-600 rounded transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                       </button>
                     </div>
                   </div>
-                  <div v-else class="text-center py-8 text-gray-400 text-sm">
+                  <div v-else class="text-center py-8 text-gray-400 dark:text-gray-500 text-sm">
                     暂无关键词，请添加
                   </div>
                 </div>
@@ -919,15 +919,15 @@
               
               <!-- 域名黑名单管理 -->
               <div>
-                <h4 class="text-sm font-medium text-gray-900 mb-3">域名黑名单</h4>
-                <div class="border border-gray-200 rounded-lg p-4">
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">域名黑名单</h4>
+                <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
                   <!-- 添加域名 -->
                   <div class="mb-4">
                     <div class="flex items-center space-x-3">
                       <div class="flex-1">
                         <input v-model="newSpamDomain" type="text" 
                                placeholder="输入域名，如：spam.com" 
-                               class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                               class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                                @keyup.enter="addSpamDomain">
                       </div>
                       <button @click="addSpamDomain" 
@@ -941,22 +941,22 @@
                   <!-- 域名列表 -->
                   <div v-if="spamDomains.length > 0" class="space-y-2 max-h-64 overflow-y-auto mt-4">
                     <div v-for="(domain, index) in spamDomains" :key="index" 
-                         class="group flex items-center justify-between p-3 border border-gray-200 rounded-md hover:bg-gray-50 transition-colors">
+                         class="group flex items-center justify-between p-3 border border-gray-200 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
                       <div class="flex items-center space-x-3">
-                        <svg class="h-4 w-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="h-4 w-4 text-red-500 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
                         </svg>
-                        <span class="text-sm text-gray-700">{{ domain }}</span>
+                        <span class="text-sm text-gray-700 dark:text-gray-300">{{ domain }}</span>
                       </div>
                       <button @click="removeSpamDomain(index)" 
-                              class="p-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded transition-colors">
+                              class="p-1 text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-gray-600 rounded transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                         </svg>
                       </button>
                     </div>
                   </div>
-                  <div v-else class="text-center py-8 text-gray-400 text-sm">
+                  <div v-else class="text-center py-8 text-gray-400 dark:text-gray-500 text-sm">
                     暂无域名，请添加
                   </div>
                 </div>
@@ -964,39 +964,39 @@
               
               <!-- 过滤规则配置 -->
               <div>
-                <h4 class="text-sm font-medium text-gray-900 mb-3">过滤规则配置</h4>
-                <div class="border border-gray-200 rounded-lg p-4">
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">过滤规则配置</h4>
+                <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">最小邮件内容行数</label>
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">最小邮件内容行数</label>
                       <input v-model.number="spamFilterConfig.minBodyLines" 
                              type="number" min="0" max="10" 
-                             class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                      <p class="text-xs text-gray-500 mt-1">邮件内容少于此行数将被标记为可疑</p>
+                             class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">邮件内容少于此行数将被标记为可疑</p>
                     </div>
                     
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">大写字母比例阈值</label>
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">大写字母比例阈值</label>
                       <input v-model.number="spamFilterConfig.maxCapsRatio" 
                              type="number" min="0" max="1" step="0.1" 
-                             class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                      <p class="text-xs text-gray-500 mt-1">超过此比例的大写字母将被视为垃圾邮件特征</p>
+                             class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">超过此比例的大写字母将被视为垃圾邮件特征</p>
                     </div>
                     
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">最大感叹号数量</label>
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">最大感叹号数量</label>
                       <input v-model.number="spamFilterConfig.maxExclamation" 
                              type="number" min="1" max="20" 
-                             class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                      <p class="text-xs text-gray-500 mt-1">邮件中感叹号超过此数量将被标记</p>
+                             class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">邮件中感叹号超过此数量将被标记</p>
                     </div>
                     
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-2">最大特殊字符数量</label>
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">最大特殊字符数量</label>
                       <input v-model.number="spamFilterConfig.maxSpecialChars" 
                              type="number" min="1" max="50" 
-                             class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-                      <p class="text-xs text-gray-500 mt-1">特殊字符超过此数量将被视为垃圾邮件</p>
+                             class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">特殊字符超过此数量将被视为垃圾邮件</p>
                     </div>
                   </div>
                 </div>
@@ -1005,9 +1005,9 @@
           </div>
           
           <!-- 底部操作栏 -->
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 backdrop-blur-sm">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 dark:border-gray-600 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 dark:bg-gray-800 backdrop-blur-sm">
             <button @click="closeSpamFilterDialog" 
-                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors order-2 sm:order-1">
+                    class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md transition-colors order-2 sm:order-1">
               取消
             </button>
             <button @click="testSpamFilter" 
@@ -1026,11 +1026,11 @@
       <!-- 广播对话框 -->
       <div v-if="showBroadcastDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeBroadcastDialog"></div>
-        <div class="relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-white/20 animate-scale-in">
+        <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-white/20 dark:border-gray-600 animate-scale-in">
           <!-- 头部 -->
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between">
-            <h3 class="text-base sm:text-lg font-medium text-gray-900">系统广播</h3>
-            <button @click="closeBroadcastDialog" class="text-gray-400 hover:text-gray-600 transition-colors">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">系统广播</h3>
+            <button @click="closeBroadcastDialog" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
               <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -1041,13 +1041,13 @@
           <div class="px-4 sm:px-6 py-4 sm:py-5">
             <div class="space-y-6">
               <!-- 当前广播消息 -->
-              <div v-if="currentBroadcast" class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+              <div v-if="currentBroadcast" class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-600 rounded-lg p-4 mb-4">
                 <div class="flex items-start justify-between">
                   <div class="flex-1">
-                    <p class="text-sm font-medium text-blue-800 mb-2">当前广播消息：</p>
-                    <p class="text-sm text-gray-700 whitespace-pre-line">{{ currentBroadcast }}</p>
+                    <p class="text-sm font-medium text-blue-800 dark:text-blue-300 mb-2">当前广播消息：</p>
+                    <p class="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line">{{ currentBroadcast }}</p>
                   </div>
-                  <button @click="showClearBroadcastConfirmDialog" class="ml-4 text-blue-600 hover:text-blue-800 transition-colors">
+                  <button @click="showClearBroadcastConfirmDialog" class="ml-4 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
@@ -1057,22 +1057,22 @@
 
               <!-- 输入区域 -->
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   广播消息内容
                 </label>
                 <textarea v-model="broadcastMessage" 
                           rows="6"
                           placeholder="请输入要广播的消息内容，此消息将显示在所有用户的邮件页面顶部..."
-                          class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 resize-none"></textarea>
-                <p class="mt-2 text-xs text-gray-500">消息将在所有用户的邮件页面顶部横向轮播显示</p>
+                          class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 resize-none"></textarea>
+                <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">消息将在所有用户的邮件页面顶部横向轮播显示</p>
               </div>
             </div>
           </div>
           
           <!-- 底部操作栏 -->
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 backdrop-blur-sm">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 dark:border-gray-600 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 dark:bg-gray-800 backdrop-blur-sm">
             <button @click="closeBroadcastDialog" 
-                    class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors order-2 sm:order-1">
+                    class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md transition-colors order-2 sm:order-1">
               取消
             </button>
             <button @click="saveBroadcast" 
@@ -1087,7 +1087,7 @@
       <!-- 清除广播消息确认对话框 -->
       <div v-if="showClearBroadcastConfirm" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" @click="showClearBroadcastConfirm = false"></div>
-        <div class="relative bg-white rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-100 animate-scale-in">
+        <div class="relative bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-100 animate-scale-in border border-transparent dark:border-gray-600">
           <!-- 装饰性顶部渐变条 -->
           <div class="h-1 bg-gradient-to-r from-red-500 via-orange-500 to-yellow-500 rounded-t-2xl"></div>
           
@@ -1095,29 +1095,29 @@
           <div class="px-6 py-6">
             <!-- 图标和标题 -->
             <div class="flex items-center justify-center mb-4">
-              <div class="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-red-100 to-orange-100">
-                <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-red-100 to-orange-100 dark:from-red-900/40 dark:to-orange-900/40">
+                <svg class="w-8 h-8 text-red-500 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                 </svg>
               </div>
             </div>
             
             <!-- 标题 -->
-            <h3 class="text-xl font-semibold text-gray-900 text-center mb-2">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100 text-center mb-2">
               确认清除广播消息
             </h3>
             
             <!-- 提示信息 -->
-            <div class="bg-orange-50 border border-orange-200 rounded-lg p-4 mb-6">
+            <div class="bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-600 rounded-lg p-4 mb-6">
               <div class="flex items-start space-x-3">
-                <svg class="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-5 h-5 text-orange-500 dark:text-orange-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                 </svg>
                 <div class="flex-1">
-                  <p class="text-sm font-medium text-orange-800 mb-1">
+                  <p class="text-sm font-medium text-orange-800 dark:text-orange-300 mb-1">
                     此操作将永久清除当前的广播消息
                   </p>
-                  <p class="text-xs text-orange-700">
+                  <p class="text-xs text-orange-700 dark:text-orange-400">
                     清除后，所有用户将不再看到此广播消息。此操作不可撤销。
                   </p>
                 </div>
@@ -1125,17 +1125,17 @@
             </div>
             
             <!-- 当前消息预览 -->
-            <div v-if="currentBroadcast" class="bg-gray-50 border border-gray-200 rounded-lg p-3 mb-6">
-              <p class="text-xs font-medium text-gray-500 mb-1">当前广播消息：</p>
-              <p class="text-sm text-gray-700 line-clamp-3">{{ currentBroadcast }}</p>
+            <div v-if="currentBroadcast" class="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 rounded-lg p-3 mb-6">
+              <p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">当前广播消息：</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 line-clamp-3">{{ currentBroadcast }}</p>
             </div>
           </div>
           
           <!-- 底部按钮 -->
-          <div class="px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 rounded-b-xl sm:rounded-b-2xl flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 bg-gray-50 dark:bg-gray-800/80 rounded-b-xl sm:rounded-b-2xl flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3">
             <button 
               @click="showClearBroadcastConfirm = false" 
-              class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 order-2 sm:order-1">
+              class="px-5 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-all duration-200 order-2 sm:order-1">
               取消
             </button>
             <button 
@@ -1163,16 +1163,16 @@
       <!-- 服务状态对话框 -->
       <div v-if="showServiceStatusDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeServiceStatusDialog"></div>
-        <div class="relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-white/20 animate-scale-in">
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between">
+        <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-white/20 dark:border-gray-600 animate-scale-in">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between">
             <div class="flex items-center space-x-2 sm:space-x-3">
-              <h3 class="text-base sm:text-lg font-medium text-gray-900">系统服务状态</h3>
+              <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">系统服务状态</h3>
               <div class="flex items-center space-x-1 sm:space-x-2">
                 <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span class="text-xs text-gray-500 hidden sm:inline">实时更新</span>
+                <span class="text-xs text-gray-500 dark:text-gray-400 hidden sm:inline">实时更新</span>
               </div>
             </div>
-            <button @click="closeServiceStatusDialog" class="text-gray-400 hover:text-gray-600 transition-colors">
+            <button @click="closeServiceStatusDialog" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
               <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
               </svg>
@@ -1180,118 +1180,118 @@
           </div>
           <div class="px-4 sm:px-6 py-4 sm:py-5">
             <div v-if="serviceStatusLoading" class="flex items-center justify-center py-8">
-              <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-              <span class="ml-3 text-gray-600">正在检查服务状态...</span>
+              <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 dark:border-blue-400"></div>
+              <span class="ml-3 text-gray-600 dark:text-gray-400">正在检查服务状态...</span>
             </div>
             <div v-else class="space-y-6">
               <!-- 服务状态概览 -->
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <!-- 邮件服务状态 -->
-                <div class="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4">
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 border border-green-200 dark:border-green-600 rounded-lg p-4">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="text-sm font-medium text-gray-900">邮件服务</h4>
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">邮件服务</h4>
                     <div class="flex items-center space-x-2">
                       <div :class="getServiceStatusClass(serviceStatuses.mail?.status)" class="w-2 h-2 rounded-full"></div>
-                      <span class="text-xs text-gray-600">{{ getServiceStatusText(serviceStatuses.mail?.status) }}</span>
+                      <span class="text-xs text-gray-600 dark:text-gray-400">{{ getServiceStatusText(serviceStatuses.mail?.status) }}</span>
                     </div>
                   </div>
-                  <div class="text-xs text-gray-600 space-y-1">
+                  <div class="text-xs text-gray-600 dark:text-gray-400 space-y-1">
                     <div>Postfix: {{ getServiceStatusText(serviceStatuses.postfix?.status) }}</div>
                     <div>Dovecot: {{ getServiceStatusText(serviceStatuses.dovecot?.status) }}</div>
                   </div>
                 </div>
 
                 <!-- 数据库服务状态 -->
-                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-4">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 border border-blue-200 dark:border-blue-600 rounded-lg p-4">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="text-sm font-medium text-gray-900">数据库服务</h4>
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">数据库服务</h4>
                     <div class="flex items-center space-x-2">
                       <div :class="getServiceStatusClass(serviceStatuses.mariadb?.status)" class="w-2 h-2 rounded-full"></div>
-                      <span class="text-xs text-gray-600">{{ getServiceStatusText(serviceStatuses.mariadb?.status) }}</span>
+                      <span class="text-xs text-gray-600 dark:text-gray-400">{{ getServiceStatusText(serviceStatuses.mariadb?.status) }}</span>
                     </div>
                   </div>
-                  <div class="text-xs text-gray-600">
+                  <div class="text-xs text-gray-600 dark:text-gray-400">
                     MariaDB: {{ getServiceStatusText(serviceStatuses.mariadb?.status) }}
                   </div>
                 </div>
 
                 <!-- DNS服务状态 -->
-                <div class="bg-gradient-to-br from-purple-50 to-violet-50 border border-purple-200 rounded-lg p-4">
+                <div class="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/30 dark:to-violet-900/30 border border-purple-200 dark:border-purple-600 rounded-lg p-4">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="text-sm font-medium text-gray-900">DNS服务</h4>
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">DNS服务</h4>
                     <div class="flex items-center space-x-2">
                       <div :class="getServiceStatusClass(serviceStatuses.named?.status)" class="w-2 h-2 rounded-full"></div>
-                      <span class="text-xs text-gray-600">{{ getServiceStatusText(serviceStatuses.named?.status) }}</span>
+                      <span class="text-xs text-gray-600 dark:text-gray-400">{{ getServiceStatusText(serviceStatuses.named?.status) }}</span>
                     </div>
                   </div>
-                  <div class="text-xs text-gray-600">
+                  <div class="text-xs text-gray-600 dark:text-gray-400">
                     Bind: {{ getServiceStatusText(serviceStatuses.named?.status) }}
                   </div>
                 </div>
 
                 <!-- 安全服务状态 -->
-                <div class="bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200 rounded-lg p-4">
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-900/30 dark:to-amber-900/30 border border-orange-200 dark:border-orange-600 rounded-lg p-4">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="text-sm font-medium text-gray-900">安全服务</h4>
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">安全服务</h4>
                     <div class="flex items-center space-x-2">
                       <div :class="getServiceStatusClass(serviceStatuses.firewalld?.status)" class="w-2 h-2 rounded-full"></div>
-                      <span class="text-xs text-gray-600">{{ getServiceStatusText(serviceStatuses.firewalld?.status) }}</span>
+                      <span class="text-xs text-gray-600 dark:text-gray-400">{{ getServiceStatusText(serviceStatuses.firewalld?.status) }}</span>
                     </div>
                   </div>
-                  <div class="text-xs text-gray-600 space-y-1">
+                  <div class="text-xs text-gray-600 dark:text-gray-400 space-y-1">
                     <div>防火墙: {{ getServiceStatusText(serviceStatuses.firewalld?.status) }}</div>
                     <div>反垃圾邮件: {{ getServiceStatusText(serviceStatuses.rspamd?.status) }}</div>
                   </div>
                 </div>
 
                 <!-- 调度层服务状态 -->
-                <div class="bg-gradient-to-br from-cyan-50 to-teal-50 border border-cyan-200 rounded-lg p-4">
+                <div class="bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900/30 dark:to-teal-900/30 border border-cyan-200 dark:border-cyan-600 rounded-lg p-4">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="text-sm font-medium text-gray-900">调度层服务</h4>
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">调度层服务</h4>
                     <div class="flex items-center space-x-2">
                       <div :class="getServiceStatusClass(serviceStatuses.dispatcher?.status)" class="w-2 h-2 rounded-full"></div>
-                      <span class="text-xs text-gray-600">{{ getServiceStatusText(serviceStatuses.dispatcher?.status) }}</span>
+                      <span class="text-xs text-gray-600 dark:text-gray-400">{{ getServiceStatusText(serviceStatuses.dispatcher?.status) }}</span>
                     </div>
                   </div>
-                  <div class="text-xs text-gray-600">
+                  <div class="text-xs text-gray-600 dark:text-gray-400">
                     API调度器: {{ getServiceStatusText(serviceStatuses.dispatcher?.status) }}
                   </div>
                 </div>
 
                 <!-- Web服务状态 -->
-                <div class="bg-gradient-to-br from-pink-50 to-rose-50 border border-pink-200 rounded-lg p-4">
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-900/30 dark:to-rose-900/30 border border-pink-200 dark:border-pink-600 rounded-lg p-4">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="text-sm font-medium text-gray-900">Web服务</h4>
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">Web服务</h4>
                     <div class="flex items-center space-x-2">
                       <div :class="getServiceStatusClass(serviceStatuses.httpd?.status)" class="w-2 h-2 rounded-full"></div>
-                      <span class="text-xs text-gray-600">{{ getServiceStatusText(serviceStatuses.httpd?.status) }}</span>
+                      <span class="text-xs text-gray-600 dark:text-gray-400">{{ getServiceStatusText(serviceStatuses.httpd?.status) }}</span>
                     </div>
                   </div>
-                  <div class="text-xs text-gray-600">
+                  <div class="text-xs text-gray-600 dark:text-gray-400">
                     Apache: {{ getServiceStatusText(serviceStatuses.httpd?.status) }}
                   </div>
                 </div>
               </div>
 
               <!-- 系统信息 -->
-              <div class="bg-gray-50 rounded-lg p-4">
-                <h4 class="text-sm font-medium text-gray-900 mb-3">系统信息</h4>
+              <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 border border-transparent dark:border-gray-600">
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">系统信息</h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span class="text-gray-600">系统时间:</span>
-                    <span class="ml-2 font-mono">{{ systemInfo.timestamp }}</span>
+                    <span class="text-gray-600 dark:text-gray-400">系统时间:</span>
+                    <span class="ml-2 font-mono text-gray-900 dark:text-gray-200">{{ systemInfo.timestamp }}</span>
                   </div>
                   <div>
-                    <span class="text-gray-600">系统负载:</span>
-                    <span class="ml-2 font-mono">{{ systemInfo.loadAverage || 'N/A' }}</span>
+                    <span class="text-gray-600 dark:text-gray-400">系统负载:</span>
+                    <span class="ml-2 font-mono text-gray-900 dark:text-gray-200">{{ systemInfo.loadAverage || 'N/A' }}</span>
                   </div>
                   <div>
-                    <span class="text-gray-600">内存使用:</span>
-                    <span class="ml-2 font-mono">{{ systemInfo.memoryUsage || 'N/A' }}</span>
+                    <span class="text-gray-600 dark:text-gray-400">内存使用:</span>
+                    <span class="ml-2 font-mono text-gray-900 dark:text-gray-200">{{ systemInfo.memoryUsage || 'N/A' }}</span>
                   </div>
                   <div>
-                    <span class="text-gray-600">磁盘使用:</span>
-                    <span class="ml-2 font-mono">{{ systemInfo.diskUsage || 'N/A' }}</span>
+                    <span class="text-gray-600 dark:text-gray-400">磁盘使用:</span>
+                    <span class="ml-2 font-mono text-gray-900 dark:text-gray-200">{{ systemInfo.diskUsage || 'N/A' }}</span>
                   </div>
                 </div>
               </div>
@@ -1300,13 +1300,13 @@
               <div class="flex justify-end space-x-3">
                 <button @click="refreshServiceStatus" 
                         :disabled="serviceStatusLoading"
-                        class="px-4 py-2 text-sm font-medium text-blue-700 bg-blue-100 hover:bg-blue-200 disabled:opacity-50 disabled:cursor-not-allowed rounded-md transition-colors">
+                        class="px-4 py-2 text-sm font-medium text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/50 hover:bg-blue-200 dark:hover:bg-blue-800/50 disabled:opacity-50 disabled:cursor-not-allowed rounded-md transition-colors">
                   <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                   </svg>
                   刷新状态
                 </button>
-                <button @click="closeServiceStatusDialog" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors">
+                <button @click="closeServiceStatusDialog" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md transition-colors">
                   关闭
                 </button>
               </div>
@@ -1316,10 +1316,10 @@
       </div>
 
       <!-- 用户管理卡片 -->
-      <div class="bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl mb-6 border border-white/20 animate-fade-in-up" style="animation-delay: 0.3s">
+      <div class="bg-white/80 dark:bg-gray-800/90 backdrop-blur-sm shadow-xl rounded-2xl mb-6 border border-white/20 dark:border-gray-600 animate-fade-in-up" style="animation-delay: 0.3s">
         <div class="px-4 py-5 sm:p-6">
-          <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4 flex items-center">
-            <svg class="w-5 h-5 mr-2 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100 mb-4 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
             </svg>
             用户管理
@@ -1328,10 +1328,10 @@
           <!-- 用户列表 -->
           <div class="mb-6">
             <div class="flex items-center justify-between mb-4">
-              <h4 class="text-md font-medium text-gray-700">数据库用户列表</h4>
+              <h4 class="text-md font-medium text-gray-700 dark:text-gray-200">数据库用户列表</h4>
               <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
                 <button @click="() => { userLogger.logButtonClick('批量创建用户', '用户管理'); openBatchCreateDialog() }" 
-                        class="inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-purple-600 hover:text-purple-800 transition-all duration-200">
+                        class="inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 transition-all duration-200">
                   <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                   </svg>
@@ -1340,7 +1340,7 @@
                 </button>
                 <button @click="() => { userLogger.logButtonClick('批量删除用户', '用户管理'); openBatchDeleteDialog() }" 
                         :disabled="selectedUsers.size === 0"
-                        class="inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-red-600 hover:text-red-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                        class="inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
                   <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                   </svg>
@@ -1349,7 +1349,7 @@
                 </button>
                 <button @click="() => { userLogger.logButtonClick('刷新用户列表', '用户管理'); loadUsers() }" 
                         :disabled="loadingUsers"
-                        class="inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-blue-600 hover:text-blue-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                        class="inline-flex items-center px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
                   <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1" 
                        :class="{ 'animate-spin': loadingUsers }" 
                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1363,29 +1363,29 @@
             </div>
             
             <!-- 用户表格 - 手机端使用卡片布局 -->
-            <div class="bg-gray-50 rounded-lg overflow-hidden">
+            <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg overflow-hidden">
               <!-- 桌面端：表格布局 -->
               <div class="hidden md:block overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                  <thead class="bg-gray-100">
+                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
+                  <thead class="bg-gray-100 dark:bg-gray-700">
                     <tr>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">序号</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">序号</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                         <input type="checkbox" 
                                :checked="selectedUsers.size > 0 && selectedUsers.size === users.filter(u => u.username !== 'xm').length"
                                @change="toggleSelectAllUsers"
                                class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
                       </th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">用户名</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">邮箱</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">注册时间</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">类型</th>
-                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">用户名</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">邮箱</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">注册时间</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">类型</th>
+                      <th class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">操作</th>
                     </tr>
                   </thead>
-                  <tbody class="bg-white divide-y divide-gray-200">
+                  <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
                     <tr v-if="!users || users.length === 0">
-                      <td colspan="7" class="px-4 py-8 text-center text-gray-500">
+                      <td colspan="7" class="px-4 py-8 text-center text-gray-500 dark:text-gray-400">
                         <div class="flex flex-col items-center">
                           <svg class="w-8 h-8 text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
@@ -1394,8 +1394,8 @@
                         </div>
                       </td>
                     </tr>
-                    <tr v-for="(user, index) in (paginatedUsers || [])" :key="user.username" class="hover:bg-gray-50">
-                      <td class="px-4 py-3 text-sm text-gray-500">{{ (currentPage - 1) * pageSize + index + 1 }}</td>
+                    <tr v-for="(user, index) in (paginatedUsers || [])" :key="user.username" class="hover:bg-gray-50 dark:hover:bg-gray-700">
+                      <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{{ (currentPage - 1) * pageSize + index + 1 }}</td>
                       <td class="px-4 py-3 text-sm">
                         <input v-if="user.username !== 'xm'" 
                                type="checkbox" 
@@ -1404,14 +1404,14 @@
                                class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
                         <span v-else class="text-gray-400 text-xs">-</span>
                       </td>
-                      <td class="px-4 py-3 text-sm font-medium text-gray-900">{{ user.username }}</td>
-                      <td class="px-4 py-3 text-sm text-gray-500">{{ user.email }}</td>
-                      <td class="px-4 py-3 text-sm text-gray-500">{{ formatDate(user.created_at) }}</td>
+                      <td class="px-4 py-3 text-sm font-medium text-gray-900 dark:text-gray-100">{{ user.username }}</td>
+                      <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-300">{{ user.email }}</td>
+                      <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">{{ formatDate(user.created_at) }}</td>
                       <td class="px-4 py-3 text-sm">
-                        <span v-if="user.username === 'xm'" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                        <span v-if="user.username === 'xm'" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300">
                           管理员
                         </span>
-                        <span v-else class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <span v-else class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300">
                           普通用户
                         </span>
                       </td>
@@ -1419,19 +1419,19 @@
                         <div class="flex items-center space-x-3">
                           <button v-if="user.username !== 'xm'" 
                                   @click="() => { userLogger.logButtonClick('修改用户', '用户管理'); openEditUserDialog(user) }" 
-                                  class="text-blue-600 hover:text-blue-800 transition-colors duration-200" title="修改用户">
+                                  class="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200" title="修改用户">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                             </svg>
                           </button>
                           <button v-if="user.username !== 'xm'" 
                                   @click="() => { userLogger.logButtonClick('删除用户', '用户管理'); showDeleteUserDialog(user.username, user.email) }" 
-                                  class="text-red-600 hover:text-red-800 transition-colors duration-200" title="删除用户">
+                                  class="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 transition-colors duration-200" title="删除用户">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                             </svg>
                           </button>
-                          <span v-if="user.username === 'xm'" class="text-gray-400 text-xs">受保护</span>
+                          <span v-if="user.username === 'xm'" class="text-gray-400 dark:text-gray-500 text-xs">受保护</span>
                         </div>
                       </td>
                     </tr>
@@ -1441,16 +1441,16 @@
               
               <!-- 手机端：卡片布局 -->
               <div class="md:hidden space-y-3 p-3">
-                <div v-if="!users || users.length === 0" class="text-center py-8 text-gray-500">
+                <div v-if="!users || users.length === 0" class="text-center py-8 text-gray-500 dark:text-gray-400">
                   <div class="flex flex-col items-center">
-                    <svg class="w-8 h-8 text-gray-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-8 h-8 text-gray-300 dark:text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
                     </svg>
                     暂无用户数据 ({{ users ? users.length : 0 }} 个用户)
                   </div>
                 </div>
                 <div v-for="(user, index) in (paginatedUsers || [])" :key="user.username" 
-                     class="bg-white rounded-lg p-4 shadow-sm border border-gray-200">
+                     class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-600">
                   <div class="flex items-start justify-between mb-3">
                     <div class="flex-1">
                       <div class="flex items-center space-x-2 mb-2">
@@ -1459,29 +1459,29 @@
                                :checked="selectedUsers.has(user.id)"
                                @change="toggleUserSelection(user.id)"
                                class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
-                        <span class="text-xs text-gray-500">#{{ (currentPage - 1) * pageSize + index + 1 }}</span>
-                        <span v-if="user.username === 'xm'" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                        <span class="text-xs text-gray-500 dark:text-gray-400">#{{ (currentPage - 1) * pageSize + index + 1 }}</span>
+                        <span v-if="user.username === 'xm'" class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300">
                           管理员
                         </span>
-                        <span v-else class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <span v-else class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300">
                           普通用户
                         </span>
                       </div>
-                      <h5 class="text-sm font-semibold text-gray-900 mb-1">{{ user.username }}</h5>
-                      <p class="text-xs text-gray-600 mb-1">{{ user.email }}</p>
-                      <p class="text-xs text-gray-500">{{ formatDate(user.created_at) }}</p>
+                      <h5 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-1">{{ user.username }}</h5>
+                      <p class="text-xs text-gray-600 dark:text-gray-300 mb-1">{{ user.email }}</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">{{ formatDate(user.created_at) }}</p>
                     </div>
                     <div class="flex items-center space-x-2 ml-2">
                       <button v-if="user.username !== 'xm'" 
                               @click="() => { userLogger.logButtonClick('修改用户', '用户管理'); openEditUserDialog(user) }" 
-                              class="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="修改用户">
+                              class="p-2 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-gray-600 rounded-lg transition-colors" title="修改用户">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                         </svg>
                       </button>
                       <button v-if="user.username !== 'xm'" 
                               @click="() => { userLogger.logButtonClick('删除用户', '用户管理'); showDeleteUserDialog(user.username, user.email) }" 
-                              class="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="删除用户">
+                              class="p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-gray-600 rounded-lg transition-colors" title="删除用户">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                         </svg>
@@ -1496,9 +1496,9 @@
             <!-- 分页组件 -->
             <div v-if="users.length > 0" class="mt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
               <div class="flex items-center space-x-2">
-                <span class="text-xs sm:text-sm text-gray-700">每页显示</span>
+                <span class="text-xs sm:text-sm text-gray-700 dark:text-gray-300">每页显示</span>
                 <select v-model="pageSize" @change="changePageSize(pageSize)" 
-                        class="px-2 py-1 text-xs sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        class="px-2 py-1 text-xs sm:text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                   <option value="5">5</option>
                   <option value="10">10</option>
                   <option value="15">15</option>
@@ -1506,11 +1506,11 @@
                   <option value="25">25</option>
                   <option value="50">50</option>
                 </select>
-                <span class="text-xs sm:text-sm text-gray-700">条记录</span>
+                <span class="text-xs sm:text-sm text-gray-700 dark:text-gray-300">条记录</span>
               </div>
               
               <div class="flex items-center space-x-2">
-                <span class="text-xs sm:text-sm text-gray-700">
+                <span class="text-xs sm:text-sm text-gray-700 dark:text-gray-300">
                   显示第 {{ paginationInfo.start }}-{{ paginationInfo.end }} 条，共 {{ paginationInfo.total }} 条
                 </span>
               </div>
@@ -1518,7 +1518,7 @@
               <div v-if="totalPages > 1" class="flex items-center space-x-1">
                 <button @click="goToPreviousPage" 
                         :disabled="!canGoPrevious"
-                        class="px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        class="px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed">
                   上一页
                 </button>
                 
@@ -1530,14 +1530,14 @@
                             'px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium rounded-md',
                             page === currentPage 
                               ? 'bg-blue-600 text-white' 
-                              : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+                              : 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600'
                           ]">
                     {{ page }}
                   </button>
                 </template>
                 
                 <button v-if="totalPages > 5" 
-                        class="px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md">
+                        class="px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md">
                   ...
                 </button>
                 
@@ -1547,64 +1547,64 @@
                           'px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium rounded-md',
                           totalPages === currentPage 
                             ? 'bg-blue-600 text-white' 
-                            : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+                            : 'text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-600'
                         ]">
                   {{ totalPages }}
                 </button>
                 
                 <button @click="goToNextPage" 
                         :disabled="!canGoNext"
-                        class="px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+                        class="px-2 sm:px-3 py-1 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed">
                   下一页
                 </button>
               </div>
               
               <!-- 当只有一页时显示提示 -->
               <div v-else class="flex items-center">
-                <span class="text-xs sm:text-sm text-gray-500">所有用户已显示</span>
+                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">所有用户已显示</span>
               </div>
             </div>
           </div>
           
           <!-- 添加用户表单 -->
           <div class="space-y-4 mt-6 sm:mt-8">
-            <h4 class="text-base sm:text-md font-medium text-gray-700">添加新用户</h4>
+            <h4 class="text-base sm:text-md font-medium text-gray-700 dark:text-gray-200">添加新用户</h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
               <div>
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">用户名</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">用户名</label>
                 <input v-model="username" placeholder="请输入用户名" 
-                       class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" />
+                       class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" />
               </div>
               <div>
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">邮箱地址</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">邮箱地址</label>
                 <input v-model="email" placeholder="user@example.com" 
-                       class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" />
+                       class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" />
               </div>
               <div>
-                <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">密码</label>
+                <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">密码</label>
                 <input v-model="password" 
                        type="password" 
                        placeholder="请输入密码" 
                        @input="validatePassword"
-                       class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" />
-                <p v-if="passwordHint" class="text-xs text-gray-500 mt-1">{{ passwordHint }}</p>
-                <p v-if="passwordError" class="text-xs text-red-600 mt-1">{{ passwordError }}</p>
+                       class="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200" />
+                <p v-if="passwordHint" class="text-xs text-gray-500 dark:text-gray-400 mt-1">{{ passwordHint }}</p>
+                <p v-if="passwordError" class="text-xs text-red-600 dark:text-red-400 mt-1">{{ passwordError }}</p>
               </div>
             </div>
-            <div v-if="addUserError" class="mb-3 p-3 bg-red-50 border border-red-200 rounded-md">
+            <div v-if="addUserError" class="mb-3 p-3 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-md">
               <div class="flex items-start">
-                <svg class="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="h-5 w-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <p class="text-sm text-red-800">{{ addUserError }}</p>
+                <p class="text-sm text-red-800 dark:text-red-300">{{ addUserError }}</p>
               </div>
             </div>
-            <div v-if="addUserSuccess" class="mb-3 p-3 bg-green-50 border border-green-200 rounded-md">
+            <div v-if="addUserSuccess" class="mb-3 p-3 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-md">
               <div class="flex items-start">
-                <svg class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <p class="text-sm text-green-800">{{ addUserSuccess }}</p>
+                <p class="text-sm text-green-800 dark:text-green-300">{{ addUserSuccess }}</p>
               </div>
             </div>
             <div class="flex justify-end">
@@ -1621,10 +1621,10 @@
           <!-- 邮件发送统计图表 -->
           <div class="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             <!-- 图表一：邮件发送趋势 -->
-            <div class="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 p-4 sm:p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-lg border border-gray-200 dark:border-gray-600 p-4 sm:p-6">
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 mb-4">
-                <h4 class="text-base sm:text-lg font-semibold text-gray-800 flex items-center">
-                  <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <h4 class="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-100 flex items-center">
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                   </svg>
                   邮件发送趋势
@@ -1638,7 +1638,7 @@
                       'px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-lg transition-colors',
                       trendPeriod === period
                         ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     ]"
                   >
                     {{ period === 'hour' ? '小时' : period === 'day' ? '天' : '周' }}
@@ -1647,8 +1647,8 @@
               </div>
               <div class="relative h-48 sm:h-64">
                 <canvas ref="trendChartRef"></canvas>
-                <div v-if="loadingTrends" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 z-10">
-                  <div class="text-gray-500 flex items-center">
+                <div v-if="loadingTrends" class="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800/90 bg-opacity-75 z-10">
+                  <div class="text-gray-500 dark:text-gray-400 flex items-center">
                     <svg class="animate-spin h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                       <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -1656,8 +1656,8 @@
                     加载中...
                   </div>
                 </div>
-                <div v-if="!loadingTrends && trendDataEmpty" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-10">
-                  <div class="text-center text-gray-400">
+                <div v-if="!loadingTrends && trendDataEmpty" class="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800/90 bg-opacity-90 z-10">
+                  <div class="text-center text-gray-400 dark:text-gray-500">
                     <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
@@ -1669,10 +1669,10 @@
             </div>
             
             <!-- 图表二：发送频率 vs 发送数量关系 -->
-            <div class="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 p-4 sm:p-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-lg border border-gray-200 dark:border-gray-600 p-4 sm:p-6">
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 mb-4">
-                <h4 class="text-base sm:text-lg font-semibold text-gray-800 flex items-center">
-                  <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <h4 class="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-100 flex items-center">
+                  <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
                   </svg>
                   发送频率分析
@@ -1686,7 +1686,7 @@
                       'px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-lg transition-colors',
                       frequencyGroupBy === groupBy
                         ? 'bg-purple-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     ]"
                   >
                     {{ groupBy === 'user' ? '按用户' : '按天' }}
@@ -1695,8 +1695,8 @@
               </div>
               <div class="relative h-48 sm:h-64">
                 <canvas ref="frequencyChartRef"></canvas>
-                <div v-if="loadingFrequency" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 z-10">
-                  <div class="text-gray-500 flex items-center">
+                <div v-if="loadingFrequency" class="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800/90 bg-opacity-75 z-10">
+                  <div class="text-gray-500 dark:text-gray-400 flex items-center">
                     <svg class="animate-spin h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                       <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -1704,8 +1704,8 @@
                     加载中...
                   </div>
                 </div>
-                <div v-if="!loadingFrequency && frequencyDataEmpty" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 z-10">
-                  <div class="text-center text-gray-400">
+                <div v-if="!loadingFrequency && frequencyDataEmpty" class="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800/90 bg-opacity-90 z-10">
+                  <div class="text-center text-gray-400 dark:text-gray-500">
                     <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
                     </svg>
@@ -1813,54 +1813,54 @@
       <!-- 环境检查对话框 -->
       <div v-if="showEnvironmentCheckDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeEnvironmentCheckDialog"></div>
-        <div class="relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-white/20 animate-scale-in">
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between">
-            <h3 class="text-base sm:text-lg font-medium text-gray-900">系统环境检查</h3>
-            <button @click="closeEnvironmentCheckDialog" class="text-gray-400 hover:text-gray-600 transition-colors">
+        <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-white/20 dark:border-gray-600 animate-scale-in">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">系统环境检查</h3>
+            <button @click="closeEnvironmentCheckDialog" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
               <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
           </div>
           <div class="px-4 sm:px-6 py-4 sm:py-5">
-            <p class="text-sm text-gray-600 mb-6">系统将执行环境检查和健康检查，确保所有服务正常运行。</p>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">系统将执行环境检查和健康检查，确保所有服务正常运行。</p>
             
             <!-- 操作状态显示 -->
             <div v-if="loading" class="mb-6">
               <div class="flex items-center space-x-3 mb-4">
-                <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-                <span class="text-sm font-medium text-gray-700">正在执行检查...</span>
+                <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 dark:border-blue-400"></div>
+                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">正在执行检查...</span>
               </div>
             </div>
 
             <!-- 成功信息 -->
-            <div v-if="status === 'success' && !loading" class="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div v-if="status === 'success' && !loading" class="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg">
               <div class="flex items-center">
                 <svg class="h-5 w-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <span class="text-sm text-green-700">环境检查完成！系统状态良好</span>
+                <span class="text-sm text-green-700 dark:text-green-300">环境检查完成！系统状态良好</span>
               </div>
             </div>
 
             <!-- 错误信息 -->
-            <div v-if="error" class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <div v-if="error" class="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg">
               <div class="flex items-center">
                 <svg class="h-5 w-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-                <span class="text-sm text-red-700">{{ error }}</span>
+                <span class="text-sm text-red-700 dark:text-red-300">{{ error }}</span>
               </div>
             </div>
 
             <!-- 日志显示区域 -->
             <div v-if="logs" class="mb-6">
-              <h4 class="text-sm font-medium text-gray-700 mb-2">检查日志：</h4>
+              <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">检查日志：</h4>
               <div class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm max-h-64 overflow-y-auto whitespace-pre-wrap">{{ logs }}</div>
             </div>
 
             <!-- 操作按钮 -->
             <div class="flex justify-end space-x-3">
               <button @click="closeEnvironmentCheckDialog" 
-                      class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors">
+                      class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors">
                 关闭
               </button>
               <button @click="callEnvironmentCheck" 
@@ -1876,27 +1876,27 @@
       <!-- 安装服务对话框 -->
       <div v-if="showInstallDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeInstallDialog"></div>
-        <div class="relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-white/20 animate-scale-in">
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between">
-            <h3 class="text-base sm:text-lg font-medium text-gray-900">选择要安装的服务</h3>
-            <button @click="closeInstallDialog" class="text-gray-400 hover:text-gray-600 transition-colors">
+        <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-white/20 dark:border-gray-600 animate-scale-in">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">选择要安装的服务</h3>
+            <button @click="closeInstallDialog" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
               <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
           </div>
-          <div class="px-4 sm:px-6 py-4 sm:py-5">
-            <p class="text-sm text-gray-600 mb-6">请选择您要安装的服务组件，系统将自动安装和配置选中的服务。</p>
+          <div class="px-4 sm:px-6 pt-4 sm:pt-5 pb-0">
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-6">请选择您要安装的服务组件，系统将自动安装和配置选中的服务。</p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <!-- 邮件服务 -->
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:bg-blue-50 transition-all cursor-pointer" 
-                   :class="{ 'border-blue-500 bg-blue-50': selectedServices.includes('mail') }"
+              <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all cursor-pointer" 
+                   :class="{ 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 dark:border-blue-600': selectedServices.includes('mail') }"
                    @click="toggleService('mail')">
                 <div class="flex items-start space-x-3">
-                  <input type="checkbox" :checked="selectedServices.includes('mail')" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                  <input type="checkbox" :checked="selectedServices.includes('mail')" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-500 rounded">
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-gray-900">邮件服务</h4>
-                    <p class="text-xs text-gray-500 mt-1">Postfix + Dovecot 邮件服务器</p>
-                    <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">邮件服务</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Postfix + Dovecot 邮件服务器</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-300 mt-2 space-y-1">
                       <li>• SMTP 邮件发送</li>
                       <li>• IMAP/POP3 邮件接收</li>
                       <li>• 虚拟用户支持</li>
@@ -1906,15 +1906,15 @@
               </div>
 
               <!-- 数据库服务 -->
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-green-300 hover:bg-green-50 transition-all cursor-pointer" 
-                   :class="{ 'border-green-500 bg-green-50': selectedServices.includes('database') }"
+              <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-green-300 dark:hover:border-green-600 hover:bg-green-50 dark:hover:bg-green-900/30 transition-all cursor-pointer" 
+                   :class="{ 'border-green-500 bg-green-50 dark:bg-green-900/30 dark:border-green-600': selectedServices.includes('database') }"
                    @click="toggleService('database')">
                 <div class="flex items-start space-x-3">
-                  <input type="checkbox" :checked="selectedServices.includes('database')" class="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                  <input type="checkbox" :checked="selectedServices.includes('database')" class="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 dark:border-gray-500 rounded">
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-gray-900">数据库服务</h4>
-                    <p class="text-xs text-gray-500 mt-1">MariaDB 数据库服务器</p>
-                    <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">数据库服务</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">MariaDB 数据库服务器</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-300 mt-2 space-y-1">
                       <li>• 用户账户管理</li>
                       <li>• 域名管理</li>
                       <li>• 邮件路由配置</li>
@@ -1924,15 +1924,15 @@
               </div>
 
               <!-- DNS服务 -->
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-purple-300 hover:bg-purple-50 transition-all cursor-pointer" 
-                   :class="{ 'border-purple-500 bg-purple-50': selectedServices.includes('dns') }"
+              <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-purple-300 dark:hover:border-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all cursor-pointer" 
+                   :class="{ 'border-purple-500 bg-purple-50 dark:bg-purple-900/30 dark:border-purple-600': selectedServices.includes('dns') }"
                    @click="toggleService('dns')">
                 <div class="flex items-start space-x-3">
-                  <input type="checkbox" :checked="selectedServices.includes('dns')" class="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                  <input type="checkbox" :checked="selectedServices.includes('dns')" class="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 dark:border-gray-500 rounded">
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-gray-900">DNS服务</h4>
-                    <p class="text-xs text-gray-500 mt-1">Bind DNS 服务器</p>
-                    <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">DNS服务</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Bind DNS 服务器</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-300 mt-2 space-y-1">
                       <li>• 域名解析</li>
                       <li>• MX 记录</li>
                       <li>• 邮件记录配置</li>
@@ -1942,15 +1942,15 @@
               </div>
 
               <!-- 安全服务 -->
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-red-300 hover:bg-red-50 transition-all cursor-pointer" 
-                   :class="{ 'border-red-500 bg-red-50': selectedServices.includes('security') }"
+              <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-red-300 dark:hover:border-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 transition-all cursor-pointer" 
+                   :class="{ 'border-red-500 bg-red-50 dark:bg-red-900/30 dark:border-red-600': selectedServices.includes('security') }"
                    @click="toggleService('security')">
                 <div class="flex items-start space-x-3">
-                  <input type="checkbox" :checked="selectedServices.includes('security')" class="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+                  <input type="checkbox" :checked="selectedServices.includes('security')" class="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 dark:border-gray-500 rounded">
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-gray-900">安全服务</h4>
-                    <p class="text-xs text-gray-500 mt-1">SSL证书 + 防火墙</p>
-                    <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">安全服务</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">SSL证书 + 防火墙</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-300 mt-2 space-y-1">
                       <li>• SSL/TLS 加密</li>
                       <li>• 防火墙配置</li>
                       <li>• 安全策略</li>
@@ -1960,13 +1960,13 @@
               </div>
             </div>
 
-            <div class="mt-6 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 backdrop-blur-sm pt-4 border-t border-gray-200">
-              <button @click="closeInstallDialog" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors order-2 sm:order-1">
+            <div class="mt-6 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 bg-white/95 dark:bg-gray-800 backdrop-blur-sm pt-4 pb-3 border-t border-gray-200 dark:border-gray-600 -mx-4 sm:-mx-6 px-4 sm:px-6 rounded-b-xl sm:rounded-b-2xl">
+              <button @click="closeInstallDialog" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md transition-colors order-2 sm:order-1">
                 取消
               </button>
               <button @click="executeInstall" 
                       :disabled="selectedServices.length === 0"
-                      class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed rounded-md transition-colors order-1 sm:order-2">
+                      class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:text-gray-500 dark:disabled:text-gray-400 disabled:cursor-not-allowed rounded-md transition-colors order-1 sm:order-2">
                 开始安装 ({{ selectedServices.length }} 个服务)
               </button>
             </div>
@@ -1977,20 +1977,20 @@
       <!-- 服务管理对话框 -->
       <div v-if="showServiceManagementDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeServiceManagementDialog"></div>
-        <div class="relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-white/20 animate-scale-in">
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between">
-            <h3 class="text-base sm:text-lg font-medium text-gray-900">服务管理</h3>
-            <button @click="closeServiceManagementDialog" class="text-gray-400 hover:text-gray-600 transition-colors">
+        <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-white/20 dark:border-gray-600 animate-scale-in">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">服务管理</h3>
+            <button @click="closeServiceManagementDialog" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors">
               <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
           </div>
           <div class="px-4 sm:px-6 py-4 sm:py-5">
             <!-- 操作类型选择 -->
             <div class="mb-6">
-              <h4 class="text-sm font-medium text-gray-900 mb-3">选择操作类型</h4>
+              <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">选择操作类型</h4>
               <div class="grid grid-cols-2 gap-4">
                 <button @click="serviceAction = 'restart'" 
-                        :class="serviceAction === 'restart' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+                        :class="serviceAction === 'restart' ? 'bg-green-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'"
                         class="px-4 py-2 rounded-lg transition-colors">
                   <div class="flex items-center space-x-2">
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2000,7 +2000,7 @@
                   </div>
                 </button>
                 <button @click="serviceAction = 'stop'" 
-                        :class="serviceAction === 'stop' ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+                        :class="serviceAction === 'stop' ? 'bg-red-500 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600'"
                         class="px-4 py-2 rounded-lg transition-colors">
                   <div class="flex items-center space-x-2">
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -2015,18 +2015,18 @@
 
             <!-- 服务选择 -->
             <div class="space-y-4">
-              <h4 class="text-sm font-medium text-gray-900">选择要{{ serviceAction === 'restart' ? '重启' : '关闭' }}的服务</h4>
+              <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">选择要{{ serviceAction === 'restart' ? '重启' : '关闭' }}的服务</h4>
               
               <!-- 邮件服务 -->
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:bg-blue-50 transition-all cursor-pointer" 
-                   :class="{ 'border-blue-500 bg-blue-50': selectedRestartServices.includes('mail') }"
+              <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all cursor-pointer" 
+                   :class="{ 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 dark:border-blue-600': selectedRestartServices.includes('mail') }"
                    @click="toggleRestartService('mail')">
                 <div class="flex items-start space-x-3">
-                  <input type="checkbox" :checked="selectedRestartServices.includes('mail')" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                  <input type="checkbox" :checked="selectedRestartServices.includes('mail')" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-500 rounded">
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-gray-900">邮件服务</h4>
-                    <p class="text-xs text-gray-500 mt-1">Postfix + Dovecot</p>
-                    <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">邮件服务</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Postfix + Dovecot</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-400 mt-2 space-y-1">
                       <li>• SMTP 服务</li>
                       <li>• IMAP/POP3 服务</li>
                       <li>• 邮件传输</li>
@@ -2036,15 +2036,15 @@
               </div>
 
               <!-- 数据库服务 -->
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-green-300 hover:bg-green-50 transition-all cursor-pointer" 
-                   :class="{ 'border-green-500 bg-green-50': selectedRestartServices.includes('database') }"
+              <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-green-300 dark:hover:border-green-600 hover:bg-green-50 dark:hover:bg-green-900/30 transition-all cursor-pointer" 
+                   :class="{ 'border-green-500 bg-green-50 dark:bg-green-900/30 dark:border-green-600': selectedRestartServices.includes('database') }"
                    @click="toggleRestartService('database')">
                 <div class="flex items-start space-x-3">
-                  <input type="checkbox" :checked="selectedRestartServices.includes('database')" class="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                  <input type="checkbox" :checked="selectedRestartServices.includes('database')" class="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 dark:border-gray-500 rounded">
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-gray-900">数据库服务</h4>
-                    <p class="text-xs text-gray-500 mt-1">MariaDB</p>
-                    <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">数据库服务</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">MariaDB</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-400 mt-2 space-y-1">
                       <li>• 用户数据存储</li>
                       <li>• 邮件配置</li>
                       <li>• 系统数据</li>
@@ -2054,15 +2054,15 @@
               </div>
 
               <!-- DNS服务 -->
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-purple-300 hover:bg-purple-50 transition-all cursor-pointer" 
-                   :class="{ 'border-purple-500 bg-purple-50': selectedRestartServices.includes('dns') }"
+              <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-purple-300 dark:hover:border-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all cursor-pointer" 
+                   :class="{ 'border-purple-500 bg-purple-50 dark:bg-purple-900/30 dark:border-purple-600': selectedRestartServices.includes('dns') }"
                    @click="toggleRestartService('dns')">
                 <div class="flex items-start space-x-3">
-                  <input type="checkbox" :checked="selectedRestartServices.includes('dns')" class="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded">
+                  <input type="checkbox" :checked="selectedRestartServices.includes('dns')" class="mt-1 h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 dark:border-gray-500 rounded">
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-gray-900">DNS服务</h4>
-                    <p class="text-xs text-gray-500 mt-1">Bind DNS</p>
-                    <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">DNS服务</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Bind DNS</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-400 mt-2 space-y-1">
                       <li>• 域名解析</li>
                       <li>• MX记录</li>
                       <li>• 反向解析</li>
@@ -2072,15 +2072,15 @@
               </div>
 
               <!-- 安全服务 -->
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-red-300 hover:bg-red-50 transition-all cursor-pointer" 
-                   :class="{ 'border-red-500 bg-red-50': selectedRestartServices.includes('security') }"
+              <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-red-300 dark:hover:border-red-600 hover:bg-red-50 dark:hover:bg-red-900/30 transition-all cursor-pointer" 
+                   :class="{ 'border-red-500 bg-red-50 dark:bg-red-900/30 dark:border-red-600': selectedRestartServices.includes('security') }"
                    @click="toggleRestartService('security')">
                 <div class="flex items-start space-x-3">
-                  <input type="checkbox" :checked="selectedRestartServices.includes('security')" class="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
+                  <input type="checkbox" :checked="selectedRestartServices.includes('security')" class="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 dark:border-gray-500 rounded">
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-gray-900">安全服务</h4>
-                    <p class="text-xs text-gray-500 mt-1">SSL证书 + 防火墙</p>
-                    <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">安全服务</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">SSL证书 + 防火墙</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-400 mt-2 space-y-1">
                       <li>• SSL/TLS 加密</li>
                       <li>• 防火墙配置</li>
                       <li>• 安全策略</li>
@@ -2090,15 +2090,15 @@
               </div>
 
               <!-- 调度层服务 -->
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-indigo-300 hover:bg-indigo-50 transition-all cursor-pointer" 
-                   :class="{ 'border-indigo-500 bg-indigo-50': selectedRestartServices.includes('dispatcher') }"
+              <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all cursor-pointer" 
+                   :class="{ 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 dark:border-indigo-600': selectedRestartServices.includes('dispatcher') }"
                    @click="toggleRestartService('dispatcher')">
                 <div class="flex items-start space-x-3">
-                  <input type="checkbox" :checked="selectedRestartServices.includes('dispatcher')" class="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                  <input type="checkbox" :checked="selectedRestartServices.includes('dispatcher')" class="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 dark:border-gray-500 rounded">
                   <div class="flex-1">
-                    <h4 class="text-sm font-medium text-gray-900">调度层服务</h4>
-                    <p class="text-xs text-gray-500 mt-1">API 调度器</p>
-                    <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                    <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100">调度层服务</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">API 调度器</p>
+                    <ul class="text-xs text-gray-600 dark:text-gray-400 mt-2 space-y-1">
                       <li>• API 接口</li>
                       <li>• 脚本调度</li>
                       <li>• 系统管理</li>
@@ -2108,14 +2108,14 @@
               </div>
             </div>
 
-            <div class="mt-6 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 backdrop-blur-sm pt-4 border-t border-gray-200">
-              <button @click="closeServiceManagementDialog" class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors order-2 sm:order-1">
+            <div class="mt-6 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 dark:bg-gray-800 backdrop-blur-sm pt-4 border-t border-gray-200 dark:border-gray-600">
+              <button @click="closeServiceManagementDialog" class="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md transition-colors order-2 sm:order-1">
                 取消
               </button>
               <button @click="executeServiceAction" 
                       :disabled="selectedRestartServices.length === 0"
                       :class="serviceAction === 'restart' ? 'bg-orange-600 hover:bg-orange-700' : 'bg-red-600 hover:bg-red-700'"
-                      class="px-4 py-2 text-sm font-medium text-white disabled:bg-gray-300 disabled:cursor-not-allowed rounded-md transition-colors order-1 sm:order-2">
+                      class="px-4 py-2 text-sm font-medium text-white disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:cursor-not-allowed rounded-md transition-colors order-1 sm:order-2">
                 {{ serviceAction === 'restart' ? '开始重启' : '开始关闭' }} ({{ selectedRestartServices.length }} 个服务)
               </button>
             </div>
@@ -2126,10 +2126,10 @@
       <!-- 配置服务对话框（域名设置向导） -->
       <div v-if="showConfigDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-2 sm:p-4">
         <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeConfigDialog"></div>
-        <div class="relative bg-white/95 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto border border-white/20 animate-scale-in">
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between">
-            <h3 class="text-base sm:text-lg font-medium text-gray-900">配置服务</h3>
-            <button class="text-gray-400 hover:text-gray-600" @click="closeConfigDialog" aria-label="关闭">
+        <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto border border-white/20 dark:border-gray-600 animate-scale-in">
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between">
+            <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">配置服务</h3>
+            <button class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200" @click="closeConfigDialog" aria-label="关闭">
               <svg class="h-4 w-4 sm:h-5 sm:w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
           </div>
@@ -2137,18 +2137,18 @@
             <div v-if="configStep===1" class="space-y-6">
               <!-- 配置类型选择 -->
               <div>
-                <h4 class="text-sm font-medium text-gray-900 mb-3">选择配置类型</h4>
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">选择配置类型</h4>
                 <div class="space-y-3">
                   <!-- 系统基本信息配置 -->
-                  <div class="border border-gray-200 rounded-lg p-4 hover:border-green-300 hover:bg-green-50 transition-all cursor-pointer" 
-                       :class="{ 'border-green-500 bg-green-50': configType === 'system' }"
+                  <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-green-300 dark:hover:border-green-600 hover:bg-green-50 dark:hover:bg-green-900/30 transition-all cursor-pointer" 
+                       :class="{ 'border-green-500 bg-green-50 dark:bg-green-900/30 dark:border-green-600': configType === 'system' }"
                        @click="configType = 'system'">
                     <div class="flex items-start space-x-3">
-                      <input type="radio" :checked="configType === 'system'" class="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                      <input type="radio" :checked="configType === 'system'" class="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 dark:border-gray-500">
                       <div class="flex-1">
-                        <h5 class="text-sm font-medium text-gray-900">系统基本信息</h5>
-                        <p class="text-xs text-gray-500 mt-1">配置系统名称和管理员邮箱</p>
-                        <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                        <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">系统基本信息</h5>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">配置系统名称和管理员邮箱</p>
+                        <ul class="text-xs text-gray-600 dark:text-gray-400 mt-2 space-y-1">
                           <li>• 修改系统名称</li>
                           <li>• 设置管理员邮箱</li>
                           <li>• 系统参数配置</li>
@@ -2158,15 +2158,15 @@
                   </div>
                   
                   <!-- DNS配置选项 -->
-                  <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:bg-blue-50 transition-all cursor-pointer" 
-                       :class="{ 'border-blue-500 bg-blue-50': configType === 'dns' }"
+                  <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all cursor-pointer" 
+                       :class="{ 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 dark:border-blue-600': configType === 'dns' }"
                        @click="configType = 'dns'">
                     <div class="flex items-start space-x-3">
-                      <input type="radio" :checked="configType === 'dns'" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                      <input type="radio" :checked="configType === 'dns'" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-500">
                       <div class="flex-1">
-                        <h5 class="text-sm font-medium text-gray-900">DNS解析配置</h5>
-                        <p class="text-xs text-gray-500 mt-1">配置DNS解析方式和域名设置</p>
-                        <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                        <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">DNS解析配置</h5>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">配置DNS解析方式和域名设置</p>
+                        <ul class="text-xs text-gray-600 dark:text-gray-400 mt-2 space-y-1">
                           <li>• 本地DNS (Bind) 配置</li>
                           <li>• 域名解析设置</li>
                           <li>• DNS健康检查</li>
@@ -2180,31 +2180,31 @@
               <!-- 系统基本信息配置 -->
               <div v-if="configType === 'system'" class="space-y-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">系统名称</label>
-                  <input v-model="systemName" type="text" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="请输入系统名称">
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">系统名称</label>
+                  <input v-model="systemName" type="text" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="请输入系统名称">
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-2">管理员邮箱</label>
-                  <input v-model="adminEmail" type="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="请输入管理员邮箱">
-                  <p class="text-xs text-gray-500 mt-1">管理员邮箱用于系统通知和DNS配置</p>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">管理员邮箱</label>
+                  <input v-model="adminEmail" type="email" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent" placeholder="请输入管理员邮箱">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">管理员邮箱用于系统通知和DNS配置</p>
                 </div>
               </div>
               
               <!-- DNS配置选项 -->
               <div v-if="configType === 'dns'">
-                <h4 class="text-sm font-medium text-gray-900 mb-3">选择DNS解析方式</h4>
+                <h4 class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-3">选择DNS解析方式</h4>
                 <div class="space-y-3">
                   <!-- 本地DNS选项 -->
-                  <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 hover:bg-blue-50 transition-all cursor-pointer" 
-                       :class="{ 'border-blue-500 bg-blue-50': dnsType === 'bind' }"
+                  <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-blue-300 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all cursor-pointer" 
+                       :class="{ 'border-blue-500 bg-blue-50 dark:bg-blue-900/30 dark:border-blue-600': dnsType === 'bind' }"
                        @click="dnsType = 'bind'">
                     <div class="flex items-start space-x-3">
-                      <input type="radio" :checked="dnsType === 'bind'" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                      <input type="radio" :checked="dnsType === 'bind'" class="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-500">
                       <div class="flex-1">
-                        <h5 class="text-sm font-medium text-gray-900">本地DNS (Bind)</h5>
-                        <p class="text-xs text-gray-500 mt-1">使用本机Bind DNS服务器进行域名解析</p>
-                        <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                        <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">本地DNS (Bind)</h5>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">使用本机Bind DNS服务器进行域名解析</p>
+                        <ul class="text-xs text-gray-600 dark:text-gray-400 mt-2 space-y-1">
                           <li>• 自动安装和配置Bind DNS</li>
                           <li>• 配置MX、A、PTR记录</li>
                           <li>• 支持SPF、DKIM、DMARC记录</li>
@@ -2215,15 +2215,15 @@
                   </div>
 
                   <!-- 公网DNS选项 -->
-                  <div class="border border-gray-200 rounded-lg p-4 hover:border-green-300 hover:bg-green-50 transition-all cursor-pointer" 
-                       :class="{ 'border-green-500 bg-green-50': dnsType === 'public' }"
+                  <div class="border border-gray-200 dark:border-gray-600 rounded-lg p-4 hover:border-green-300 dark:hover:border-green-600 hover:bg-green-50 dark:hover:bg-green-900/30 transition-all cursor-pointer" 
+                       :class="{ 'border-green-500 bg-green-50 dark:bg-green-900/30 dark:border-green-600': dnsType === 'public' }"
                        @click="dnsType = 'public'">
                     <div class="flex items-start space-x-3">
-                      <input type="radio" :checked="dnsType === 'public'" class="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                      <input type="radio" :checked="dnsType === 'public'" class="mt-1 h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 dark:border-gray-500">
                       <div class="flex-1">
-                        <h5 class="text-sm font-medium text-gray-900">公网DNS</h5>
-                        <p class="text-xs text-gray-500 mt-1">获取公网域名并配置Apache虚拟主机</p>
-                        <ul class="text-xs text-gray-600 mt-2 space-y-1">
+                        <h5 class="text-sm font-medium text-gray-900 dark:text-gray-100">公网DNS</h5>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">获取公网域名并配置Apache虚拟主机</p>
+                        <ul class="text-xs text-gray-600 dark:text-gray-400 mt-2 space-y-1">
                           <li>• 获取公网域名信息</li>
                           <li>• 自动配置Apache HTTP虚拟主机（不自动配置HTTPS）</li>
                           <li>• 更新系统DNS设置</li>
@@ -2238,26 +2238,26 @@
 
               <!-- 域名输入 - 仅在DNS配置时显示 -->
               <div v-if="configType === 'dns'">
-                <label class="block text-sm font-medium text-gray-700 mb-2">邮件域名</label>
-                <p v-if="dnsType === 'bind'" class="text-sm text-gray-600 mb-3">请输入需要配置的邮件域名，例如：example.com。系统将把该域名应用到 Postfix 配置，并在数据库中确保该域存在。</p>
-                <p v-else-if="dnsType === 'public'" class="text-sm text-gray-600 mb-3">请输入您的公网域名，例如：example.com。系统将获取该域名信息并配置Apache虚拟主机。</p>
-                <input v-model="configDomain" placeholder="example.com" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" />
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">邮件域名</label>
+                <p v-if="dnsType === 'bind'" class="text-sm text-gray-600 dark:text-gray-400 mb-3">请输入需要配置的邮件域名，例如：example.com。系统将把该域名应用到 Postfix 配置，并在数据库中确保该域存在。</p>
+                <p v-else-if="dnsType === 'public'" class="text-sm text-gray-600 dark:text-gray-400 mb-3">请输入您的公网域名，例如：example.com。系统将获取该域名信息并配置Apache虚拟主机。</p>
+                <input v-model="configDomain" placeholder="example.com" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500" />
               </div>
             </div>
             <div v-else-if="configStep===2" class="space-y-4">
               <!-- 本地DNS配置确认 -->
               <div v-if="dnsType === 'bind'">
-                <p class="text-sm text-gray-700">请确认以下配置：</p>
-                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 space-y-3">
+                <p class="text-sm text-gray-700 dark:text-gray-300">请确认以下配置：</p>
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-600 rounded-lg p-4 space-y-3">
                   <div class="flex items-center justify-between">
-                    <span class="text-sm text-gray-600">域名：</span>
-                    <span class="font-medium text-gray-900">{{ configDomain }}</span>
+                    <span class="text-sm text-gray-600 dark:text-gray-400">域名：</span>
+                    <span class="font-medium text-gray-900 dark:text-gray-100">{{ configDomain }}</span>
                   </div>
                   <div class="flex items-center justify-between">
-                    <span class="text-sm text-gray-600">DNS解析方式：</span>
-                    <span class="font-medium text-blue-900">本地DNS (Bind)</span>
+                    <span class="text-sm text-gray-600 dark:text-gray-400">DNS解析方式：</span>
+                    <span class="font-medium text-blue-900 dark:text-blue-300">本地DNS (Bind)</span>
                   </div>
-                  <div class="text-xs text-blue-700">
+                  <div class="text-xs text-blue-700 dark:text-blue-300">
                     <p>• 将自动安装和配置Bind DNS服务器</p>
                     <p>• 配置MX、A、PTR、SPF、DKIM、DMARC记录</p>
                     <p>• 自动配置系统DNS指向本地服务器</p>
@@ -2268,17 +2268,17 @@
 
               <!-- 公网DNS配置确认 -->
               <div v-else-if="dnsType === 'public'">
-                <p class="text-sm text-gray-700">请确认以下配置：</p>
-                <div class="bg-green-50 border border-green-200 rounded-lg p-4 space-y-3">
+                <p class="text-sm text-gray-700 dark:text-gray-300">请确认以下配置：</p>
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-600 rounded-lg p-4 space-y-3">
                   <div class="flex items-center justify-between">
-                    <span class="text-sm text-gray-600">域名：</span>
-                    <span class="font-medium text-gray-900">{{ configDomain }}</span>
+                    <span class="text-sm text-gray-600 dark:text-gray-400">域名：</span>
+                    <span class="font-medium text-gray-900 dark:text-gray-100">{{ configDomain }}</span>
                   </div>
                   <div class="flex items-center justify-between">
-                    <span class="text-sm text-gray-600">DNS解析方式：</span>
-                    <span class="font-medium text-green-900">公网DNS</span>
+                    <span class="text-sm text-gray-600 dark:text-gray-400">DNS解析方式：</span>
+                    <span class="font-medium text-green-900 dark:text-green-300">公网DNS</span>
                   </div>
-                  <div class="text-xs text-green-700">
+                  <div class="text-xs text-green-700 dark:text-green-300">
                     <p>• 获取公网域名信息</p>
                     <p>• 自动配置Apache HTTP虚拟主机（不自动配置HTTPS）</p>
                     <p>• 更新系统DNS设置</p>
@@ -2290,13 +2290,13 @@
 
             </div>
             <div v-else-if="configStep===3" class="space-y-3">
-              <p class="text-sm text-gray-700">正在执行配置，请稍候...</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300">正在执行配置，请稍候...</p>
             </div>
           </div>
-          <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0 sticky bottom-0 bg-white/95 backdrop-blur-sm">
-            <div class="text-xs text-gray-500 order-2 sm:order-1">步骤 {{ configStep }} / 3</div>
+          <div class="px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-200 dark:border-gray-600 flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0 sticky bottom-0 bg-white/95 dark:bg-gray-800 backdrop-blur-sm">
+            <div class="text-xs text-gray-500 dark:text-gray-400 order-2 sm:order-1">步骤 {{ configStep }} / 3</div>
             <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2 order-1 sm:order-2 w-full sm:w-auto">
-              <button class="px-4 py-2 text-sm rounded-md border border-gray-300 text-gray-700 bg-white hover:bg-gray-50" @click="closeConfigDialog" :disabled="configStep===3">取消</button>
+              <button class="px-4 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" @click="closeConfigDialog" :disabled="configStep===3">取消</button>
               <button v-if="configStep===1 && configType==='system'" class="px-4 py-2 text-sm rounded-md text-white bg-green-600 hover:bg-green-700 disabled:opacity-50" @click="executeConfigure" :disabled="!systemName.trim() || !adminEmail.trim()">配置系统信息</button>
               <button v-else-if="configStep===1 && configType==='dns'" class="px-4 py-2 text-sm rounded-md text-white bg-primary-600 hover:bg-primary-700 disabled:opacity-50" @click="proceedConfigNext" :disabled="!configDomain">下一步</button>
               <button v-else-if="configStep===2" class="px-4 py-2 text-sm rounded-md text-white bg-purple-600 hover:bg-purple-700" @click="executeConfigure">执行配置</button>
@@ -2353,7 +2353,7 @@
           <!-- 用户名列表方式 -->
           <div v-if="batchCreateMode === 'list'" class="space-y-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">用户名列表</label>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">用户名列表</label>
               <textarea v-model="batchUsernameList" 
                         placeholder="请输入用户名，用逗号分割，例如：user1,user2,user3"
                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
@@ -2365,7 +2365,7 @@
           <!-- 批量创建方式 -->
           <div v-if="batchCreateMode === 'count'" class="space-y-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">用户名前缀</label>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">用户名前缀</label>
               <input v-model="batchUsernamePrefix" 
                      placeholder="例如：user"
                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent">
@@ -2373,7 +2373,7 @@
             </div>
             
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">创建数量</label>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">创建数量</label>
               <input v-model.number="batchUserCount" 
                      type="number" 
                      min="1" 
@@ -2388,7 +2388,7 @@
           <div class="mt-6">
             <h4 class="text-sm font-medium text-gray-900 mb-3">密码设置</h4>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">用户密码</label>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">用户密码</label>
               <input v-model="batchPassword" 
                      type="password" 
                      placeholder="请输入用户密码（必填）"
@@ -2654,31 +2654,31 @@
     <!-- SSL管理对话框 -->
     <div v-if="showSslManagementDialog" class="fixed inset-0 z-50 flex items-center justify-center animate-fade-in p-0 sm:p-2 md:p-4">
       <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" @click="closeSslManagementDialog"></div>
-      <div class="relative bg-white/95 backdrop-blur-sm rounded-none sm:rounded-xl md:rounded-2xl shadow-2xl w-full h-full sm:h-auto sm:max-w-6xl sm:max-h-[90vh] overflow-y-auto border-0 sm:border border-white/20 animate-scale-in">
+      <div class="relative bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-none sm:rounded-xl md:rounded-2xl shadow-2xl w-full h-full sm:h-auto sm:max-w-6xl sm:max-h-[90vh] overflow-y-auto border-0 sm:border border-white/20 dark:border-gray-600 animate-scale-in">
         <!-- 通知消息（显示在对话框内部，移动端调整位置） -->
         <div v-if="notice && showSslManagementDialog" class="fixed sm:absolute top-4 sm:top-16 left-4 sm:left-auto sm:right-4 z-50 w-[calc(100%-2rem)] sm:w-auto sm:max-w-md animate-slide-in-right">
           <div :class="{
-            'bg-green-50 border-green-200 text-green-800': noticeType === 'success',
-            'bg-red-50 border-red-200 text-red-800': noticeType === 'error',
-            'bg-yellow-50 border-yellow-200 text-yellow-800': noticeType === 'warning',
-            'bg-blue-50 border-blue-200 text-blue-800': noticeType === 'info'
+            'bg-green-50 dark:bg-green-900/40 border-green-200 dark:border-green-600 text-green-800 dark:text-green-200': noticeType === 'success',
+            'bg-red-50 dark:bg-red-900/40 border-red-200 dark:border-red-600 text-red-800 dark:text-red-200': noticeType === 'error',
+            'bg-yellow-50 dark:bg-yellow-900/40 border-yellow-200 dark:border-yellow-600 text-yellow-800 dark:text-yellow-200': noticeType === 'warning',
+            'bg-blue-50 dark:bg-blue-900/40 border-blue-200 dark:border-blue-600 text-blue-800 dark:text-blue-200': noticeType === 'info'
           }" class="px-4 py-3 rounded-xl border-2 shadow-lg flex items-start space-x-3">
-            <svg v-if="noticeType === 'success'" class="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-if="noticeType === 'success'" class="h-5 w-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <svg v-else-if="noticeType === 'error'" class="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-else-if="noticeType === 'error'" class="h-5 w-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <svg v-else-if="noticeType === 'warning'" class="h-5 w-5 text-yellow-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-else-if="noticeType === 'warning'" class="h-5 w-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
             </svg>
-            <svg v-else class="h-5 w-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-else class="h-5 w-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <div class="flex-1">
               <p class="text-sm font-semibold whitespace-pre-line">{{ notice }}</p>
             </div>
-            <button @click="notice = ''" class="text-gray-400 hover:text-gray-600 flex-shrink-0">
+            <button @click="notice = ''" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 flex-shrink-0">
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
@@ -2687,9 +2687,9 @@
         </div>
         
         <!-- 头部 -->
-        <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white/95 backdrop-blur-sm z-10">
-          <h3 class="text-base sm:text-lg font-medium text-gray-900">SSL证书管理</h3>
-          <button @click="closeSslManagementDialog" class="text-gray-400 hover:text-gray-600 transition-colors p-1 -mr-1">
+        <div class="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600 flex items-center justify-between sticky top-0 bg-white/95 dark:bg-gray-800 backdrop-blur-sm z-10">
+          <h3 class="text-base sm:text-lg font-medium text-gray-900 dark:text-gray-100">SSL证书管理</h3>
+          <button @click="closeSslManagementDialog" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors p-1 -mr-1">
             <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
@@ -2698,13 +2698,13 @@
         
         <div class="px-3 sm:px-4 md:px-6 py-3 sm:py-4 md:py-5">
           <!-- 标签页切换（移动端优化） -->
-          <div class="border-b border-gray-200 mb-4 sm:mb-6 overflow-x-auto -mx-3 sm:mx-0">
+          <div class="border-b border-gray-200 dark:border-gray-600 mb-4 sm:mb-6 overflow-x-auto -mx-3 sm:mx-0">
             <nav class="-mb-px flex space-x-2 sm:space-x-4 px-3 sm:px-0 min-w-max sm:min-w-0">
               <button @click="sslTab = 'domains'" 
                       :class="['py-2.5 sm:py-2 px-3 sm:px-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap', 
                                sslTab === 'domains' 
-                                 ? 'border-green-500 text-green-600' 
-                                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300']">
+                                 ? 'border-green-500 text-green-600 dark:text-green-400' 
+                                 : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500']">
                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 inline mr-1.5 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
                 </svg>
@@ -2713,8 +2713,8 @@
               <button @click="sslTab = 'certificates'" 
                       :class="['py-2.5 sm:py-2 px-3 sm:px-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap', 
                                sslTab === 'certificates' 
-                                 ? 'border-green-500 text-green-600' 
-                                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300']">
+                                 ? 'border-green-500 text-green-600 dark:text-green-400' 
+                                 : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500']">
                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 inline mr-1.5 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                 </svg>
@@ -2723,8 +2723,8 @@
               <button @click="sslTab = 'upload'" 
                       :class="['py-2.5 sm:py-2 px-3 sm:px-4 text-xs sm:text-sm font-medium border-b-2 transition-colors whitespace-nowrap', 
                                sslTab === 'upload' 
-                                 ? 'border-green-500 text-green-600' 
-                                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300']">
+                                 ? 'border-green-500 text-green-600 dark:text-green-400' 
+                                 : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-500']">
                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 inline mr-1.5 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                 </svg>
@@ -2736,11 +2736,11 @@
           <!-- 域名管理标签页 -->
           <div v-if="sslTab === 'domains'" class="space-y-4">
             <!-- 启用SSL按钮（仅在SSL未启用时显示，移动端优化） -->
-            <div v-if="!sslEnabled" class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4">
+            <div v-if="!sslEnabled" class="bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-600 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
                 <div class="flex-1 min-w-0">
-                  <h4 class="text-sm sm:text-base font-medium text-yellow-900 mb-1">SSL未启用</h4>
-                  <p class="text-xs sm:text-sm text-yellow-700 break-words">请先为域名配置SSL证书并启用SSL</p>
+                  <h4 class="text-sm sm:text-base font-medium text-yellow-900 dark:text-yellow-200 mb-1">SSL未启用</h4>
+                  <p class="text-xs sm:text-sm text-yellow-700 dark:text-yellow-300 break-words">请先为域名配置SSL证书并启用SSL</p>
                 </div>
                 <button @click="enableSslForDomain" 
                         :disabled="sslEnabling || !selectedSslDomain"
@@ -2751,14 +2751,14 @@
             </div>
             
             <!-- HTTP跳转HTTPS按钮（在有已配置SSL的域名时显示，移动端优化） -->
-            <div v-if="hasConfiguredSslDomains" class="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4">
+            <div v-if="hasConfiguredSslDomains" class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-600 rounded-lg p-3 sm:p-4 mb-3 sm:mb-4">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
                 <div class="flex-1 min-w-0">
-                  <h4 class="text-sm sm:text-base font-medium text-blue-900 mb-1">HTTP自动跳转HTTPS</h4>
-                  <p v-if="httpRedirectEnabled" class="text-xs sm:text-sm text-green-700 font-medium break-words">
+                  <h4 class="text-sm sm:text-base font-medium text-blue-900 dark:text-blue-200 mb-1">HTTP自动跳转HTTPS</h4>
+                  <p v-if="httpRedirectEnabled" class="text-xs sm:text-sm text-green-700 dark:text-green-300 font-medium break-words">
                     ✓ HTTP跳转HTTPS已配置，所有HTTP请求将自动跳转到HTTPS
                   </p>
-                  <p v-else class="text-xs sm:text-sm text-blue-700 break-words">默认关闭，点击按钮启用HTTP自动跳转HTTPS（配置需要2-3分钟）</p>
+                  <p v-else class="text-xs sm:text-sm text-blue-700 dark:text-blue-300 break-words">默认关闭，点击按钮启用HTTP自动跳转HTTPS（配置需要2-3分钟）</p>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
                   <button v-if="!httpRedirectEnabled" 
@@ -2810,9 +2810,9 @@
             </div>
             
             <!-- 域名列表 -->
-            <div class="bg-white rounded-lg border border-gray-200 p-3 sm:p-4">
+            <div class="bg-white dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600 p-3 sm:p-4">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 mb-3 sm:mb-4">
-                <h5 class="text-sm sm:text-base font-medium text-gray-900">已配置的SSL域名</h5>
+                <h5 class="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100">已配置的SSL域名</h5>
                 <button @click="showAddDomainForm = !showAddDomainForm" 
                         class="w-full sm:w-auto text-xs sm:text-sm px-4 py-2 sm:px-3 sm:py-1 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors touch-manipulation">
                   {{ showAddDomainForm ? '取消' : '添加域名' }}
@@ -2820,26 +2820,26 @@
               </div>
               
               <!-- 添加域名表单（移动端优化） -->
-              <div v-if="showAddDomainForm" class="mb-3 sm:mb-4 p-3 sm:p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div v-if="showAddDomainForm" class="mb-3 sm:mb-4 p-3 sm:p-4 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
                 <div class="space-y-3">
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1.5">域名</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">域名</label>
                     <input v-model="newSslDomain" 
                            type="text" 
                            placeholder="example.com" 
-                           class="w-full px-3 py-2.5 sm:py-2 text-base sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                           class="w-full px-3 py-2.5 sm:py-2 text-base sm:text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                   </div>
                   
                   <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1.5">关联证书</label>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">关联证书</label>
                     <select v-model="newSslDomainCert" 
-                            class="w-full px-3 py-2.5 sm:py-2 text-base sm:text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            class="w-full px-3 py-2.5 sm:py-2 text-base sm:text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                       <option value="">选择证书（可选）</option>
                       <option v-for="cert in availableCertificatesForBinding" :key="cert.name" :value="cert.name">
                         {{ cert.name }} {{ cert.expiresAt ? `(到期: ${cert.expiresAt})` : '' }}
                       </option>
                     </select>
-                    <p class="text-xs text-gray-500 mt-1.5 break-words">留空则自动关联同名证书，或选择已有证书实现多域名共享（证书链文件不会显示在此列表中）</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5 break-words">留空则自动关联同名证书，或选择已有证书实现多域名共享（证书链文件不会显示在此列表中）</p>
                   </div>
                   
                   <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
@@ -2849,7 +2849,7 @@
                       {{ sslDomainAdding ? '添加中...' : '添加域名' }}
                     </button>
                     <button @click="showAddDomainForm = false" 
-                            class="flex-1 sm:flex-none px-4 py-2.5 sm:py-2 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 touch-manipulation">
+                            class="flex-1 sm:flex-none px-4 py-2.5 sm:py-2 text-sm bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-300 dark:hover:bg-gray-500 touch-manipulation">
                       取消
                     </button>
                   </div>
@@ -2859,40 +2859,40 @@
               <!-- 域名列表（移动端优化） -->
               <div class="space-y-2 sm:space-y-3">
                 <div v-for="domain in sslDomains" :key="domain.name" 
-                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-3 bg-gray-50 rounded-lg border border-gray-200 space-y-3 sm:space-y-0">
+                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 space-y-3 sm:space-y-0">
                   <div class="flex items-start sm:items-center space-x-3 flex-1 min-w-0">
-                    <div class="w-8 h-8 sm:w-8 sm:h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-8 h-8 sm:w-8 sm:h-8 bg-green-100 dark:bg-green-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg class="w-4 h-4 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
                       </svg>
                     </div>
                     <div class="flex-1 min-w-0">
                       <div class="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2">
-                        <span class="text-sm sm:text-base font-medium text-gray-900 break-words">{{ domain.name }}</span>
-                        <span v-if="domain.certName" class="text-xs text-gray-500 break-words">
+                        <span class="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100 break-words">{{ domain.name }}</span>
+                        <span v-if="domain.certName" class="text-xs text-gray-500 dark:text-gray-400 break-words">
                           (证书: {{ domain.certName }})
                         </span>
                       </div>
                       <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-1.5 sm:mt-1">
-                        <span v-if="domain.certExists" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                        <span v-if="domain.certExists" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300">
                           <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                           </svg>
                           证书存在
                         </span>
-                        <span v-if="domain.sslConfigured" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                        <span v-if="domain.sslConfigured" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
                           <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                           </svg>
                           Apache SSL已配置
                         </span>
-                        <span v-if="!domain.sslConfigured && domain.certExists" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 text-yellow-800">
+                        <span v-if="!domain.sslConfigured && domain.certExists" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-300">
                           <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                           </svg>
                           Apache SSL未配置
                         </span>
-                        <span v-if="domain.expiresAt" class="text-xs text-gray-500 whitespace-nowrap">
+                        <span v-if="domain.expiresAt" class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
                           到期：{{ domain.expiresAt }}
                         </span>
                       </div>
@@ -2981,25 +2981,25 @@
           
           <!-- 证书管理标签页（移动端优化） -->
           <div v-if="sslTab === 'certificates'" class="space-y-3 sm:space-y-4">
-            <div class="bg-white rounded-lg border border-gray-200 p-3 sm:p-4 md:p-6">
+            <div class="bg-white dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600 p-3 sm:p-4 md:p-6">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 mb-3 sm:mb-4">
-                <h5 class="text-sm sm:text-base font-medium text-gray-900">可用证书列表</h5>
-                <span class="text-xs text-gray-500">{{ availableCertificates.length }} 个证书</span>
+                <h5 class="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100">可用证书列表</h5>
+                <span class="text-xs text-gray-500 dark:text-gray-400">{{ availableCertificates.length }} 个证书</span>
               </div>
               <div class="space-y-2 sm:space-y-3">
                 <div v-for="cert in availableCertificates" :key="cert.name" 
-                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-gray-200 hover:border-blue-300 hover:shadow-md transition-all duration-200 space-y-3 sm:space-y-0">
+                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 bg-gradient-to-r from-gray-50 to-white dark:from-gray-700 dark:to-gray-700/80 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-md transition-all duration-200 space-y-3 sm:space-y-0">
                   <div class="flex items-start sm:items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
-                    <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center shadow-sm">
-                      <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 rounded-full flex items-center justify-center shadow-sm">
+                      <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                       </svg>
                     </div>
                     <div class="flex-1 min-w-0">
                       <div class="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2 mb-1 sm:mb-1">
-                        <span class="text-sm sm:text-base font-semibold text-gray-900 break-words">{{ cert.name }}</span>
+                        <span class="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100 break-words">{{ cert.name }}</span>
                         <span v-if="cert.expiresAt && isCertExpiringSoon(cert.expiresAt)" 
-                              class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 text-red-800 self-start sm:self-center">
+                              class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 self-start sm:self-center">
                           <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                           </svg>
@@ -3009,14 +3009,14 @@
                       <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-2">
                         <span v-if="cert.expiresAt" 
                               class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium"
-                              :class="isCertExpiringSoon(cert.expiresAt) ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'">
+                              :class="isCertExpiringSoon(cert.expiresAt) ? 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300' : 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300'">
                           <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
                           </svg>
                           到期：{{ cert.expiresAt }}
                         </span>
                         <span v-if="cert.domains && cert.domains.length > 0" 
-                              class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-100 text-blue-800">
+                              class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
                           <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M11.3 1.047A5 5 0 0115 6h-2.5a2.5 2.5 0 00-4.6-.544A2.5 2.5 0 005.5 8H3a3 3 0 100 6h2.5a2.5 2.5 0 004.6.544A5 5 0 1111.3 1.047zM9 8H5.5a.5.5 0 00-.5.5v3a.5.5 0 00.5.5H9v-4zm4.5 0H11v4h2.5a.5.5 0 00.5-.5v-3a.5.5 0 00-.5-.5z" clip-rule="evenodd"></path>
                           </svg>
@@ -3051,12 +3051,12 @@
                   </div>
                 </div>
                 
-                <div v-if="availableCertificates.length === 0" class="text-center py-12 text-gray-500">
-                  <svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div v-if="availableCertificates.length === 0" class="text-center py-12 text-gray-500 dark:text-gray-400">
+                  <svg class="w-16 h-16 mx-auto text-gray-300 dark:text-gray-500 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                   </svg>
                   <p class="text-sm font-medium">暂无可用证书</p>
-                  <p class="text-xs text-gray-400 mt-1">请在上传证书标签页上传证书</p>
+                  <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">请在上传证书标签页上传证书</p>
                 </div>
               </div>
             </div>
@@ -3064,8 +3064,8 @@
           
           <!-- 上传证书标签页（移动端优化） -->
           <div v-if="sslTab === 'upload'" class="space-y-3 sm:space-y-4">
-            <div class="bg-white rounded-lg border border-gray-200 p-3 sm:p-4">
-              <h5 class="text-sm sm:text-base font-medium text-gray-900 mb-3 sm:mb-4">批量上传SSL证书</h5>
+            <div class="bg-white dark:bg-gray-700/50 rounded-lg border border-gray-200 dark:border-gray-600 p-3 sm:p-4">
+              <h5 class="text-sm sm:text-base font-medium text-gray-900 dark:text-gray-100 mb-3 sm:mb-4">批量上传SSL证书</h5>
               
               <!-- 拖拽上传区域（移动端优化） -->
               <div 
@@ -3077,8 +3077,8 @@
                 :class="[
                   'border-2 border-dashed rounded-lg p-6 sm:p-8 text-center transition-colors cursor-pointer touch-manipulation',
                   isDragging 
-                    ? 'border-green-500 bg-green-50' 
-                    : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'
+                    ? 'border-green-500 bg-green-50 dark:bg-green-900/30' 
+                    : 'border-gray-300 dark:border-gray-600 hover:border-green-400 dark:hover:border-green-500 hover:bg-gray-50 dark:hover:bg-gray-700'
                 ]">
                 <input 
                   type="file" 
@@ -3089,13 +3089,13 @@
                   ref="fileInputRef"
                   id="cert-file-input">
                 <div class="cursor-pointer">
-                  <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                   </svg>
-                  <p class="text-sm sm:text-base font-medium text-gray-700 mb-1.5 sm:mb-1 break-words">
+                  <p class="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300 mb-1.5 sm:mb-1 break-words">
                     {{ isDragging ? '松开鼠标上传文件' : '拖拽证书文件到此处或点击选择文件' }}
                   </p>
-                  <p class="text-xs sm:text-sm text-gray-500 break-words">
+                  <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 break-words">
                     支持同时上传多个文件，系统将自动识别同一域名的证书文件<br class="hidden sm:block">
                     <span class="block sm:inline">例如：example.com.key、www.example.com_public.crt、www.example.com_chain.crt</span>
                   </p>
@@ -3105,69 +3105,69 @@
               <!-- 证书上传项列表（移动端优化） -->
               <div v-if="certificateUploadList.length > 0" class="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
                 <div v-for="(item, index) in certificateUploadList" :key="item.id" 
-                     class="border border-gray-200 rounded-lg p-3 sm:p-4 bg-gray-50">
+                     class="border border-gray-200 dark:border-gray-600 rounded-lg p-3 sm:p-4 bg-gray-50 dark:bg-gray-700">
                   <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0 mb-3">
                     <div class="flex-1 min-w-0">
-                      <h6 class="text-sm font-medium text-gray-900">证书 #{{ index + 1 }}</h6>
-                      <p v-if="item.domainName" class="text-xs text-gray-500 mt-1 break-words">域名: {{ item.domainName }}</p>
+                      <h6 class="text-sm font-medium text-gray-900 dark:text-gray-100">证书 #{{ index + 1 }}</h6>
+                      <p v-if="item.domainName" class="text-xs text-gray-500 dark:text-gray-400 mt-1 break-words">域名: {{ item.domainName }}</p>
                     </div>
                     <button @click="removeCertificateUploadItem(item.id)" 
-                            class="w-full sm:w-auto text-xs px-3 py-2 sm:px-2 sm:py-1 text-red-600 hover:bg-red-50 rounded transition-colors touch-manipulation min-h-[44px] sm:min-h-0">
+                            class="w-full sm:w-auto text-xs px-3 py-2 sm:px-2 sm:py-1 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded transition-colors touch-manipulation min-h-[44px] sm:min-h-0">
                       删除
                     </button>
                   </div>
                   
                   <div class="space-y-3">
                     <div>
-                      <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">证书文件 (.crt, .pem, .cer) *</label>
+                      <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">证书文件 (.crt, .pem, .cer) *</label>
                       <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                         <input 
                           @change="(e) => handleBatchCertFileChange(e, item.id)" 
                           type="file" 
                           accept=".crt,.pem,.cer"
-                          class="flex-1 px-3 py-2.5 sm:px-2 sm:py-1.5 text-sm sm:text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <span v-if="item.certFile" class="text-xs text-green-600 break-words sm:break-normal">✓ {{ item.certFile.name }}</span>
+                          class="flex-1 px-3 py-2.5 sm:px-2 sm:py-1.5 text-sm sm:text-xs border border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <span v-if="item.certFile" class="text-xs text-green-600 dark:text-green-400 break-words sm:break-normal">✓ {{ item.certFile.name }}</span>
                       </div>
                     </div>
                     
                     <div>
-                      <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">私钥文件 (.key, .pem) *</label>
+                      <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">私钥文件 (.key, .pem) *</label>
                       <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                         <input 
                           @change="(e) => handleBatchKeyFileChange(e, item.id)" 
                           type="file" 
                           accept=".key,.pem"
-                          class="flex-1 px-3 py-2.5 sm:px-2 sm:py-1.5 text-sm sm:text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <span v-if="item.keyFile" class="text-xs text-green-600 break-words sm:break-normal">✓ {{ item.keyFile.name }}</span>
+                          class="flex-1 px-3 py-2.5 sm:px-2 sm:py-1.5 text-sm sm:text-xs border border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <span v-if="item.keyFile" class="text-xs text-green-600 dark:text-green-400 break-words sm:break-normal">✓ {{ item.keyFile.name }}</span>
                       </div>
                     </div>
                     
                     <div>
-                      <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">证书链文件 (.crt, .pem, .cer) <span class="text-gray-400">(可选)</span></label>
+                      <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">证书链文件 (.crt, .pem, .cer) <span class="text-gray-400 dark:text-gray-500">(可选)</span></label>
                       <div class="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
                         <input 
                           @change="(e) => handleBatchChainFileChange(e, item.id)" 
                           type="file" 
                           accept=".crt,.pem,.cer"
-                          class="flex-1 px-3 py-2.5 sm:px-2 sm:py-1.5 text-sm sm:text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-                        <span v-if="item.chainFile" class="text-xs text-green-600 break-words sm:break-normal">✓ {{ item.chainFile.name }}</span>
-                        <span v-else class="text-xs text-gray-400">未选择</span>
+                          class="flex-1 px-3 py-2.5 sm:px-2 sm:py-1.5 text-sm sm:text-xs border border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <span v-if="item.chainFile" class="text-xs text-green-600 dark:text-green-400 break-words sm:break-normal">✓ {{ item.chainFile.name }}</span>
+                        <span v-else class="text-xs text-gray-400 dark:text-gray-500">未选择</span>
                       </div>
-                      <p class="text-xs text-gray-500 mt-1.5 break-words">证书链文件用于完整的SSL证书验证，通常包含中间证书（不会绑定到域名）</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5 break-words">证书链文件用于完整的SSL证书验证，通常包含中间证书（不会绑定到域名）</p>
                     </div>
                     
                     <div>
-                      <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5">证书名称（用于标识） *</label>
+                      <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">证书名称（用于标识） *</label>
                       <input v-model="item.certName" 
                              type="text" 
                              :placeholder="item.domainName ? `例如: ${item.domainName}` : '例如: my-cert-2024'" 
-                             class="w-full px-3 py-2.5 sm:px-2 sm:py-1.5 text-sm sm:text-xs border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
-                      <p class="text-xs text-gray-500 mt-1.5 break-words">证书名称用于在系统中标识此证书，可与域名不同</p>
+                             class="w-full px-3 py-2.5 sm:px-2 sm:py-1.5 text-sm sm:text-xs border border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1.5 break-words">证书名称用于在系统中标识此证书，可与域名不同</p>
                     </div>
                   </div>
                 </div>
                 
-                <div class="pt-3 sm:pt-4 border-t border-gray-200">
+                <div class="pt-3 sm:pt-4 border-t border-gray-200 dark:border-gray-600">
                   <button @click="uploadBatchCertificates" 
                           :disabled="batchCertUploading || !canUploadBatchCertificates"
                           class="w-full px-4 py-3 sm:py-2 text-sm font-medium bg-green-600 text-white rounded-md hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors touch-manipulation min-h-[44px] sm:min-h-0 flex items-center justify-center">
@@ -3184,9 +3184,9 @@
         </div>
         
         <!-- 底部按钮 -->
-        <div class="px-3 sm:px-4 md:px-6 py-3 sm:py-4 border-t border-gray-200 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 backdrop-blur-sm">
+        <div class="px-3 sm:px-4 md:px-6 pt-3 pb-3 border-t border-gray-200 dark:border-gray-600 flex flex-col sm:flex-row justify-end space-y-2 sm:space-y-0 sm:space-x-3 sticky bottom-0 bg-white/95 dark:bg-gray-800 backdrop-blur-sm rounded-none sm:rounded-b-xl md:rounded-b-2xl">
           <button @click="closeSslManagementDialog" 
-                  class="w-full sm:w-auto px-4 py-2.5 sm:py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors touch-manipulation">
+                  class="w-full sm:w-auto px-4 py-2.5 sm:py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-md transition-colors touch-manipulation">
             关闭
           </button>
         </div>
@@ -3428,14 +3428,14 @@
         <div class="px-4 sm:px-6 py-4 sm:py-5">
           <div v-if="editingDomainCert" class="space-y-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">域名</label>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">域名</label>
               <input :value="editingDomainCert.name" 
                      type="text" 
                      disabled
                      class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-600">
             </div>
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">关联证书</label>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">关联证书</label>
               <select v-model="editingCertName" 
                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                 <option value="">选择证书（留空则使用同名证书）</option>

@@ -1,9 +1,9 @@
 <template>
   <Layout>
     <!-- 邮件界面 - 根据用户权限显示不同布局 -->
-    <div class="relative min-h-screen overflow-hidden">
+    <div class="relative min-h-screen overflow-hidden dark:bg-gray-900">
       <!-- 邮件主题动画背景 -->
-      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <!-- 浮动邮件图标 -->
         <div class="absolute top-20 left-10 w-16 h-16 text-blue-400 opacity-20 animate-float">
           <svg fill="currentColor" viewBox="0 0 24 24">
@@ -68,22 +68,22 @@
         <!-- 广播消息轮播 -->
         <div v-if="broadcastMessage" class="mb-6 max-w-full">
           <!-- 主容器 - 优雅的浅色卡片设计 -->
-          <div class="relative bg-white/95 backdrop-blur-md rounded-xl shadow-lg border border-blue-200/50 overflow-hidden hover:shadow-xl transition-shadow duration-300">
+          <div class="relative bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-lg border border-blue-200/50 dark:border-gray-600 overflow-hidden hover:shadow-xl transition-shadow duration-300">
             <!-- 左侧装饰条 -->
             <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 z-10"></div>
             
             <!-- 内容区域 -->
             <div class="pl-5 pr-4 py-3.5 relative">
               <!-- 左右渐变遮罩 - 桌面端更宽 -->
-              <div class="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-white/95 via-white/95 to-transparent z-20 pointer-events-none"></div>
-              <div class="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-white/95 via-white/95 to-transparent z-20 pointer-events-none"></div>
+              <div class="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-white/95 via-white/95 to-transparent dark:from-gray-800/95 dark:via-gray-800/95 z-20 pointer-events-none"></div>
+              <div class="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-white/95 via-white/95 to-transparent dark:from-gray-800/95 dark:via-gray-800/95 z-20 pointer-events-none"></div>
               
               <!-- 滚动容器 - 确保只显示一个 -->
               <div class="relative overflow-hidden w-full">
                 <!-- 滚动内容 -->
                 <div class="flex items-center" :class="needsScroll ? 'animate-scroll' : ''" :style="needsScroll ? { animationDuration: `${scrollDuration}s` } : {}">
                   <!-- 第一份内容 -->
-                  <div class="flex items-center space-x-3 text-gray-800 whitespace-nowrap px-4 flex-shrink-0">
+                  <div class="flex items-center space-x-3 text-gray-800 dark:text-gray-200 whitespace-nowrap px-4 flex-shrink-0">
                     <!-- 图标 -->
                     <div class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 shadow-sm">
                       <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -94,7 +94,7 @@
                     <div class="flex items-center space-x-2.5">
                       <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">系统广播</span>
                       <span class="w-1 h-1 rounded-full bg-gray-400"></span>
-                      <span class="text-sm font-medium text-gray-700">{{ broadcastMessage }}</span>
+                      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ broadcastMessage }}</span>
                     </div>
                   </div>
                   <!-- 重复显示以实现无缝循环 - 仅在需要滚动时显示 -->
@@ -109,7 +109,7 @@
                     <div class="flex items-center space-x-2.5">
                       <span class="text-xs font-semibold text-blue-600 uppercase tracking-wider">系统广播</span>
                       <span class="w-1 h-1 rounded-full bg-gray-400"></span>
-                      <span class="text-sm font-medium text-gray-700">{{ broadcastMessage }}</span>
+                      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{{ broadcastMessage }}</span>
                     </div>
                   </div>
                 </div>
@@ -123,18 +123,18 @@
 
         <!-- 邮件管理内容区域 -->
         <!-- 服务状态警告 -->
-        <div v-if="showServiceWarning" class="mb-6 bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+        <div v-if="showServiceWarning" class="mb-6 bg-yellow-50 dark:bg-yellow-900/30 border border-yellow-200 dark:border-yellow-600 rounded-lg p-4">
             <div class="flex items-start">
               <div class="flex-shrink-0">
-                <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                <svg class="h-5 w-5 text-yellow-400 dark:text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                 </svg>
               </div>
               <div class="ml-3 flex-1">
-                <h3 class="text-sm font-medium text-yellow-800">
+                <h3 class="text-sm font-medium text-yellow-800 dark:text-yellow-200">
                   邮件系统未完全配置
                 </h3>
-                <div class="mt-2 text-sm text-yellow-700">
+                <div class="mt-2 text-sm text-yellow-700 dark:text-yellow-300">
                   <p>在使用邮件功能之前，请确保以下服务已正确配置：</p>
                   
                   <!-- 服务状态列表 -->
@@ -143,11 +143,11 @@
                       <div :class="['w-2 h-2 rounded-full mr-3 mt-2', serviceStatus.services.postfix ? 'bg-green-400' : 'bg-red-400']"></div>
                       <div class="flex-1">
                         <div class="flex items-center">
-                          <span class="text-sm font-medium">Postfix (邮件发送服务)</span>
-                          <span v-if="!serviceStatus.services.postfix" class="ml-2 text-xs text-red-600 font-medium">未运行</span>
-                          <span v-else class="ml-2 text-xs text-green-600 font-medium">运行中</span>
+                          <span class="text-sm font-medium text-yellow-900 dark:text-yellow-100">Postfix (邮件发送服务)</span>
+                          <span v-if="!serviceStatus.services.postfix" class="ml-2 text-xs text-red-600 dark:text-red-400 font-medium">未运行</span>
+                          <span v-else class="ml-2 text-xs text-green-600 dark:text-green-400 font-medium">运行中</span>
                         </div>
-                        <p v-if="!serviceStatus.services.postfix" class="text-xs text-red-600 mt-1">
+                        <p v-if="!serviceStatus.services.postfix" class="text-xs text-red-600 dark:text-red-400 mt-1">
                           可能原因：服务未安装、未启动或配置错误。请检查服务状态或重新安装配置。
                         </p>
                       </div>
@@ -157,11 +157,11 @@
                       <div :class="['w-2 h-2 rounded-full mr-3 mt-2', serviceStatus.services.dovecot ? 'bg-green-400' : 'bg-red-400']"></div>
                       <div class="flex-1">
                         <div class="flex items-center">
-                          <span class="text-sm font-medium">Dovecot (邮件接收服务)</span>
-                          <span v-if="!serviceStatus.services.dovecot" class="ml-2 text-xs text-red-600 font-medium">未运行</span>
-                          <span v-else class="ml-2 text-xs text-green-600 font-medium">运行中</span>
+                          <span class="text-sm font-medium text-yellow-900 dark:text-yellow-100">Dovecot (邮件接收服务)</span>
+                          <span v-if="!serviceStatus.services.dovecot" class="ml-2 text-xs text-red-600 dark:text-red-400 font-medium">未运行</span>
+                          <span v-else class="ml-2 text-xs text-green-600 dark:text-green-400 font-medium">运行中</span>
                         </div>
-                        <p v-if="!serviceStatus.services.dovecot" class="text-xs text-red-600 mt-1">
+                        <p v-if="!serviceStatus.services.dovecot" class="text-xs text-red-600 dark:text-red-400 mt-1">
                           可能原因：服务未安装、未启动或配置错误。请检查服务状态或重新安装配置。
                         </p>
                       </div>
@@ -171,11 +171,11 @@
                       <div :class="['w-2 h-2 rounded-full mr-3 mt-2', getDnsServiceStatus() ? 'bg-green-400' : 'bg-red-400']"></div>
                       <div class="flex-1">
                         <div class="flex items-center">
-                          <span class="text-sm font-medium">{{ getDnsServiceName() }}</span>
-                          <span v-if="!getDnsServiceStatus()" class="ml-2 text-xs text-red-600 font-medium">未运行</span>
-                          <span v-else class="ml-2 text-xs text-green-600 font-medium">运行中</span>
+                          <span class="text-sm font-medium text-yellow-900 dark:text-yellow-100">{{ getDnsServiceName() }}</span>
+                          <span v-if="!getDnsServiceStatus()" class="ml-2 text-xs text-red-600 dark:text-red-400 font-medium">未运行</span>
+                          <span v-else class="ml-2 text-xs text-green-600 dark:text-green-400 font-medium">运行中</span>
                         </div>
-                        <p v-if="!getDnsServiceStatus()" class="text-xs text-red-600 mt-1">
+                        <p v-if="!getDnsServiceStatus()" class="text-xs text-red-600 dark:text-red-400 mt-1">
                           {{ getDnsServiceErrorMessage() }}
                         </p>
                       </div>
@@ -185,11 +185,11 @@
                       <div :class="['w-2 h-2 rounded-full mr-3 mt-2', serviceStatus.services.mariadb ? 'bg-green-400' : 'bg-red-400']"></div>
                       <div class="flex-1">
                         <div class="flex items-center">
-                          <span class="text-sm font-medium">MariaDB (数据库服务)</span>
-                          <span v-if="!serviceStatus.services.mariadb" class="ml-2 text-xs text-red-600 font-medium">未运行</span>
-                          <span v-else class="ml-2 text-xs text-green-600 font-medium">运行中</span>
+                          <span class="text-sm font-medium text-yellow-900 dark:text-yellow-100">MariaDB (数据库服务)</span>
+                          <span v-if="!serviceStatus.services.mariadb" class="ml-2 text-xs text-red-600 dark:text-red-400 font-medium">未运行</span>
+                          <span v-else class="ml-2 text-xs text-green-600 dark:text-green-400 font-medium">运行中</span>
                         </div>
-                        <p v-if="!serviceStatus.services.mariadb" class="text-xs text-red-600 mt-1">
+                        <p v-if="!serviceStatus.services.mariadb" class="text-xs text-red-600 dark:text-red-400 mt-1">
                           可能原因：服务未安装、未启动或配置错误。请检查服务状态或重新安装配置。
                         </p>
                       </div>
@@ -199,12 +199,17 @@
                       <div :class="['w-2 h-2 rounded-full mr-3 mt-2', serviceStatus.dns.dns_configured ? 'bg-green-400' : 'bg-red-400']"></div>
                       <div class="flex-1">
                         <div class="flex items-center">
-                          <span class="text-sm font-medium">DNS解析配置</span>
-                          <span v-if="!serviceStatus.dns.dns_configured" class="ml-2 text-xs text-red-600 font-medium">未配置</span>
-                          <span v-else class="ml-2 text-xs text-green-600 font-medium">已配置</span>
+                          <span class="text-sm font-medium text-yellow-900 dark:text-yellow-100">DNS解析配置{{ serviceStatus.dns?.dns_type === 'public' ? '（公网）' : '' }}</span>
+                          <span v-if="!serviceStatus.dns.dns_configured" class="ml-2 text-xs text-red-600 dark:text-red-400 font-medium">未配置</span>
+                          <span v-else class="ml-2 text-xs text-green-600 dark:text-green-400 font-medium">已配置</span>
                         </div>
-                        <p v-if="!serviceStatus.dns.dns_configured" class="text-xs text-red-600 mt-1">
-                          需要配置域名解析记录，包括A记录、MX记录等。请在系统设置中配置DNS。
+                        <p v-if="!serviceStatus.dns.dns_configured" class="text-xs text-red-600 dark:text-red-400 mt-1">
+                          <template v-if="serviceStatus.dns?.dns_type === 'public'">
+                            请确保域名 {{ serviceStatus.dns?.domain || serviceStatus.dns?.mail_domain || 'your-domain.com' }} 已在公网DNS配置 A 记录、MX 记录等。
+                          </template>
+                          <template v-else>
+                            需要配置域名解析记录，包括A记录、MX记录等。请在系统设置中配置DNS。
+                          </template>
                         </p>
                       </div>
                     </div>
@@ -213,8 +218,8 @@
                   
                   <!-- 建议操作 -->
                   <div v-if="serviceStatus.recommendations.length > 0" class="mt-4">
-                    <p class="text-sm font-medium text-yellow-800 mb-2">系统建议：</p>
-                    <ul class="list-disc list-inside space-y-1 text-sm text-yellow-700">
+                    <p class="text-sm font-medium text-yellow-800 dark:text-yellow-200 mb-2">系统建议：</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-yellow-700 dark:text-yellow-300">
                       <li v-for="rec in serviceStatus.recommendations" :key="rec.type">
                         {{ rec.message }}
                       </li>
@@ -225,7 +230,7 @@
                   <div class="mt-4 flex space-x-3">
                     <button @click="checkServiceStatus" 
                             :disabled="serviceCheckLoading"
-                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-yellow-700 bg-yellow-100 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 disabled:opacity-50">
+                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-yellow-700 dark:text-yellow-200 bg-yellow-100 dark:bg-yellow-800/50 hover:bg-yellow-200 dark:hover:bg-yellow-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 dark:focus:ring-offset-gray-900 disabled:opacity-50">
                       <svg v-if="serviceCheckLoading" class="animate-spin -ml-1 mr-2 h-4 w-4 text-yellow-500" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -236,7 +241,7 @@
                       {{ serviceCheckLoading ? '检查中...' : '重新检查' }}
                     </button>
                     <router-link to="/dashboard" 
-                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-900">
                       <svg class="-ml-1 mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0l1.83 7.5a2.25 2.25 0 01-2.15 2.75H9.5a2.25 2.25 0 01-2.15-2.75l1.83-7.5zM6 9a2.25 2.25 0 012.25-2.25H9.5a2.25 2.25 0 012.25 2.25v6a2.25 2.25 0 01-2.25 2.25H8.25A2.25 2.25 0 016 15V9z"></path>
                       </svg>
@@ -252,7 +257,7 @@
         <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-4 sm:mb-8">
           <!-- 左侧文件夹导航栏 - 手机端可折叠 -->
           <div class="w-full sm:w-64 flex-shrink-0 order-2 sm:order-1">
-          <div class="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100/50 p-5 space-y-2">
+          <div class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-2xl shadow-xl border border-gray-100/50 dark:border-gray-600 p-5 space-y-2">
             <!-- 写邮件按钮 - 突出显示 -->
             <button @click="() => { userLogger.logButtonClick('写邮件', isAdmin ? '管理员邮件面板' : '普通用户邮件面板'); goto('compose') }" 
                     :class="['w-full group relative overflow-hidden px-5 py-4 rounded-xl font-bold text-sm transition-all duration-500 transform hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-offset-2', 
@@ -270,7 +275,7 @@
             </button>
 
             <!-- 分隔线 -->
-            <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-3"></div>
+            <div class="h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-600 to-transparent my-3"></div>
 
             <!-- 系统文件夹列表 -->
             <div class="space-y-1">
@@ -278,11 +283,11 @@
               <button @click="() => { userLogger.logButtonClick('收件箱', isAdmin ? '管理员邮件面板' : '普通用户邮件面板'); goto('inbox') }" 
                       :class="['w-full group relative px-4 py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-between overflow-hidden', 
                                view === 'inbox' 
-                                 ? 'bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 shadow-md border-l-4 border-blue-500 scale-[1.02]' 
-                                 : 'text-gray-700 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50/30 hover:text-gray-900 hover:shadow-sm']">
+                                 ? 'bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/40 dark:to-indigo-900/40 text-blue-700 dark:text-blue-300 shadow-md border-l-4 border-blue-500 dark:border-blue-400 scale-[1.02]' 
+                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-blue-50/30 dark:hover:from-gray-700 dark:hover:to-blue-900/30 hover:text-gray-900 dark:hover:text-gray-100 hover:shadow-sm']">
                 <div class="flex items-center space-x-3 flex-1 min-w-0 relative z-10">
-                  <div :class="['p-2.5 rounded-lg transition-all duration-300', view === 'inbox' ? 'bg-blue-100 shadow-sm' : 'bg-gray-100 group-hover:bg-blue-100']">
-                    <svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" :class="view === 'inbox' ? 'text-blue-600' : 'text-gray-600 group-hover:text-blue-600'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div :class="['p-2.5 rounded-lg transition-all duration-300', view === 'inbox' ? 'bg-blue-100 dark:bg-blue-900/50 shadow-sm' : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50']">
+                    <svg class="w-5 h-5 transition-transform duration-300 group-hover:scale-110" :class="view === 'inbox' ? 'text-blue-600 dark:text-blue-400' : 'text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
                   </div>
@@ -291,21 +296,21 @@
                 <span class="ml-2 inline-flex items-center justify-center min-w-[28px] h-7 px-2.5 text-xs font-bold rounded-full shadow-sm transition-all duration-300 transform hover:scale-110"
                       :class="unreadCount > 0 
                         ? 'text-white bg-gradient-to-r from-red-500 to-pink-500 shadow-lg shadow-red-500/30 animate-pulse' 
-                        : 'text-gray-500 bg-gray-200'">
+                        : 'text-gray-500 dark:text-gray-400 bg-gray-200 dark:bg-gray-600'">
                   {{ unreadCount }}
                 </span>
-                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-x-full group-hover:translate-x-full"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 dark:via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-x-full group-hover:translate-x-full"></div>
               </button>
 
               <!-- 已发送 -->
               <button @click="() => { userLogger.logButtonClick('已发送', isAdmin ? '管理员邮件面板' : '普通用户邮件面板'); goto('sent') }" 
                       :class="['w-full group relative px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex items-center justify-between', 
                                view === 'sent' 
-                                 ? 'bg-green-50 text-green-700 shadow-sm border-l-4 border-green-500' 
-                                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900']">
+                                 ? 'bg-green-50 dark:bg-green-900/40 text-green-700 dark:text-green-300 shadow-sm border-l-4 border-green-500 dark:border-green-400' 
+                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100']">
                 <div class="flex items-center space-x-3 flex-1 min-w-0">
-                  <div :class="['p-2 rounded-lg transition-colors', view === 'sent' ? 'bg-green-100' : 'bg-gray-100 group-hover:bg-gray-200']">
-                    <svg class="w-5 h-5" :class="view === 'sent' ? 'text-green-600' : 'text-gray-600'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div :class="['p-2 rounded-lg transition-colors', view === 'sent' ? 'bg-green-100 dark:bg-green-900/50' : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-600']">
+                    <svg class="w-5 h-5" :class="view === 'sent' ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                     </svg>
                   </div>
@@ -317,11 +322,11 @@
               <button @click="() => { userLogger.logButtonClick('草稿箱', isAdmin ? '管理员邮件面板' : '普通用户邮件面板'); goto('drafts') }" 
                       :class="['w-full group relative px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex items-center justify-between', 
                                view === 'drafts' 
-                                 ? 'bg-yellow-50 text-yellow-700 shadow-sm border-l-4 border-yellow-500' 
-                                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900']">
+                                 ? 'bg-yellow-50 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300 shadow-sm border-l-4 border-yellow-500 dark:border-yellow-400' 
+                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100']">
                 <div class="flex items-center space-x-3 flex-1 min-w-0">
-                  <div :class="['p-2 rounded-lg transition-colors', view === 'drafts' ? 'bg-yellow-100' : 'bg-gray-100 group-hover:bg-gray-200']">
-                    <svg class="w-5 h-5" :class="view === 'drafts' ? 'text-yellow-600' : 'text-gray-600'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div :class="['p-2 rounded-lg transition-colors', view === 'drafts' ? 'bg-yellow-100 dark:bg-yellow-900/50' : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-600']">
+                    <svg class="w-5 h-5" :class="view === 'drafts' ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-600 dark:text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                     </svg>
                   </div>
@@ -333,11 +338,11 @@
               <button @click="() => { userLogger.logButtonClick('垃圾邮件', isAdmin ? '管理员邮件面板' : '普通用户邮件面板'); goto('spam') }" 
                       :class="['w-full group relative px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex items-center justify-between', 
                                view === 'spam' 
-                                 ? 'bg-red-50 text-red-700 shadow-sm border-l-4 border-red-500' 
-                                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900']">
+                                 ? 'bg-red-50 dark:bg-red-900/40 text-red-700 dark:text-red-300 shadow-sm border-l-4 border-red-500 dark:border-red-400' 
+                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100']">
                 <div class="flex items-center space-x-3 flex-1 min-w-0">
-                  <div :class="['p-2 rounded-lg transition-colors', view === 'spam' ? 'bg-red-100' : 'bg-gray-100 group-hover:bg-gray-200']">
-                    <svg class="w-5 h-5" :class="view === 'spam' ? 'text-red-600' : 'text-gray-600'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div :class="['p-2 rounded-lg transition-colors', view === 'spam' ? 'bg-red-100 dark:bg-red-900/50' : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-600']">
+                    <svg class="w-5 h-5" :class="view === 'spam' ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                     </svg>
                   </div>
@@ -349,11 +354,11 @@
               <button @click="() => { userLogger.logButtonClick('已删除', isAdmin ? '管理员邮件面板' : '普通用户邮件面板'); goto('trash') }" 
                       :class="['w-full group relative px-4 py-3 rounded-xl font-medium text-sm transition-all duration-200 flex items-center justify-between', 
                                view === 'trash' 
-                                 ? 'bg-gray-50 text-gray-700 shadow-sm border-l-4 border-gray-500' 
-                                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900']">
+                                 ? 'bg-gray-50 dark:bg-gray-700 text-gray-700 dark:text-gray-300 shadow-sm border-l-4 border-gray-500 dark:border-gray-400' 
+                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100']">
                 <div class="flex items-center space-x-3 flex-1 min-w-0">
-                  <div :class="['p-2 rounded-lg transition-colors', view === 'trash' ? 'bg-gray-100' : 'bg-gray-100 group-hover:bg-gray-200']">
-                    <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div :class="['p-2 rounded-lg transition-colors', view === 'trash' ? 'bg-gray-100 dark:bg-gray-600' : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-600']">
+                    <svg class="w-5 h-5 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                     </svg>
                   </div>
@@ -363,23 +368,23 @@
             </div>
 
             <!-- 自定义文件夹分隔线 -->
-            <div v-if="customFoldersList.length > 0" class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent my-3"></div>
+            <div v-if="customFoldersList.length > 0" class="h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-600 to-transparent my-3"></div>
 
             <!-- 自定义文件夹列表 -->
             <div v-if="customFoldersList.length > 0" class="space-y-1">
               <div class="px-4 py-2">
-                <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">自定义文件夹</span>
+                <span class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">自定义文件夹</span>
               </div>
               <button v-for="folder in customFoldersList" 
                       :key="folder.id"
                       @click="() => { userLogger.logButtonClick(folder.display_name || folder.name, isAdmin ? '管理员邮件面板' : '普通用户邮件面板'); gotoCustomFolder(folder.name) }" 
                       :class="['w-full group relative px-4 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-between', 
                                currentCustomFolder === folder.name
-                                 ? 'bg-indigo-50 text-indigo-700 shadow-sm border-l-4 border-indigo-500' 
-                                 : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900']">
+                                 ? 'bg-indigo-50 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 shadow-sm border-l-4 border-indigo-500 dark:border-indigo-400' 
+                                 : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-100']">
                 <div class="flex items-center space-x-3 flex-1 min-w-0">
-                  <div :class="['p-1.5 rounded-md transition-colors', currentCustomFolder === folder.name ? 'bg-indigo-100' : 'bg-gray-100 group-hover:bg-gray-200']">
-                    <svg class="w-4 h-4" :class="currentCustomFolder === folder.name ? 'text-indigo-600' : 'text-gray-600'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div :class="['p-1.5 rounded-md transition-colors', currentCustomFolder === folder.name ? 'bg-indigo-100 dark:bg-indigo-900/50' : 'bg-gray-100 dark:bg-gray-700 group-hover:bg-gray-200 dark:group-hover:bg-gray-600']">
+                    <svg class="w-4 h-4" :class="currentCustomFolder === folder.name ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-600 dark:text-gray-400'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                     </svg>
                   </div>
@@ -387,16 +392,16 @@
                 </div>
                 <div class="flex items-center space-x-1 ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button @click.stop="editCustomFolder(folder)" 
-                          class="p-1 rounded-md hover:bg-gray-200 transition-colors"
+                          class="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                           title="重命名">
-                    <svg class="w-3.5 h-3.5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                     </svg>
                   </button>
                   <button @click.stop="deleteCustomFolder(folder)" 
-                          class="p-1 rounded-md hover:bg-red-100 transition-colors"
+                          class="p-1 rounded-md hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors"
                           title="删除">
-                    <svg class="w-3.5 h-3.5 text-gray-500 hover:text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                     </svg>
                   </button>
@@ -407,7 +412,7 @@
             <!-- 管理文件夹按钮 -->
             <div class="pt-2">
               <button @click="() => { showFolderManageDialog = true; loadFolders() }" 
-                      class="w-full px-4 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center space-x-2 text-indigo-600 hover:text-indigo-700 hover:bg-indigo-50 border border-indigo-200 hover:border-indigo-300">
+                      class="w-full px-4 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center space-x-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-600 hover:border-indigo-300 dark:hover:border-indigo-500">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                 </svg>
@@ -420,17 +425,17 @@
           <!-- 右侧主内容区域 -->
           <div class="flex-1 min-w-0 order-1 sm:order-2">
           <!-- 收件箱 -->
-          <div v-if="view==='inbox'" class="bg-white/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 overflow-hidden">
-            <div class="p-3 sm:p-6 border-b border-gray-200/50 bg-gradient-to-r from-blue-50/80 via-indigo-50/80 to-purple-50/80 backdrop-blur-sm">
+          <div v-if="view==='inbox'" class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 dark:border-gray-600 overflow-hidden">
+            <div class="p-3 sm:p-6 border-b border-gray-200/50 dark:border-gray-600 bg-gradient-to-r from-blue-50/80 via-indigo-50/80 to-purple-50/80 dark:from-gray-700/80 dark:via-gray-700/80 dark:to-gray-700/80 backdrop-blur-sm">
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
                   <div class="p-2 sm:p-2.5 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg mr-2 sm:mr-3">
                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
                   </div>
-                  <span class="bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">收件箱</span>
-                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500">共 {{ mailStats.inbox?.total ?? 0 }} 封</span>
+                  <span class="bg-gradient-to-r from-blue-700 to-indigo-700 dark:from-blue-300 dark:to-indigo-300 bg-clip-text text-transparent">收件箱</span>
+                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500 dark:text-gray-400">共 {{ mailStats.inbox?.total ?? 0 }} 封</span>
                 </h2>
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
                   <!-- 搜索框 -->
@@ -441,15 +446,15 @@
                       @input="onSearchInput"
                       type="text" 
                       placeholder="搜索邮件内容..." 
-                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-300 transition-all duration-200 w-full sm:w-64 bg-white/90 backdrop-blur-sm"
+                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-300 dark:focus:border-blue-500 transition-all duration-200 w-full sm:w-64 bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm"
                     >
-                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                     <button 
                       v-if="searchQuery" 
                       @click="clearSearch"
-                      class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                      class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
                     >
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -471,7 +476,7 @@
                     <span class="hidden sm:inline">{{ searchLoading ? '搜索中...' : '搜索' }}</span>
                     <span class="sm:hidden">{{ searchLoading ? '...' : '搜索' }}</span>
                   </button>
-                  <button @click="loadEmails('inbox')" class="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 text-sm font-semibold text-blue-700 bg-white/90 backdrop-blur-sm border-2 border-blue-200 rounded-xl hover:bg-blue-50 hover:border-blue-300 hover:shadow-lg transition-all duration-300 shadow-md hover:scale-105">
+                  <button @click="loadEmails('inbox')" class="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 text-sm font-semibold text-blue-700 dark:text-blue-300 bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm border-2 border-blue-200 dark:border-blue-600 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-500 hover:shadow-lg transition-all duration-300 shadow-md hover:scale-105">
                     <svg class="h-4 w-4 mr-2 transition-transform duration-300 hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                     </svg>
@@ -483,23 +488,23 @@
             
             <div v-if="emailsLoading" class="p-16 text-center">
               <div class="inline-block">
-                <svg class="animate-spin h-14 w-14 text-blue-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin h-14 w-14 text-blue-600 dark:text-blue-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p class="text-gray-600 font-semibold text-lg">加载邮件中...</p>
+                <p class="text-gray-600 dark:text-gray-400 font-semibold text-lg">加载邮件中...</p>
               </div>
             </div>
             
             <div v-else-if="emails.length === 0" class="p-16 text-center">
               <div class="inline-block animate-fade-in">
-                <div class="p-4 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl inline-block mb-4">
-                  <svg class="h-20 w-20 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="p-4 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-2xl inline-block mb-4">
+                  <svg class="h-20 w-20 text-blue-400 dark:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                   </svg>
                 </div>
-                <p class="text-gray-600 text-xl font-semibold mb-2">收件箱为空</p>
-                <p class="text-gray-400 text-sm">还没有收到任何邮件</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xl font-semibold mb-2">收件箱为空</p>
+                <p class="text-gray-400 dark:text-gray-500 text-sm">还没有收到任何邮件</p>
               </div>
             </div>
             
@@ -510,8 +515,8 @@
                      :style="{ 'animation-delay': `${index * 50}ms` }"
                      class="email-item group cursor-pointer transition-all duration-300 ease-out relative overflow-hidden rounded-xl sm:rounded-2xl border"
                      :class="{
-                       'bg-gradient-to-br from-blue-50 via-indigo-50/80 to-purple-50/80 border-blue-300 shadow-xl shadow-blue-500/20 scale-[1.01]': selectedEmail?.id === email.id,
-                       'bg-white border-gray-200 hover:border-blue-300 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-blue-50/30 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
+                       'bg-gradient-to-br from-blue-50 via-indigo-50/80 to-purple-50/80 dark:from-blue-900/30 dark:via-indigo-900/30 dark:to-purple-900/30 border-blue-300 dark:border-blue-500 shadow-xl shadow-blue-500/20 scale-[1.01]': selectedEmail?.id === email.id,
+                       'bg-white dark:bg-gray-700/80 border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-blue-50/30 dark:hover:from-gray-700 dark:hover:to-blue-900/20 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
                      }">
                   <!-- 选中指示器 -->
                   <div v-if="selectedEmail?.id === email.id" class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-indigo-600"></div>
@@ -527,20 +532,20 @@
                         <!-- 发件人信息 -->
                         <div class="flex items-center flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-3">
                           <div class="flex items-center space-x-1 sm:space-x-2">
-                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
-                            <span class="text-xs font-medium text-gray-500 uppercase tracking-wide hidden sm:inline">发件人</span>
+                            <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide hidden sm:inline">发件人</span>
                           </div>
-                          <p class="text-xs sm:text-sm font-semibold text-gray-900 truncate flex-1 min-w-0">{{ email.from }}</p>
-                          <span v-if="isSystemNotification(email.from)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-yellow-700 bg-yellow-100 border border-yellow-200 rounded-lg">
+                          <p class="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white truncate flex-1 min-w-0">{{ email.from }}</p>
+                          <span v-if="isSystemNotification(email.from)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-200 bg-yellow-100 dark:bg-yellow-900/50 border border-yellow-200 dark:border-yellow-700 rounded-lg">
                             <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                               <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
                             </svg>
                             系统通知
                           </span>
-                          <span v-else-if="isAdminSender(email.from)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-red-700 bg-red-100 border border-red-200 rounded-lg">系统管理员</span>
-                          <span v-if="isCurrentUserCC(email)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-emerald-700 bg-emerald-100 border border-emerald-200 rounded-lg">
+                          <span v-else-if="isAdminSender(email.from)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-red-700 dark:text-red-200 bg-red-100 dark:bg-red-900/50 border border-red-200 dark:border-red-700 rounded-lg">系统管理员</span>
+                          <span v-if="isCurrentUserCC(email)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-200 bg-emerald-100 dark:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-700 rounded-lg">
                             <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                             </svg>
@@ -549,28 +554,28 @@
                         </div>
                         
                         <!-- 邮件主题 -->
-                        <h3 class="text-sm sm:text-base font-bold text-gray-900 mb-2 sm:mb-3 line-clamp-2 group-hover:text-blue-700 transition-colors">
+                        <h3 class="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 line-clamp-2 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors">
                           {{ email.subject || '(无主题)' }}
                         </h3>
                         
                         <!-- 底部信息栏 -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100 dark:border-gray-600">
                           <div class="flex items-center space-x-2 sm:space-x-3">
-                            <span class="text-xs text-gray-500 font-medium">
-                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="text-xs text-gray-500 dark:text-gray-300 font-medium">
+                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                               </svg>
                               {{ formatDate(email.date) }}
                             </span>
                           </div>
                           <div class="flex items-center space-x-2">
-                            <span v-if="isUnread(email)" class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-semibold text-blue-700 bg-blue-50 border border-blue-200 rounded-lg">
+                            <span v-if="isUnread(email)" class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-semibold text-blue-700 dark:text-blue-200 bg-blue-50 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-700 rounded-lg">
                               <div class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-1 sm:mr-1.5 animate-pulse"></div>
                               <span class="hidden sm:inline">新邮件</span>
                               <span class="sm:hidden">新</span>
                             </span>
-                            <span v-else class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-gray-500 bg-gray-50 border border-gray-200 rounded-lg">
-                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span v-else class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-600/80 border border-gray-200 dark:border-gray-500 rounded-lg">
+                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-gray-400 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                               </svg>
                               <span class="hidden sm:inline">已读</span>
@@ -583,19 +588,19 @@
                       <div class="flex items-center space-x-1 sm:space-x-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" @click.stop>
                         <!-- 快速操作：移动到文件夹 -->
                         <div class="relative move-button-group inline-block" @click.stop>
-                          <button @click.stop class="inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-gray-700 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
-                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:mr-1.5 text-gray-500 move-button-group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <button @click.stop class="inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-gray-700 dark:text-gray-200 bg-white/90 dark:bg-gray-600/90 backdrop-blur-sm border border-gray-300 dark:border-gray-500 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-700 dark:hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:mr-1.5 text-gray-500 dark:text-gray-400 move-button-group-hover:text-blue-600 dark:move-button-group-hover:text-blue-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                             </svg>
                             <span class="hidden sm:inline">移动</span>
                           </button>
-                          <div class="absolute right-0 top-full mt-2 w-48 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-200/50 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-300 z-50 transform translate-y-2 move-button-group-hover:translate-y-0" @click.stop>
+                          <div class="absolute right-0 top-full mt-2 w-48 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-200/50 dark:border-gray-600 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-300 z-50 transform translate-y-2 move-button-group-hover:translate-y-0" @click.stop>
                             <div class="py-2">
                               <button v-for="folder in getAvailableFolders(email.folder || 'inbox', email)" 
                                       :key="folder.value"
                                       @click.stop="moveEmailToFolder(email.id, folder.value)"
-                                      class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:text-blue-700 flex items-center transition-all duration-200 rounded-lg mx-1">
-                                <svg class="w-4 h-4 mr-2 text-gray-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      class="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 dark:hover:from-blue-900/40 dark:hover:to-indigo-900/40 hover:text-blue-700 dark:hover:text-blue-300 flex items-center transition-all duration-200 rounded-lg mx-1">
+                                <svg class="w-4 h-4 mr-2 text-gray-400 dark:text-gray-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="getFolderIcon(folder.value)"></path>
                                 </svg>
                                 {{ folder.label }}
@@ -605,7 +610,7 @@
                         </div>
                         
                         <button @click.stop="showDeleteConfirmDialog(email.id)" 
-                                class="inline-flex items-center justify-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-red-600 bg-red-50/90 backdrop-blur-sm border border-red-200 rounded-lg hover:bg-red-100 hover:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                                class="inline-flex items-center justify-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-red-600 dark:text-red-300 bg-red-50/90 dark:bg-red-900/40 backdrop-blur-sm border border-red-200 dark:border-red-700 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/60 hover:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
                           <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                           </svg>
@@ -649,18 +654,18 @@
           </div>
           </div>
           </div>
-          <div v-else-if="view==='sent'" class="bg-white/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 overflow-hidden">
+          <div v-else-if="view==='sent'" class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 dark:border-gray-600 overflow-hidden">
             <!-- 已发送 -->
-            <div class="p-3 sm:p-6 border-b border-gray-200/50 bg-gradient-to-r from-emerald-50/80 via-green-50/80 to-teal-50/80 backdrop-blur-sm">
+            <div class="p-3 sm:p-6 border-b border-gray-200/50 dark:border-gray-600 bg-gradient-to-r from-emerald-50/80 via-green-50/80 to-teal-50/80 dark:from-gray-700/80 dark:via-gray-700/80 dark:to-gray-700/80 backdrop-blur-sm">
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
                   <div class="p-2 sm:p-2.5 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl shadow-lg mr-2 sm:mr-3">
                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                     </svg>
                   </div>
-                  <span class="bg-gradient-to-r from-emerald-700 to-green-700 bg-clip-text text-transparent">已发送</span>
-                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500">共 {{ mailStats.sent?.total ?? 0 }} 封</span>
+                  <span class="bg-gradient-to-r from-emerald-700 to-green-700 dark:from-emerald-300 dark:to-green-300 bg-clip-text text-transparent">已发送</span>
+                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500 dark:text-gray-400">共 {{ mailStats.sent?.total ?? 0 }} 封</span>
                 </h2>
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
                   <!-- 搜索框 -->
@@ -671,7 +676,7 @@
                       @input="onSearchInput"
                       type="text" 
                       placeholder="搜索邮件内容..." 
-                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-300 transition-all duration-200 w-full sm:w-64 bg-white/90 backdrop-blur-sm"
+                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-300 dark:focus:border-emerald-500 transition-all duration-200 w-full sm:w-64 bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm"
                     >
                     <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -712,23 +717,23 @@
             
             <div v-if="emailsLoading" class="p-16 text-center">
               <div class="inline-block">
-                <svg class="animate-spin h-14 w-14 text-emerald-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin h-14 w-14 text-emerald-600 dark:text-emerald-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p class="text-gray-600 font-semibold text-lg">加载邮件中...</p>
+                <p class="text-gray-600 dark:text-gray-300 font-semibold text-lg">加载邮件中...</p>
               </div>
             </div>
             
             <div v-else-if="emails.length === 0" class="p-16 text-center">
               <div class="inline-block animate-fade-in">
-                <div class="p-4 bg-gradient-to-br from-emerald-100 to-green-100 rounded-2xl inline-block mb-4">
-                  <svg class="h-20 w-20 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="p-4 bg-gradient-to-br from-emerald-100 to-green-100 dark:from-emerald-900/40 dark:to-green-900/40 rounded-2xl inline-block mb-4">
+                  <svg class="h-20 w-20 text-emerald-400 dark:text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                   </svg>
                 </div>
-                <p class="text-gray-600 text-xl font-semibold mb-2">已发送为空</p>
-                <p class="text-gray-400 text-sm">还没有发送任何邮件</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xl font-semibold mb-2">已发送为空</p>
+                <p class="text-gray-400 dark:text-gray-500 text-sm">还没有发送任何邮件</p>
               </div>
             </div>
             
@@ -739,8 +744,8 @@
                      :style="{ 'animation-delay': `${index * 50}ms` }"
                      class="email-item group cursor-pointer transition-all duration-300 ease-out relative overflow-hidden rounded-xl sm:rounded-2xl border"
                      :class="{
-                       'bg-gradient-to-br from-emerald-50 via-green-50/80 to-teal-50/80 border-emerald-300 shadow-xl shadow-emerald-500/20 scale-[1.01]': selectedEmail?.id === email.id,
-                       'bg-white border-gray-200 hover:border-emerald-300 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-emerald-50/30 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
+                       'bg-gradient-to-br from-emerald-50 via-green-50/80 to-teal-50/80 dark:from-emerald-900/40 dark:via-green-900/40 dark:to-teal-900/40 border-emerald-300 dark:border-emerald-500 shadow-xl shadow-emerald-500/20 scale-[1.01]': selectedEmail?.id === email.id,
+                       'bg-white dark:bg-gray-700/80 border-gray-200 dark:border-gray-600 hover:border-emerald-300 dark:hover:border-emerald-500 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-emerald-50/30 dark:hover:from-gray-700 dark:hover:to-emerald-900/20 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
                      }">
                   <!-- 选中指示器 -->
                   <div v-if="selectedEmail?.id === email.id" class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-emerald-500 to-green-600"></div>
@@ -771,28 +776,28 @@
                         </div>
                         
                         <!-- 邮件主题 -->
-                        <h3 class="text-sm sm:text-base font-bold text-gray-900 mb-2 sm:mb-3 line-clamp-2 group-hover:text-emerald-700 transition-colors">
+                        <h3 class="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 line-clamp-2 group-hover:text-emerald-700 dark:group-hover:text-emerald-300 transition-colors">
                           {{ email.subject || '(无主题)' }}
                         </h3>
                         
                         <!-- 底部信息栏 -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100 dark:border-gray-600">
                           <div class="flex items-center space-x-2 sm:space-x-3">
-                            <span class="text-xs text-gray-500 font-medium">
-                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="text-xs text-gray-500 dark:text-gray-300 font-medium">
+                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                               </svg>
                               {{ formatDate(email.date) }}
                             </span>
                           </div>
                           <div class="flex items-center space-x-2">
-                            <span v-if="isUnread(email)" class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg">
+                            <span v-if="isUnread(email)" class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-semibold text-emerald-700 dark:text-emerald-200 bg-emerald-50 dark:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-700 rounded-lg">
                               <div class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1 sm:mr-1.5 animate-pulse"></div>
                               <span class="hidden sm:inline">未查看</span>
                               <span class="sm:hidden">新</span>
                             </span>
-                            <span v-else class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-gray-500 bg-gray-50 border border-gray-200 rounded-lg">
-                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span v-else class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-600/80 border border-gray-200 dark:border-gray-500 rounded-lg">
+                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-gray-400 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                               </svg>
                               <span class="hidden sm:inline">已查看</span>
@@ -805,19 +810,19 @@
                       <div class="flex items-center space-x-1 sm:space-x-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" @click.stop>
                         <!-- 快速操作：移动到文件夹 -->
                         <div class="relative move-button-group inline-block" @click.stop>
-                          <button @click.stop class="inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-gray-700 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-lg hover:bg-emerald-50 hover:border-emerald-300 hover:text-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
-                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:mr-1.5 text-gray-500 move-button-group-hover:text-emerald-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <button @click.stop class="inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-gray-700 dark:text-gray-200 bg-white/90 dark:bg-gray-600/90 backdrop-blur-sm border border-gray-300 dark:border-gray-500 rounded-lg hover:bg-emerald-50 dark:hover:bg-emerald-900/40 hover:border-emerald-300 dark:hover:border-emerald-600 hover:text-emerald-700 dark:hover:text-emerald-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:mr-1.5 text-gray-500 dark:text-gray-400 move-button-group-hover:text-emerald-600 dark:move-button-group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                             </svg>
                             <span class="hidden sm:inline">移动</span>
                           </button>
-                          <div class="absolute right-0 top-full mt-2 w-48 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-200/50 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-300 z-50 transform translate-y-2 move-button-group-hover:translate-y-0" @click.stop>
+                          <div class="absolute right-0 top-full mt-2 w-48 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-200/50 dark:border-gray-600 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-300 z-50 transform translate-y-2 move-button-group-hover:translate-y-0" @click.stop>
                             <div class="py-2">
                               <button v-for="folder in getAvailableFolders(email.folder || 'sent', email)" 
                                       :key="folder.value"
                                       @click.stop="moveEmailToFolder(email.id, folder.value)"
-                                      class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 hover:text-emerald-700 flex items-center transition-all duration-200 rounded-lg mx-1">
-                                <svg class="w-4 h-4 mr-2 text-gray-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      class="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-green-50 dark:hover:from-emerald-900/40 dark:hover:to-green-900/40 hover:text-emerald-700 dark:hover:text-emerald-300 flex items-center transition-all duration-200 rounded-lg mx-1">
+                                <svg class="w-4 h-4 mr-2 text-gray-400 dark:text-gray-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="getFolderIcon(folder.value)"></path>
                                 </svg>
                                 {{ folder.label }}
@@ -871,17 +876,17 @@
               </div>
             </div>
           </div>
-          <div v-else-if="view==='drafts'" class="bg-white/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 overflow-hidden">
-            <div class="p-3 sm:p-6 border-b border-gray-200/50 bg-gradient-to-r from-yellow-50/80 via-amber-50/80 to-orange-50/80 backdrop-blur-sm">
+          <div v-else-if="view==='drafts'" class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 dark:border-gray-600 overflow-hidden">
+            <div class="p-3 sm:p-6 border-b border-gray-200/50 dark:border-gray-600 bg-gradient-to-r from-yellow-50/80 via-amber-50/80 to-orange-50/80 dark:from-gray-700/80 dark:via-gray-700/80 dark:to-gray-700/80 backdrop-blur-sm">
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
                   <div class="p-2 sm:p-2.5 bg-gradient-to-br from-yellow-500 to-amber-600 rounded-xl shadow-lg mr-2 sm:mr-3">
                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                     </svg>
                   </div>
-                  <span class="bg-gradient-to-r from-yellow-700 to-amber-700 bg-clip-text text-transparent">草稿箱</span>
-                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500">共 {{ mailStats.drafts?.total ?? 0 }} 封</span>
+                  <span class="bg-gradient-to-r from-yellow-700 to-amber-700 dark:from-yellow-300 dark:to-amber-300 bg-clip-text text-transparent">草稿箱</span>
+                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500 dark:text-gray-400">共 {{ mailStats.drafts?.total ?? 0 }} 封</span>
                 </h2>
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
                   <!-- 搜索框 -->
@@ -892,7 +897,7 @@
                       @input="onSearchInput"
                       type="text" 
                       placeholder="搜索邮件内容..." 
-                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-300 transition-all duration-200 w-full sm:w-64 bg-white/90 backdrop-blur-sm"
+                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-300 dark:focus:border-yellow-500 transition-all duration-200 w-full sm:w-64 bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm"
                     >
                     <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -933,23 +938,23 @@
             
             <div v-if="emailsLoading" class="p-16 text-center">
               <div class="inline-block">
-                <svg class="animate-spin h-14 w-14 text-yellow-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin h-14 w-14 text-yellow-600 dark:text-yellow-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p class="text-gray-600 font-semibold text-lg">加载邮件中...</p>
+                <p class="text-gray-600 dark:text-gray-300 font-semibold text-lg">加载邮件中...</p>
               </div>
             </div>
             
             <div v-else-if="emails.length === 0" class="p-16 text-center">
               <div class="inline-block animate-fade-in">
-                <div class="p-4 bg-gradient-to-br from-yellow-100 to-amber-100 rounded-2xl inline-block mb-4">
-                  <svg class="h-20 w-20 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="p-4 bg-gradient-to-br from-yellow-100 to-amber-100 dark:from-yellow-900/40 dark:to-amber-900/40 rounded-2xl inline-block mb-4">
+                  <svg class="h-20 w-20 text-yellow-400 dark:text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                   </svg>
                 </div>
-                <p class="text-gray-600 text-xl font-semibold mb-2">草稿箱为空</p>
-                <p class="text-gray-400 text-sm">还没有保存任何草稿</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xl font-semibold mb-2">草稿箱为空</p>
+                <p class="text-gray-400 dark:text-gray-500 text-sm">还没有保存任何草稿</p>
               </div>
             </div>
             
@@ -960,8 +965,8 @@
                      :style="{ 'animation-delay': `${index * 50}ms` }"
                      class="email-item group cursor-pointer transition-all duration-300 ease-out relative overflow-hidden rounded-xl sm:rounded-2xl border"
                      :class="{
-                       'bg-gradient-to-br from-yellow-50 via-amber-50/80 to-orange-50/80 border-yellow-300 shadow-xl shadow-yellow-500/20 scale-[1.01]': selectedEmail?.id === email.id,
-                       'bg-white border-gray-200 hover:border-yellow-300 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-yellow-50/30 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
+                       'bg-gradient-to-br from-yellow-50 via-amber-50/80 to-orange-50/80 dark:from-yellow-900/40 dark:via-amber-900/40 dark:to-orange-900/40 border-yellow-300 dark:border-yellow-500 shadow-xl shadow-yellow-500/20 scale-[1.01]': selectedEmail?.id === email.id,
+                       'bg-white dark:bg-gray-700/80 border-gray-200 dark:border-gray-600 hover:border-yellow-300 dark:hover:border-yellow-500 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-yellow-50/30 dark:hover:from-gray-700 dark:hover:to-yellow-900/20 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
                      }">
                   <!-- 选中指示器 -->
                   <div v-if="selectedEmail?.id === email.id" class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-yellow-500 to-amber-600"></div>
@@ -972,32 +977,32 @@
                         <!-- 收件人信息 -->
                         <div class="flex items-center flex-wrap gap-2 mb-3">
                           <div class="flex items-center space-x-2">
-                            <svg class="w-4 h-4 text-yellow-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 text-yellow-600 dark:text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
                             </svg>
-                            <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">收件人</span>
+                            <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">收件人</span>
                           </div>
-                          <p class="text-sm font-semibold text-gray-900">{{ email.to || '未填写' }}</p>
+                          <p class="text-sm font-semibold text-gray-900 dark:text-white">{{ email.to || '未填写' }}</p>
                         </div>
                         
                         <!-- 邮件主题 -->
-                        <h3 class="text-sm sm:text-base font-bold text-gray-900 mb-2 sm:mb-3 line-clamp-2 group-hover:text-yellow-700 transition-colors">
+                        <h3 class="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 line-clamp-2 group-hover:text-yellow-700 dark:group-hover:text-yellow-300 transition-colors">
                           {{ email.subject || '(无主题)' }}
                         </h3>
                         
                         <!-- 底部信息栏 -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100 dark:border-gray-600">
                           <div class="flex items-center space-x-2 sm:space-x-3">
-                            <span class="text-xs text-gray-500 font-medium">
-                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="text-xs text-gray-500 dark:text-gray-300 font-medium">
+                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                               </svg>
                               {{ formatDate(email.date) }}
                             </span>
                           </div>
                           <div class="flex items-center space-x-2">
-                            <span class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-yellow-700 bg-yellow-50 border border-yellow-200 rounded-lg">
-                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-yellow-700 dark:text-yellow-200 bg-yellow-50 dark:bg-yellow-900/50 border border-yellow-200 dark:border-yellow-700 rounded-lg">
+                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-yellow-500 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                               </svg>
                               <span class="hidden sm:inline">草稿</span>
@@ -1010,7 +1015,7 @@
                       <!-- 操作按钮 - 手机端始终显示 -->
                       <div class="flex items-center space-x-1 sm:space-x-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" @click.stop>
                         <button @click.stop="editDraft(email)" 
-                                class="inline-flex items-center px-3 py-2 text-xs font-medium text-yellow-700 bg-yellow-50/90 backdrop-blur-sm border border-yellow-200 rounded-lg hover:bg-yellow-100 hover:border-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                                class="inline-flex items-center px-3 py-2 text-xs font-medium text-yellow-700 dark:text-yellow-200 bg-yellow-50/90 dark:bg-yellow-900/40 backdrop-blur-sm border border-yellow-200 dark:border-yellow-700 rounded-lg hover:bg-yellow-100 dark:hover:bg-yellow-900/60 hover:border-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
                           <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                           </svg>
@@ -1055,17 +1060,17 @@
           </div>
           </div>
           </div>
-          <div v-else-if="view==='spam'" class="bg-white/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 overflow-hidden">
-            <div class="p-3 sm:p-6 border-b border-gray-200/50 bg-gradient-to-r from-red-50/80 via-pink-50/80 to-rose-50/80 backdrop-blur-sm">
+          <div v-else-if="view==='spam'" class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 dark:border-gray-600 overflow-hidden">
+            <div class="p-3 sm:p-6 border-b border-gray-200/50 dark:border-gray-600 bg-gradient-to-r from-red-50/80 via-pink-50/80 to-rose-50/80 dark:from-gray-700/80 dark:via-gray-700/80 dark:to-gray-700/80 backdrop-blur-sm">
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
                   <div class="p-2 sm:p-2.5 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl shadow-lg mr-2 sm:mr-3">
                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                     </svg>
                   </div>
-                  <span class="bg-gradient-to-r from-red-700 to-pink-700 bg-clip-text text-transparent">垃圾邮件</span>
-                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500">共 {{ mailStats.spam?.total ?? 0 }} 封</span>
+                  <span class="bg-gradient-to-r from-red-700 to-pink-700 dark:from-red-300 dark:to-pink-300 bg-clip-text text-transparent">垃圾邮件</span>
+                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500 dark:text-gray-400">共 {{ mailStats.spam?.total ?? 0 }} 封</span>
                 </h2>
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
                   <!-- 搜索框 -->
@@ -1076,15 +1081,15 @@
                       @input="onSearchInput"
                       type="text" 
                       placeholder="搜索邮件内容..." 
-                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-300 transition-all duration-200 w-full sm:w-64 bg-white/90 backdrop-blur-sm"
+                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-300 dark:focus:border-red-500 transition-all duration-200 w-full sm:w-64 bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm"
                     >
-                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                     <button 
                       v-if="searchQuery" 
                       @click="clearSearch"
-                      class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                      class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
                     >
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -1117,23 +1122,23 @@
             
             <div v-if="emailsLoading" class="p-16 text-center">
               <div class="inline-block">
-                <svg class="animate-spin h-14 w-14 text-red-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin h-14 w-14 text-red-600 dark:text-red-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p class="text-gray-600 font-semibold text-lg">加载邮件中...</p>
+                <p class="text-gray-600 dark:text-gray-300 font-semibold text-lg">加载邮件中...</p>
               </div>
             </div>
             
             <div v-else-if="emails.length === 0" class="p-16 text-center">
               <div class="inline-block animate-fade-in">
-                <div class="p-4 bg-gradient-to-br from-red-100 to-pink-100 rounded-2xl inline-block mb-4">
-                  <svg class="h-20 w-20 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="p-4 bg-gradient-to-br from-red-100 to-pink-100 dark:from-red-900/40 dark:to-pink-900/40 rounded-2xl inline-block mb-4">
+                  <svg class="h-20 w-20 text-red-400 dark:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                   </svg>
                 </div>
-                <p class="text-gray-600 text-xl font-semibold mb-2">垃圾邮件为空</p>
-                <p class="text-gray-400 text-sm">还没有收到任何垃圾邮件</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xl font-semibold mb-2">垃圾邮件为空</p>
+                <p class="text-gray-400 dark:text-gray-500 text-sm">还没有收到任何垃圾邮件</p>
               </div>
             </div>
             
@@ -1144,8 +1149,8 @@
                      :style="{ 'animation-delay': `${index * 50}ms` }"
                      class="email-item group cursor-pointer transition-all duration-300 ease-out relative overflow-hidden rounded-xl sm:rounded-2xl border"
                      :class="{
-                       'bg-gradient-to-br from-red-50 via-pink-50/80 to-rose-50/80 border-red-300 shadow-xl shadow-red-500/20 scale-[1.01]': selectedEmail?.id === email.id,
-                       'bg-white border-gray-200 hover:border-red-300 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-red-50/30 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
+                       'bg-gradient-to-br from-red-50 via-pink-50/80 to-rose-50/80 dark:from-red-900/40 dark:via-pink-900/40 dark:to-rose-900/40 border-red-300 dark:border-red-500 shadow-xl shadow-red-500/20 scale-[1.01]': selectedEmail?.id === email.id,
+                       'bg-white dark:bg-gray-700/80 border-gray-200 dark:border-gray-600 hover:border-red-300 dark:hover:border-red-500 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-red-50/30 dark:hover:from-gray-700 dark:hover:to-red-900/20 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
                      }">
                   <!-- 选中指示器 -->
                   <div v-if="selectedEmail?.id === email.id" class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-red-500 to-pink-600"></div>
@@ -1156,32 +1161,32 @@
                         <!-- 发件人信息 -->
                         <div class="flex items-center flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-3">
                           <div class="flex items-center space-x-1 sm:space-x-2">
-                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-600 dark:text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
-                            <span class="text-xs font-medium text-gray-500 uppercase tracking-wide hidden sm:inline">发件人</span>
+                            <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide hidden sm:inline">发件人</span>
                           </div>
-                          <p class="text-xs sm:text-sm font-semibold text-gray-900 truncate flex-1 min-w-0">{{ email.from }}</p>
+                          <p class="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white truncate flex-1 min-w-0">{{ email.from }}</p>
                         </div>
                         
                         <!-- 邮件主题 -->
-                        <h3 class="text-sm sm:text-base font-bold text-gray-900 mb-2 sm:mb-3 line-clamp-2 group-hover:text-red-700 transition-colors">
+                        <h3 class="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 line-clamp-2 group-hover:text-red-700 dark:group-hover:text-red-300 transition-colors">
                           {{ email.subject || '(无主题)' }}
                         </h3>
                         
                         <!-- 底部信息栏 -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100 dark:border-gray-600">
                           <div class="flex items-center space-x-2 sm:space-x-3">
-                            <span class="text-xs text-gray-500 font-medium">
-                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="text-xs text-gray-500 dark:text-gray-300 font-medium">
+                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                               </svg>
                               {{ formatDate(email.date) }}
                             </span>
                           </div>
                           <div class="flex items-center space-x-2">
-                            <span class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg">
-                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-red-700 dark:text-red-200 bg-red-50 dark:bg-red-900/50 border border-red-200 dark:border-red-700 rounded-lg">
+                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-red-500 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                               </svg>
                               <span class="hidden sm:inline">垃圾邮件</span>
@@ -1195,19 +1200,19 @@
                       <div class="flex items-center space-x-1 sm:space-x-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" @click.stop>
                         <!-- 快速操作：移动到文件夹 -->
                         <div class="relative move-button-group inline-block" @click.stop>
-                          <button @click.stop class="inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-gray-700 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-lg hover:bg-red-50 hover:border-red-300 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
-                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:mr-1.5 text-gray-500 move-button-group-hover:text-red-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <button @click.stop class="inline-flex items-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-gray-700 dark:text-gray-200 bg-white/90 dark:bg-gray-600/90 backdrop-blur-sm border border-gray-300 dark:border-gray-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/40 hover:border-red-300 dark:hover:border-red-600 hover:text-red-700 dark:hover:text-red-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 sm:mr-1.5 text-gray-500 dark:text-gray-400 move-button-group-hover:text-red-600 dark:move-button-group-hover:text-red-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                             </svg>
                             <span class="hidden sm:inline">移动</span>
                           </button>
-                          <div class="absolute right-0 top-full mt-2 w-48 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-200/50 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-300 z-50 transform translate-y-2 move-button-group-hover:translate-y-0" @click.stop>
+                          <div class="absolute right-0 top-full mt-2 w-48 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-200/50 dark:border-gray-600 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-300 z-50 transform translate-y-2 move-button-group-hover:translate-y-0" @click.stop>
                             <div class="py-2">
                               <button v-for="folder in getAvailableFolders(email.folder || 'spam', email)" 
                                       :key="folder.value"
                                       @click.stop="moveEmailToFolder(email.id, folder.value)"
-                                      class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 hover:text-red-700 flex items-center transition-all duration-200 rounded-lg mx-1">
-                                <svg class="w-4 h-4 mr-2 text-gray-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      class="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50 dark:hover:from-red-900/40 dark:hover:to-pink-900/40 hover:text-red-700 dark:hover:text-red-300 flex items-center transition-all duration-200 rounded-lg mx-1">
+                                <svg class="w-4 h-4 mr-2 text-gray-400 dark:text-gray-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="getFolderIcon(folder.value)"></path>
                                 </svg>
                                 {{ folder.label }}
@@ -1217,7 +1222,7 @@
                         </div>
                         
                         <button @click.stop="showDeleteConfirmDialog(email.id)" 
-                                class="inline-flex items-center justify-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-red-600 bg-red-50/90 backdrop-blur-sm border border-red-200 rounded-lg hover:bg-red-100 hover:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                                class="inline-flex items-center justify-center px-2 sm:px-3 py-1.5 sm:py-2 text-xs font-medium text-red-600 dark:text-red-300 bg-red-50/90 dark:bg-red-900/40 backdrop-blur-sm border border-red-200 dark:border-red-700 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/60 hover:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
                           <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                           </svg>
@@ -1229,8 +1234,8 @@
               </transition-group>
           
           <!-- 分页组件 -->
-          <div v-if="totalPages > 1" class="mt-6 flex items-center justify-between border-t border-gray-200 pt-4 px-5">
-            <div class="flex items-center text-sm text-gray-700">
+          <div v-if="totalPages > 1" class="mt-6 flex items-center justify-between border-t border-gray-200 dark:border-gray-600 pt-4 px-5">
+            <div class="flex items-center text-sm text-gray-700 dark:text-gray-300">
               <span>显示第 {{ startIndex + 1 }}-{{ endIndex }} 条，共 {{ totalEmails }} 条邮件</span>
             </div>
             <div class="flex items-center space-x-2">
@@ -1261,17 +1266,17 @@
           </div>
           </div>
           </div>
-          <div v-else-if="view==='trash'" class="bg-white/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 overflow-hidden">
-            <div class="p-3 sm:p-6 border-b border-gray-200/50 bg-gradient-to-r from-gray-50/80 via-slate-50/80 to-zinc-50/80 backdrop-blur-sm">
+          <div v-else-if="view==='trash'" class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 dark:border-gray-600 overflow-hidden">
+            <div class="p-3 sm:p-6 border-b border-gray-200/50 dark:border-gray-600 bg-gradient-to-r from-gray-50/80 via-slate-50/80 to-zinc-50/80 dark:from-gray-700/80 dark:via-gray-700/80 dark:to-gray-700/80 backdrop-blur-sm">
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center">
+                <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
                   <div class="p-2 sm:p-2.5 bg-gradient-to-br from-gray-500 to-slate-600 rounded-xl shadow-lg mr-2 sm:mr-3">
                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                     </svg>
                   </div>
-                  <span class="bg-gradient-to-r from-gray-700 to-slate-700 bg-clip-text text-transparent">已删除</span>
-                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500">共 {{ mailStats.trash?.total ?? 0 }} 封</span>
+                  <span class="bg-gradient-to-r from-gray-700 to-slate-700 dark:from-gray-300 dark:to-slate-300 bg-clip-text text-transparent">已删除</span>
+                  <span class="ml-2 text-base sm:text-lg font-medium text-gray-500 dark:text-gray-400">共 {{ mailStats.trash?.total ?? 0 }} 封</span>
                 </h2>
                 <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
                   <!-- 搜索框 -->
@@ -1282,15 +1287,15 @@
                       @input="onSearchInput"
                       type="text" 
                       placeholder="搜索邮件内容..." 
-                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-300 transition-all duration-200 w-full sm:w-64 bg-white/90 backdrop-blur-sm"
+                      class="pl-10 pr-4 py-2 sm:py-2.5 text-sm border-2 border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-300 dark:focus:border-gray-500 transition-all duration-200 w-full sm:w-64 bg-white/90 dark:bg-gray-700/90 backdrop-blur-sm"
                     >
-                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                     <button 
                       v-if="searchQuery" 
                       @click="clearSearch"
-                      class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                      class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
                     >
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -1323,22 +1328,22 @@
             
             <div v-if="emailsLoading" class="p-16 text-center">
               <div class="inline-block">
-                <svg class="animate-spin h-14 w-14 text-gray-600 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
+                <svg class="animate-spin h-14 w-14 text-gray-600 dark:text-gray-400 mx-auto mb-4" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
-                <p class="text-gray-600 font-semibold text-lg">加载邮件中...</p>
+                <p class="text-gray-600 dark:text-gray-300 font-semibold text-lg">加载邮件中...</p>
               </div>
             </div>
             <div v-else-if="emails.length === 0" class="p-16 text-center">
               <div class="inline-block animate-fade-in">
-                <div class="p-4 bg-gradient-to-br from-gray-100 to-slate-100 rounded-2xl inline-block mb-4">
-                  <svg class="h-20 w-20 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="p-4 bg-gradient-to-br from-gray-100 to-slate-100 dark:from-gray-700 dark:to-slate-700 rounded-2xl inline-block mb-4">
+                  <svg class="h-20 w-20 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                   </svg>
                 </div>
-                <p class="text-gray-600 text-xl font-semibold mb-2">已删除文件夹为空</p>
-                <p class="text-gray-400 text-sm">还没有删除任何邮件</p>
+                <p class="text-gray-600 dark:text-gray-300 text-xl font-semibold mb-2">已删除文件夹为空</p>
+                <p class="text-gray-400 dark:text-gray-500 text-sm">还没有删除任何邮件</p>
               </div>
             </div>
             
@@ -1349,8 +1354,8 @@
                      :style="{ 'animation-delay': `${index * 50}ms` }"
                      class="email-item group cursor-pointer transition-all duration-300 ease-out relative overflow-hidden rounded-xl sm:rounded-2xl border"
                      :class="{
-                       'bg-gradient-to-br from-gray-50 via-slate-50/80 to-zinc-50/80 border-gray-300 shadow-xl shadow-gray-500/20 scale-[1.01]': selectedEmail?.id === email.id,
-                       'bg-white border-gray-200 hover:border-gray-300 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-slate-50/30 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
+                       'bg-gradient-to-br from-gray-50 via-slate-50/80 to-zinc-50/80 dark:from-gray-700 dark:via-slate-700/80 dark:to-zinc-700/80 border-gray-300 dark:border-gray-500 shadow-xl shadow-gray-500/20 scale-[1.01]': selectedEmail?.id === email.id,
+                       'bg-white dark:bg-gray-700/80 border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-slate-50/30 dark:hover:from-gray-700 dark:hover:to-slate-900/20 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
                      }">
                   <!-- 选中指示器 -->
                   <div v-if="selectedEmail?.id === email.id" class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-gray-500 to-slate-600"></div>
@@ -1361,32 +1366,32 @@
                         <!-- 发件人信息 -->
                         <div class="flex items-center flex-wrap gap-1.5 sm:gap-2 mb-2 sm:mb-3">
                           <div class="flex items-center space-x-1 sm:space-x-2">
-                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-600 dark:text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
-                            <span class="text-xs font-medium text-gray-500 uppercase tracking-wide hidden sm:inline">发件人</span>
+                            <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide hidden sm:inline">发件人</span>
                           </div>
-                          <p class="text-xs sm:text-sm font-semibold text-gray-900 truncate flex-1 min-w-0">{{ email.from }}</p>
+                          <p class="text-xs sm:text-sm font-semibold text-gray-900 dark:text-white truncate flex-1 min-w-0">{{ email.from }}</p>
                         </div>
                         
                         <!-- 邮件主题 -->
-                        <h3 class="text-sm sm:text-base font-bold text-gray-900 mb-2 sm:mb-3 line-clamp-2 group-hover:text-gray-700 transition-colors">
+                        <h3 class="text-sm sm:text-base font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 line-clamp-2 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
                           {{ email.subject || '(无主题)' }}
                         </h3>
                         
                         <!-- 底部信息栏 -->
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0 pt-2 sm:pt-3 border-t border-gray-100 dark:border-gray-600">
                           <div class="flex items-center space-x-2 sm:space-x-3">
-                            <span class="text-xs text-gray-500 font-medium">
-                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="text-xs text-gray-500 dark:text-gray-300 font-medium">
+                              <svg class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline mr-1 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                               </svg>
                               {{ formatDate(email.date) }}
                             </span>
                           </div>
                           <div class="flex items-center space-x-2">
-                            <span class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-lg">
-                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="inline-flex items-center px-2 sm:px-2.5 py-0.5 sm:py-1 text-xs font-medium text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-600/80 border border-gray-200 dark:border-gray-500 rounded-lg">
+                              <svg class="w-3 h-3 mr-1 sm:mr-1.5 text-gray-400 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                               </svg>
                               <span class="hidden sm:inline">已删除</span>
@@ -1400,7 +1405,7 @@
                       <div class="flex items-center space-x-1 sm:space-x-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" @click.stop>
                         <!-- 还原按钮 -->
                         <button @click.stop="restoreEmail(email.id)" 
-                                class="inline-flex items-center px-3 py-2 text-xs font-medium text-green-700 bg-green-50/90 backdrop-blur-sm border border-green-200 rounded-lg hover:bg-green-100 hover:border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                                class="inline-flex items-center px-3 py-2 text-xs font-medium text-green-700 dark:text-green-200 bg-green-50/90 dark:bg-green-900/40 backdrop-blur-sm border border-green-200 dark:border-green-700 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/60 hover:border-green-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
                           <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
                           </svg>
@@ -1408,7 +1413,7 @@
                         </button>
                         <!-- 彻底删除按钮 -->
                         <button @click.stop="permanentlyDeleteEmail(email.id)" 
-                                class="inline-flex items-center px-3 py-2 text-xs font-medium text-red-600 bg-red-50/90 backdrop-blur-sm border border-red-200 rounded-lg hover:bg-red-100 hover:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                                class="inline-flex items-center px-3 py-2 text-xs font-medium text-red-600 dark:text-red-300 bg-red-50/90 dark:bg-red-900/40 backdrop-blur-sm border border-red-200 dark:border-red-700 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/60 hover:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
                           <svg class="w-4 h-4 transition-transform duration-300 hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                           </svg>
@@ -1454,7 +1459,7 @@
       </div>
 
       <!-- 自定义文件夹 -->
-      <div v-else-if="view==='custom-folder' && currentCustomFolder" class="bg-white/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 overflow-hidden">
+      <div v-else-if="view==='custom-folder' && currentCustomFolder" class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 dark:border-gray-600 overflow-hidden">
         <div class="p-6 border-b border-gray-200/50 bg-gradient-to-r from-indigo-50/80 via-purple-50/80 to-pink-50/80 backdrop-blur-sm">
           <div class="flex items-center justify-between">
             <h2 class="text-2xl font-bold text-gray-900 flex items-center">
@@ -1504,15 +1509,15 @@
                  :style="{ 'animation-delay': `${index * 50}ms` }"
                  class="email-item group cursor-pointer transition-all duration-300 ease-out relative overflow-hidden rounded-2xl border"
                  :class="{
-                   'bg-gradient-to-br from-indigo-50 via-purple-50/80 to-pink-50/80 border-indigo-300 shadow-xl shadow-indigo-500/20 scale-[1.01]': selectedEmail?.id === email.id,
-                   'bg-white border-gray-200 hover:border-indigo-300 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-indigo-50/30 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
+                   'bg-gradient-to-br from-indigo-50 via-purple-50/80 to-pink-50/80 dark:from-indigo-900/30 dark:via-purple-900/30 dark:to-pink-900/30 border-indigo-300 dark:border-indigo-500 shadow-xl shadow-indigo-500/20 scale-[1.01]': selectedEmail?.id === email.id,
+                   'bg-white dark:bg-gray-700/80 border-gray-200 dark:border-gray-600 hover:border-indigo-300 dark:hover:border-indigo-500 hover:bg-gradient-to-br hover:from-gray-50/50 hover:to-indigo-50/30 dark:hover:from-gray-700 dark:hover:to-indigo-900/20 hover:shadow-lg hover:scale-[1.005]': selectedEmail?.id !== email.id
                  }">
               <!-- 选中指示器 -->
               <div v-if="selectedEmail?.id === email.id" class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-500 to-purple-600"></div>
               
               <!-- 未读邮件指示器 -->
               <div v-if="isUnread(email)" class="absolute top-4 right-4">
-                <div class="w-2.5 h-2.5 bg-indigo-500 rounded-full animate-pulse shadow-md ring-2 ring-indigo-200"></div>
+                <div class="w-2.5 h-2.5 bg-indigo-500 rounded-full animate-pulse shadow-md ring-2 ring-indigo-200 dark:ring-indigo-800"></div>
               </div>
               
               <div class="p-5">
@@ -1521,45 +1526,45 @@
                     <!-- 发件人信息 -->
                     <div class="flex items-center flex-wrap gap-2 mb-3">
                       <div class="flex items-center space-x-2">
-                        <svg class="w-4 h-4 text-indigo-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 text-indigo-600 dark:text-indigo-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
-                        <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">发件人</span>
+                        <span class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">发件人</span>
                       </div>
-                      <p class="text-sm font-semibold text-gray-900 truncate">
+                      <p class="text-sm font-semibold text-gray-900 dark:text-white truncate">
                         {{ isSystemNotification(email.from) ? '系统通知' : isAdminSender(email.from) ? '系统管理员' : email.from }}
                       </p>
-                      <span v-if="isSystemNotification(email.from)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-yellow-700 bg-yellow-100 border border-yellow-200 rounded-lg">
+                      <span v-if="isSystemNotification(email.from)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-200 bg-yellow-100 dark:bg-yellow-900/50 border border-yellow-200 dark:border-yellow-700 rounded-lg">
                         <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                           <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
                         </svg>
                         系统通知
                       </span>
-                      <span v-else-if="isAdminSender(email.from)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-red-700 bg-red-100 border border-red-200 rounded-lg">系统管理员</span>
+                      <span v-else-if="isAdminSender(email.from)" class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-red-700 dark:text-red-200 bg-red-100 dark:bg-red-900/50 border border-red-200 dark:border-red-700 rounded-lg">系统管理员</span>
                     </div>
                     
                     <!-- 邮件主题 -->
-                    <h3 class="text-base font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-indigo-700 transition-colors">
+                    <h3 class="text-base font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-indigo-700 dark:group-hover:text-indigo-300 transition-colors">
                       {{ email.subject || '(无主题)' }}
                     </h3>
                     
                     <!-- 底部信息栏 -->
-                    <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                    <div class="flex items-center justify-between pt-3 border-t border-gray-100 dark:border-gray-600">
                       <div class="flex items-center space-x-3">
-                        <span class="text-xs text-gray-500 font-medium">
-                          <svg class="w-3.5 h-3.5 inline mr-1 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span class="text-xs text-gray-500 dark:text-gray-300 font-medium">
+                          <svg class="w-3.5 h-3.5 inline mr-1 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                           </svg>
                           {{ formatDate(email.date) }}
                         </span>
                       </div>
                       <div class="flex items-center space-x-2">
-                        <span v-if="isUnread(email)" class="inline-flex items-center px-2.5 py-1 text-xs font-semibold text-indigo-700 bg-indigo-50 border border-indigo-200 rounded-lg">
+                        <span v-if="isUnread(email)" class="inline-flex items-center px-2.5 py-1 text-xs font-semibold text-indigo-700 dark:text-indigo-200 bg-indigo-50 dark:bg-indigo-900/50 border border-indigo-200 dark:border-indigo-700 rounded-lg">
                           <div class="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-1.5 animate-pulse"></div>
                           未读
                         </span>
-                        <span v-else class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-gray-500 bg-gray-50 border border-gray-200 rounded-lg">
-                          <svg class="w-3 h-3 mr-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <span v-else class="inline-flex items-center px-2.5 py-1 text-xs font-medium text-gray-500 dark:text-gray-300 bg-gray-50 dark:bg-gray-600/80 border border-gray-200 dark:border-gray-500 rounded-lg">
+                          <svg class="w-3 h-3 mr-1.5 text-gray-400 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                           </svg>
                           已读
@@ -1572,19 +1577,19 @@
                   <div class="flex items-center space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-shrink-0" @click.stop>
                     <!-- 快速操作：移动到文件夹 -->
                     <div class="relative move-button-group inline-block" @click.stop>
-                      <button @click.stop class="inline-flex items-center px-3 py-2 text-xs font-medium text-gray-700 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-lg hover:bg-indigo-50 hover:border-indigo-300 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
-                        <svg class="w-4 h-4 mr-1.5 text-gray-500 move-button-group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <button @click.stop class="inline-flex items-center px-3 py-2 text-xs font-medium text-gray-700 dark:text-gray-200 bg-white/90 dark:bg-gray-600/90 backdrop-blur-sm border border-gray-300 dark:border-gray-500 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/40 hover:border-indigo-300 dark:hover:border-indigo-600 hover:text-indigo-700 dark:hover:text-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                        <svg class="w-4 h-4 mr-1.5 text-gray-500 dark:text-gray-400 move-button-group-hover:text-indigo-600 dark:move-button-group-hover:text-indigo-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                         </svg>
                         移动
                       </button>
-                      <div class="absolute right-0 top-full mt-2 w-48 bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-200/50 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-300 z-50 transform translate-y-2 move-button-group-hover:translate-y-0" @click.stop>
+                      <div class="absolute right-0 top-full mt-2 w-48 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-200/50 dark:border-gray-600 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-300 z-50 transform translate-y-2 move-button-group-hover:translate-y-0" @click.stop>
                         <div class="py-2">
                           <button v-for="folder in getAvailableFolders(email.folder || currentCustomFolder || '', email)" 
                                   :key="folder.value"
                                   @click.stop="moveEmailToFolder(email.id, folder.value)"
-                                  class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 hover:text-indigo-700 flex items-center transition-all duration-200 rounded-lg mx-1">
-                            <svg class="w-4 h-4 mr-2 text-gray-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  class="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 dark:hover:from-indigo-900/40 dark:hover:to-purple-900/40 hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center transition-all duration-200 rounded-lg mx-1">
+                            <svg class="w-4 h-4 mr-2 text-gray-400 dark:text-gray-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="getFolderIcon(folder.value)"></path>
                             </svg>
                             {{ folder.label }}
@@ -1594,7 +1599,7 @@
                     </div>
                     
                     <button @click.stop="softDeleteEmail(email.id)" 
-                            class="inline-flex items-center px-3 py-2 text-xs font-medium text-red-600 bg-red-50/90 backdrop-blur-sm border border-red-200 rounded-lg hover:bg-red-100 hover:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
+                            class="inline-flex items-center px-3 py-2 text-xs font-medium text-red-600 dark:text-red-300 bg-red-50/90 dark:bg-red-900/40 backdrop-blur-sm border border-red-200 dark:border-red-700 rounded-lg hover:bg-red-100 dark:hover:bg-red-900/60 hover:border-red-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 transition-all duration-200 shadow-sm hover:shadow-md">
                       <svg class="w-4 h-4 transition-transform duration-300 hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                       </svg>
@@ -1627,13 +1632,13 @@
           </div>
         </div>
       </div>
-        <div v-else-if="view==='compose'" class="bg-white/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 overflow-hidden">
+        <div v-else-if="view==='compose'" class="bg-white/95 dark:bg-gray-800/95 backdrop-blur-md shadow-xl rounded-2xl border border-gray-100/50 dark:border-gray-600 overflow-hidden">
             <!-- 标题栏 -->
-            <div class="p-5 border-b border-gray-200/50 bg-gradient-to-r from-purple-50/50 via-indigo-50/50 to-pink-50/50">
+            <div class="p-5 border-b border-gray-200/50 dark:border-gray-600/50 bg-gradient-to-r from-purple-50/50 via-indigo-50/50 to-pink-50/50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-800">
               <div class="flex items-center justify-between">
-                <h2 class="text-xl font-bold text-gray-900 flex items-center">
+                <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
                   <div class="relative">
-                    <svg class="w-6 h-6 mr-2 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-6 h-6 mr-2 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
                     <div class="absolute -top-1 -right-1 w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
@@ -1641,7 +1646,7 @@
                   写邮件
                 </h2>
                 <button @click="clearForm" 
-                        class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 hover:border-gray-300 transition-all duration-300">
+                        class="inline-flex items-center px-3 py-1.5 text-sm font-medium text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 hover:border-gray-300 dark:hover:border-gray-500 transition-all duration-300">
                   <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                   </svg>
@@ -1653,25 +1658,25 @@
             <div class="p-6 space-y-6">
               <!-- 收件人 -->
               <div class="group">
-                <label class="block text-sm font-semibold text-gray-700 mb-2.5 flex items-center">
-                  <svg class="w-4 h-4 mr-1.5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5 flex items-center">
+                  <svg class="w-4 h-4 mr-1.5 text-blue-500 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                   </svg>
-                  收件人 <span class="text-red-500 ml-1">*</span>
+                  收件人 <span class="text-red-500 dark:text-red-400 ml-1">*</span>
                 </label>
                 <div class="relative">
-                  <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                  <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                     </svg>
                   </div>
                   <input v-model="to" type="email" 
-                         class="w-full border-2 border-gray-200 rounded-xl pl-12 pr-12 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 bg-gradient-to-r from-white to-blue-50/30 hover:from-blue-50/50 hover:to-blue-50/50 shadow-sm hover:shadow-md" 
+                         class="w-full border-2 border-gray-200 dark:border-gray-600 rounded-xl pl-12 pr-12 py-3.5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400 transition-all duration-300 bg-gradient-to-r from-white to-blue-50/30 dark:from-gray-700 dark:to-gray-700 hover:from-blue-50/50 hover:to-blue-50/50 dark:hover:from-gray-600 dark:hover:to-gray-600 shadow-sm hover:shadow-md text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400" 
                          placeholder="user@example.com" 
                          required />
                   <button @click="showUserSelector('to')" 
                           type="button"
-                          class="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-300 hover:scale-110">
+                          class="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-lg transition-all duration-300 hover:scale-110">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
@@ -1681,24 +1686,24 @@
 
               <!-- 抄送 -->
               <div class="group">
-                <label class="block text-sm font-semibold text-gray-700 mb-2.5 flex items-center">
-                  <svg class="w-4 h-4 mr-1.5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5 flex items-center">
+                  <svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                   </svg>
-                  抄送 (CC) <span class="text-gray-400 text-xs font-normal ml-2">可选</span>
+                  抄送 (CC) <span class="text-gray-400 dark:text-gray-500 text-xs font-normal ml-2">可选</span>
                 </label>
                 <div class="relative">
-                  <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                  <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                     </svg>
                   </div>
                   <input v-model="cc" type="text" 
-                         class="w-full border-2 border-gray-200 rounded-xl pl-12 pr-12 py-3.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-300 bg-gradient-to-r from-white to-green-50/30 hover:from-green-50/50 hover:to-green-50/50 shadow-sm hover:shadow-md" 
+                         class="w-full border-2 border-gray-200 dark:border-gray-600 rounded-xl pl-12 pr-12 py-3.5 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 dark:focus:ring-green-400 dark:focus:border-green-400 transition-all duration-300 bg-gradient-to-r from-white to-green-50/30 dark:from-gray-700 dark:to-gray-700 hover:from-green-50/50 hover:to-green-50/50 dark:hover:from-gray-600 dark:hover:to-gray-600 shadow-sm hover:shadow-md text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400" 
                          placeholder="cc@example.com (支持多个，用逗号分隔)" />
                   <button @click="showUserSelector('cc')" 
                           type="button"
-                          class="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 hover:text-green-600 hover:bg-green-50 rounded-lg transition-all duration-300 hover:scale-110">
+                          class="absolute right-3 top-1/2 transform -translate-y-1/2 p-2 text-gray-400 dark:text-gray-500 hover:text-green-600 dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/30 rounded-lg transition-all duration-300 hover:scale-110">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                     </svg>
@@ -1707,13 +1712,13 @@
                 <!-- 已选择的抄送用户显示 -->
                 <div v-if="selectedCCUsers.length > 0" class="mt-3 flex flex-wrap gap-2">
                   <span v-for="(user, index) in selectedCCUsers" :key="index" 
-                        class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border border-green-200 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105">
-                    <svg class="w-3.5 h-3.5 mr-1.5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 text-green-800 dark:text-green-200 border border-green-200 dark:border-green-700 shadow-sm hover:shadow-md transition-all duration-200 hover:scale-105">
+                    <svg class="w-3.5 h-3.5 mr-1.5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                     </svg>
                     {{ user.email }}
                     <button @click="removeCCUser(index)" 
-                            class="ml-2 p-0.5 rounded-full text-green-600 hover:text-green-800 hover:bg-green-200 transition-all duration-200">
+                            class="ml-2 p-0.5 rounded-full text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-200 hover:bg-green-200 dark:hover:bg-green-700 transition-all duration-200">
                       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                       </svg>
@@ -1724,20 +1729,20 @@
 
               <!-- 主题 -->
               <div class="group">
-                <label class="block text-sm font-semibold text-gray-700 mb-2.5 flex items-center">
-                  <svg class="w-4 h-4 mr-1.5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5 flex items-center">
+                  <svg class="w-4 h-4 mr-1.5 text-purple-500 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h10m-7 4h7"></path>
                   </svg>
-                  主题 <span class="text-red-500 ml-1">*</span>
+                  主题 <span class="text-red-500 dark:text-red-400 ml-1">*</span>
                 </label>
                 <div class="relative">
-                  <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none">
+                  <div class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h10m-7 4h7"></path>
                     </svg>
                   </div>
                   <input v-model="subject" 
-                         class="w-full border-2 border-gray-200 rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-gradient-to-r from-white to-purple-50/30 hover:from-purple-50/50 hover:to-purple-50/50 shadow-sm hover:shadow-md" 
+                         class="w-full border-2 border-gray-200 dark:border-gray-600 rounded-xl pl-12 pr-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 dark:focus:ring-purple-400 dark:focus:border-purple-400 transition-all duration-300 bg-gradient-to-r from-white to-purple-50/30 dark:from-gray-700 dark:to-gray-700 hover:from-purple-50/50 hover:to-purple-50/50 dark:hover:from-gray-600 dark:hover:to-gray-600 shadow-sm hover:shadow-md text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400" 
                          placeholder="输入邮件主题..." 
                          required />
                 </div>
@@ -1745,13 +1750,13 @@
 
               <!-- 附件 -->
               <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-2.5 flex items-center">
-                  <svg class="w-4 h-4 mr-1.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5 flex items-center">
+                  <svg class="w-4 h-4 mr-1.5 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
                   </svg>
-                  附件 <span class="text-gray-400 text-xs font-normal ml-2">可选</span>
+                  附件 <span class="text-gray-400 dark:text-gray-500 text-xs font-normal ml-2">可选</span>
                 </label>
-                <div class="border-2 border-dashed border-gray-300 rounded-xl p-6 hover:border-indigo-400 hover:bg-gradient-to-br hover:from-indigo-50/30 hover:to-purple-50/30 transition-all duration-300 group cursor-pointer">
+                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl p-6 hover:border-indigo-400 dark:hover:border-indigo-500 hover:bg-gradient-to-br hover:from-indigo-50/30 hover:to-purple-50/30 dark:hover:from-indigo-900/20 dark:hover:to-purple-900/20 transition-all duration-300 group cursor-pointer">
                   <input type="file" 
                          ref="fileInput" 
                          @change="handleFileSelect" 
@@ -1759,45 +1764,45 @@
                          class="hidden" 
                          accept=".pdf,.md,.doc,.docx,.txt,.jpg,.jpeg,.png,.gif,.zip,.rar" />
                   <div @click="$refs.fileInput.click()" class="text-center">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 mb-4 group-hover:from-indigo-200 group-hover:to-purple-200 transition-all duration-300 group-hover:scale-110">
-                      <svg class="w-8 h-8 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/50 dark:to-purple-900/50 mb-4 group-hover:from-indigo-200 group-hover:to-purple-200 dark:group-hover:from-indigo-800/60 dark:group-hover:to-purple-800/60 transition-all duration-300 group-hover:scale-110">
+                      <svg class="w-8 h-8 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
                       </svg>
                     </div>
-                    <p class="text-sm font-medium text-gray-700 mb-1">
-                      <span class="text-indigo-600 hover:text-indigo-700">点击上传文件</span>
-                      <span class="text-gray-500 mx-2">或</span>
-                      <span class="text-indigo-600 hover:text-indigo-700">拖拽文件到此处</span>
+                    <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                      <span class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">点击上传文件</span>
+                      <span class="text-gray-500 dark:text-gray-400 mx-2">或</span>
+                      <span class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300">拖拽文件到此处</span>
                     </p>
-                    <p class="text-xs text-gray-500 mt-2">支持 PDF, MD, DOC, TXT, 图片, 压缩包等格式</p>
-                    <p class="text-xs text-orange-500 mt-1 font-medium">单文件最大10MB，总大小不超过50MB</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">支持 PDF, MD, DOC, TXT, 图片, 压缩包等格式</p>
+                    <p class="text-xs text-orange-500 dark:text-orange-400 mt-1 font-medium">单文件最大10MB，总大小不超过50MB</p>
                   </div>
                 </div>
                 
                 <!-- 已选择的文件列表 -->
                 <div v-if="attachments.length > 0" class="mt-4">
-                  <h4 class="text-sm font-semibold text-gray-700 mb-3 flex items-center">
-                    <svg class="w-4 h-4 mr-1.5 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <h4 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center">
+                    <svg class="w-4 h-4 mr-1.5 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                     </svg>
                     已选择的文件 ({{ attachments.length }})
                   </h4>
                   <div class="space-y-2">
                     <div v-for="(file, index) in attachments" :key="index" 
-                         class="flex items-center justify-between bg-gradient-to-r from-indigo-50/50 to-purple-50/50 hover:from-indigo-100/50 hover:to-purple-100/50 rounded-xl px-4 py-3 transition-all duration-200 border border-indigo-200/50 hover:border-indigo-300 hover:shadow-md">
+                         class="flex items-center justify-between bg-gradient-to-r from-indigo-50/50 to-purple-50/50 dark:from-indigo-900/30 dark:to-purple-900/30 hover:from-indigo-100/50 hover:to-purple-100/50 dark:hover:from-indigo-800/40 dark:hover:to-purple-800/40 rounded-xl px-4 py-3 transition-all duration-200 border border-indigo-200/50 dark:border-indigo-700/50 hover:border-indigo-300 dark:hover:border-indigo-600 hover:shadow-md">
                       <div class="flex items-center space-x-3 flex-1 min-w-0">
-                        <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-100 to-purple-100 flex items-center justify-center">
-                          <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-800/60 dark:to-purple-800/60 flex items-center justify-center">
+                          <svg class="w-5 h-5 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                           </svg>
                         </div>
                         <div class="flex-1 min-w-0">
-                          <span class="text-sm font-medium text-gray-800 block truncate">{{ file.name }}</span>
-                          <span class="text-xs text-gray-500 mt-0.5">{{ formatFileSize(file.size) }}</span>
+                          <span class="text-sm font-medium text-gray-800 dark:text-gray-200 block truncate">{{ file.name }}</span>
+                          <span class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{{ formatFileSize(file.size) }}</span>
                         </div>
                       </div>
                       <button @click="removeAttachment(index)" 
-                              class="ml-3 p-2 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-all duration-200 flex-shrink-0 hover:scale-110"
+                              class="ml-3 p-2 rounded-lg text-gray-400 dark:text-gray-500 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 transition-all duration-200 flex-shrink-0 hover:scale-110"
                               title="删除附件">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -1810,19 +1815,19 @@
 
               <!-- 正文 -->
               <div class="group">
-                <label class="block text-sm font-semibold text-gray-700 mb-2.5 flex items-center">
-                  <svg class="w-4 h-4 mr-1.5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2.5 flex items-center">
+                  <svg class="w-4 h-4 mr-1.5 text-pink-500 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                   </svg>
-                  正文 <span class="text-red-500 ml-1">*</span>
+                  正文 <span class="text-red-500 dark:text-red-400 ml-1">*</span>
                 </label>
                 <div class="relative">
                   <textarea v-model="body" 
                             rows="10" 
-                            class="w-full border-2 border-gray-200 rounded-xl px-4 py-4 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all duration-300 resize-none bg-gradient-to-br from-white to-pink-50/20 hover:from-pink-50/30 hover:to-pink-50/30 shadow-sm hover:shadow-md leading-relaxed" 
+                            class="w-full border-2 border-gray-200 dark:border-gray-600 rounded-xl px-4 py-4 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 dark:focus:ring-pink-400 dark:focus:border-pink-400 transition-all duration-300 resize-none bg-gradient-to-br from-white to-pink-50/20 dark:from-gray-700 dark:to-gray-700 hover:from-pink-50/30 hover:to-pink-50/30 dark:hover:from-gray-600 dark:hover:to-gray-600 shadow-sm hover:shadow-md leading-relaxed text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400" 
                             placeholder="在这里输入您的邮件内容..." 
                             required></textarea>
-                  <div class="absolute bottom-3 right-3 text-xs text-gray-400">
+                  <div class="absolute bottom-3 right-3 text-xs text-gray-400 dark:text-gray-500">
                     <span v-if="body.length > 0">{{ body.length }} 字符</span>
                   </div>
                 </div>
@@ -1830,9 +1835,9 @@
 
 
               <!-- 草稿保存提示 -->
-              <div v-if="draftSaved" class="flex items-center text-sm font-medium text-green-700 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl px-4 py-3 shadow-sm animate-fade-in">
-                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-3">
-                  <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <div v-if="draftSaved" class="flex items-center text-sm font-medium text-green-700 dark:text-green-300 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/40 dark:to-emerald-900/40 border border-green-200 dark:border-green-700 rounded-xl px-4 py-3 shadow-sm animate-fade-in">
+                <div class="flex-shrink-0 w-8 h-8 rounded-full bg-green-100 dark:bg-green-800/60 flex items-center justify-center mr-3">
+                  <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                   </svg>
                 </div>
@@ -1843,11 +1848,11 @@
               <div v-if="notice" :class="noticeClass" class="text-sm font-medium">{{ notice }}</div>
 
               <!-- 操作按钮 -->
-              <div class="flex items-center justify-between pt-6 border-t border-gray-200/50">
+              <div class="flex items-center justify-between pt-6 border-t border-gray-200/50 dark:border-gray-600/50">
                 <div class="flex items-center space-x-3">
                   <button @click="sendEmail" 
                           :disabled="sending || !to || !subject || !body" 
-                          class="group relative inline-flex items-center px-8 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 focus:outline-none focus:ring-4 focus:ring-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 overflow-hidden">
+                          class="group relative inline-flex items-center px-8 py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white rounded-xl font-semibold shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 disabled:hover:scale-100 overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-x-full group-hover:translate-x-full"></div>
                     <svg v-if="sending" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
                       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -1870,13 +1875,13 @@
                 </div>
                 
                 <div class="flex items-center space-x-4 text-sm">
-                  <div v-if="attachments.length > 0" class="flex items-center space-x-2 px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-lg border border-indigo-200">
+                  <div v-if="attachments.length > 0" class="flex items-center space-x-2 px-3 py-1.5 bg-indigo-50 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 rounded-lg border border-indigo-200 dark:border-indigo-700">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
                     </svg>
                     <span class="font-medium">{{ attachments.length }} 个附件</span>
                   </div>
-                  <div v-if="attachments.length === 0" class="text-gray-500 flex items-center">
+                  <div v-if="attachments.length === 0" class="text-gray-500 dark:text-gray-400 flex items-center">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"></path>
                     </svg>
@@ -1886,30 +1891,30 @@
               </div>
               
               <!-- 发送进度条 -->
-              <div v-if="sending" class="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
-                <div class="flex items-center justify-between text-sm text-blue-700 mb-2">
+              <div v-if="sending" class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-200 dark:border-blue-700">
+                <div class="flex items-center justify-between text-sm text-blue-700 dark:text-blue-300 mb-2">
                   <span class="font-medium">正在发送邮件...</span>
                   <span>{{ sendingProgress }}%</span>
                 </div>
-                <div class="w-full bg-blue-200 rounded-full h-2 mb-2">
-                  <div class="bg-blue-600 h-2 rounded-full transition-all duration-500 ease-out" :style="{ width: sendingProgress + '%' }"></div>
+                <div class="w-full bg-blue-200 dark:bg-blue-800 rounded-full h-2 mb-2">
+                  <div class="bg-blue-600 dark:bg-blue-500 h-2 rounded-full transition-all duration-500 ease-out" :style="{ width: sendingProgress + '%' }"></div>
                 </div>
                 
                 <!-- 时间信息 -->
-                <div class="flex items-center justify-between text-xs text-blue-600 mb-2">
+                <div class="flex items-center justify-between text-xs text-blue-600 dark:text-blue-400 mb-2">
                   <div class="flex items-center space-x-4">
-                    <span>已用时间: <span class="font-medium text-blue-800">{{ formatTime(elapsedTime) }}</span></span>
-                    <span v-if="estimatedTime > 0">预计剩余: <span class="font-medium text-blue-800">{{ formatTime(estimatedTime) }}</span></span>
+                    <span>已用时间: <span class="font-medium text-blue-800 dark:text-blue-300">{{ formatTime(elapsedTime) }}</span></span>
+                    <span v-if="estimatedTime > 0">预计剩余: <span class="font-medium text-blue-800 dark:text-blue-300">{{ formatTime(estimatedTime) }}</span></span>
                   </div>
-                  <div class="text-gray-500">
+                  <div class="text-gray-500 dark:text-gray-400">
                     {{ Math.round(elapsedTime + estimatedTime) }}秒总预计
                   </div>
                 </div>
                 
-                <div class="text-xs text-blue-600">
+                <div class="text-xs text-blue-600 dark:text-blue-400">
                   <span v-if="attachments.length > 0">
                     包含 {{ attachments.length }} 个附件
-                    <span v-if="isLargeFile" class="text-orange-600 font-medium">（大文件，预计需要更长时间）</span>
+                    <span v-if="isLargeFile" class="text-orange-600 dark:text-orange-400 font-medium">（大文件，预计需要更长时间）</span>
                     <span v-if="!isLargeFile">，正在处理中...</span>
                   </span>
                   <span v-if="attachments.length === 0">正在处理邮件发送</span>
@@ -1924,16 +1929,16 @@
               <div class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm transition-opacity" @click="closeEmailDetail"></div>
               
               <!-- 模态框主体 -->
-              <div class="inline-block align-bottom bg-white rounded-t-2xl sm:rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all w-full sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full border border-gray-200">
+              <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-t-2xl sm:rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all w-full sm:my-8 sm:align-middle sm:max-w-5xl sm:w-full border border-gray-200 dark:border-gray-600">
                 <!-- 头部区域 -->
-                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200">
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-700 dark:to-gray-700 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-600">
                   <div class="flex items-center justify-between">
                     <div class="flex-1 min-w-0 pr-2 sm:pr-4">
-                      <h3 class="text-lg sm:text-xl font-bold text-gray-900 truncate">{{ selectedEmail?.subject || '(无主题)' }}</h3>
-                      <p class="text-xs sm:text-sm text-gray-500 mt-1">{{ formatDate(selectedEmail?.date) }}</p>
+                      <h3 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-gray-100 truncate">{{ selectedEmail?.subject || '(无主题)' }}</h3>
+                      <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">{{ formatDate(selectedEmail?.date) }}</p>
                     </div>
                     <button @click="closeEmailDetail" 
-                            class="flex-shrink-0 p-2 text-gray-400 hover:text-gray-600 hover:bg-white rounded-lg transition-all duration-200">
+                            class="flex-shrink-0 p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 hover:bg-white dark:hover:bg-gray-600 rounded-lg transition-all duration-200">
                       <svg class="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                       </svg>
@@ -1942,17 +1947,17 @@
                 </div>
 
                 <!-- 邮件信息区域 -->
-                <div class="px-4 sm:px-6 py-4 sm:py-5 bg-white">
+                <div class="px-4 sm:px-6 py-4 sm:py-5 bg-white dark:bg-gray-800">
                   <!-- 发件人和收件人信息 -->
                   <div class="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                     <!-- 发件人 -->
                     <div class="flex flex-col sm:flex-row items-start sm:items-start space-y-1 sm:space-y-0 sm:space-x-3">
                       <div class="flex-shrink-0 w-full sm:w-20">
-                        <span class="text-xs sm:text-sm font-semibold text-gray-700">发件人:</span>
+                        <span class="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300">发件人:</span>
                       </div>
                       <div class="flex-1 min-w-0 w-full">
                         <div class="flex items-center space-x-2 flex-wrap">
-                          <span class="text-xs sm:text-sm text-gray-900 break-all">{{ selectedEmail?.from }}</span>
+                          <span class="text-xs sm:text-sm text-gray-900 dark:text-gray-100 break-all">{{ selectedEmail?.from }}</span>
                           <!-- 系统通知标签 -->
                           <span v-if="selectedEmail?.from && isSystemNotification(selectedEmail.from)" 
                                 class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium text-white bg-yellow-500 shadow-sm">
@@ -1973,17 +1978,17 @@
                     <!-- 收件人 -->
                     <div class="flex flex-col sm:flex-row items-start sm:items-start space-y-1 sm:space-y-0 sm:space-x-3">
                       <div class="flex-shrink-0 w-full sm:w-20">
-                        <span class="text-xs sm:text-sm font-semibold text-blue-700">收件人:</span>
+                        <span class="text-xs sm:text-sm font-semibold text-blue-700 dark:text-blue-300">收件人:</span>
                       </div>
                       <div class="flex-1 min-w-0 w-full">
                         <div v-if="selectedEmail?.recipients && selectedEmail.recipients.to && selectedEmail.recipients.to.length > 0" class="flex flex-wrap gap-1.5">
                           <span v-for="(addr, idx) in selectedEmail.recipients.to" :key="idx" 
-                                class="inline-flex items-center px-2 py-1 rounded-md text-xs sm:text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 break-all">
+                                class="inline-flex items-center px-2 py-1 rounded-md text-xs sm:text-sm font-medium text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-600 break-all">
                             {{ addr }}
                           </span>
                         </div>
-                        <span v-else-if="selectedEmail?.to" class="inline-flex items-center px-2 py-1 rounded-md text-xs sm:text-sm font-medium text-blue-700 bg-blue-50 border border-blue-200 break-all">{{ selectedEmail.to }}</span>
-                        <span v-else class="text-xs sm:text-sm text-gray-500">无</span>
+                        <span v-else-if="selectedEmail?.to" class="inline-flex items-center px-2 py-1 rounded-md text-xs sm:text-sm font-medium text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-600 break-all">{{ selectedEmail.to }}</span>
+                        <span v-else class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">无</span>
                       </div>
                     </div>
 
@@ -1991,16 +1996,16 @@
                     <div v-if="(selectedEmail?.recipients && selectedEmail.recipients.cc && selectedEmail.recipients.cc.length > 0) || (selectedEmail?.cc && selectedEmail.cc.trim())" 
                          class="flex flex-col sm:flex-row items-start sm:items-start space-y-1 sm:space-y-0 sm:space-x-3">
                       <div class="flex-shrink-0 w-full sm:w-20">
-                        <span class="text-xs sm:text-sm font-semibold text-green-700">抄送:</span>
+                        <span class="text-xs sm:text-sm font-semibold text-green-700 dark:text-green-300">抄送:</span>
                       </div>
                       <div class="flex-1 min-w-0 w-full">
                         <div v-if="selectedEmail?.recipients && selectedEmail.recipients.cc && selectedEmail.recipients.cc.length > 0" class="flex flex-wrap gap-1.5">
                           <span v-for="(addr, idx) in selectedEmail.recipients.cc" :key="idx" 
-                                class="inline-flex items-center px-2 py-1 rounded-md text-xs sm:text-sm font-medium text-green-700 bg-green-50 border border-green-200 break-all">
+                                class="inline-flex items-center px-2 py-1 rounded-md text-xs sm:text-sm font-medium text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900/40 border border-green-200 dark:border-green-600 break-all">
                             {{ addr }}
                           </span>
                         </div>
-                        <span v-else-if="selectedEmail?.cc && selectedEmail.cc.trim()" class="inline-flex items-center px-2 py-1 rounded-md text-xs sm:text-sm font-medium text-green-700 bg-green-50 border border-green-200 break-all">{{ selectedEmail.cc }}</span>
+                        <span v-else-if="selectedEmail?.cc && selectedEmail.cc.trim()" class="inline-flex items-center px-2 py-1 rounded-md text-xs sm:text-sm font-medium text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900/40 border border-green-200 dark:border-green-600 break-all">{{ selectedEmail.cc }}</span>
                       </div>
                     </div>
 
@@ -2008,12 +2013,12 @@
                     <div v-if="selectedEmail?.recipients && selectedEmail.recipients.bcc && selectedEmail.recipients.bcc.length > 0" 
                          class="flex items-start space-x-3">
                       <div class="flex-shrink-0 w-20">
-                        <span class="text-sm font-semibold text-gray-600">密送:</span>
+                        <span class="text-sm font-semibold text-gray-600 dark:text-gray-400">密送:</span>
                       </div>
                       <div class="flex-1 min-w-0">
                         <div class="flex flex-wrap gap-1">
                           <span v-for="(addr, idx) in selectedEmail.recipients.bcc" :key="idx" 
-                                class="text-sm text-gray-900 break-all">
+                                class="text-sm text-gray-900 dark:text-gray-100 break-all">
                             {{ addr }}<span v-if="idx < selectedEmail.recipients.bcc.length - 1">, </span>
                           </span>
                         </div>
@@ -2024,28 +2029,28 @@
                   <!-- 附件显示 -->
                   <div v-if="selectedEmail?.attachments && Array.isArray(selectedEmail.attachments) && selectedEmail.attachments.length > 0" class="mb-6">
                     <div class="flex items-center mb-3">
-                      <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
                       </svg>
-                      <h4 class="text-sm font-semibold text-gray-900">附件 ({{ selectedEmail.attachments.length }} 个)</h4>
+                      <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">附件 ({{ selectedEmail.attachments.length }} 个)</h4>
                     </div>
-                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-4">
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 border border-blue-200 dark:border-blue-600 rounded-xl p-4">
                       <div class="space-y-2">
                         <div v-for="(attachment, index) in selectedEmail.attachments" :key="index" 
-                             class="flex items-center justify-between bg-white rounded-lg border border-blue-200 px-4 py-3 shadow-sm hover:shadow-md transition-all duration-200 hover:border-blue-300">
+                             class="flex items-center justify-between bg-white dark:bg-gray-700/80 rounded-lg border border-blue-200 dark:border-blue-600 px-4 py-3 shadow-sm hover:shadow-md transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
                           <div class="flex items-center space-x-3 flex-1 min-w-0">
                             <div class="flex-shrink-0">
-                              <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                               </svg>
                             </div>
                             <div class="flex-1 min-w-0">
-                              <p class="text-sm font-medium text-gray-900 truncate">{{ attachment.name }}</p>
+                              <p class="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{{ attachment.name }}</p>
                               <div class="flex items-center space-x-2 mt-0.5">
-                                <span class="text-xs text-gray-500">{{ formatFileSize(attachment.size) }}</span>
-                                <span v-if="getAttachmentSource(attachment)" class="text-xs text-gray-400">•</span>
-                                <span v-if="getAttachmentSource(attachment)" class="text-xs text-gray-500">
-                                  来自: <span class="text-gray-700 font-medium">{{ getAttachmentSource(attachment) }}</span>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">{{ formatFileSize(attachment.size) }}</span>
+                                <span v-if="getAttachmentSource(attachment)" class="text-xs text-gray-400 dark:text-gray-500">•</span>
+                                <span v-if="getAttachmentSource(attachment)" class="text-xs text-gray-500 dark:text-gray-400">
+                                  来自: <span class="text-gray-700 dark:text-gray-300 font-medium">{{ getAttachmentSource(attachment) }}</span>
                                 </span>
                               </div>
                             </div>
@@ -2066,8 +2071,8 @@
                   <div class="space-y-4">
                     <!-- 普通邮件：直接显示正文内容 -->
                     <div v-if="parsedEmailContent.quotes.length === 0 && selectedEmail?.body && selectedEmail.body.trim() && !selectedEmail?.error"
-                         class="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                      <div class="text-gray-800 leading-relaxed whitespace-pre-wrap break-words"
+                         class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
+                      <div class="text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-wrap break-words"
                            style="word-break: break-word; overflow-wrap: break-word;">
                         {{ selectedEmail.body }}
                       </div>
@@ -2077,16 +2082,16 @@
                     <template v-if="parsedEmailContent.quotes.length > 0 && !selectedEmail?.error">
                       <!-- 用户输入的内容 -->
                       <div v-if="parsedEmailContent.userContent && parsedEmailContent.userContent.trim()" 
-                           class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border-2 border-blue-200 shadow-sm">
+                           class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl p-6 border-2 border-blue-200 dark:border-blue-600 shadow-sm">
                         <div class="flex items-center mb-3">
-                          <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                           </svg>
-                          <h4 class="text-sm font-semibold text-blue-900">
+                          <h4 class="text-sm font-semibold text-blue-900 dark:text-blue-200">
                             由{{ selectedEmail?.from || '未知用户' }}的回复
                           </h4>
                         </div>
-                        <div class="text-gray-800 leading-relaxed whitespace-pre-wrap break-words bg-white/60 rounded-lg p-4 border border-blue-100"
+                        <div class="text-gray-800 dark:text-gray-200 leading-relaxed whitespace-pre-wrap break-words bg-white/60 dark:bg-gray-700/60 rounded-lg p-4 border border-blue-100 dark:border-blue-800"
                              style="word-break: break-word; overflow-wrap: break-word;">
                           {{ parsedEmailContent.userContent }}
                         </div>
@@ -2094,56 +2099,56 @@
                       
                       <!-- 多个引用原文（独立显示） -->
                       <div v-for="(quote, index) in parsedEmailContent.quotes" :key="index" 
-                           class="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-6 border-2 border-gray-300 shadow-sm">
+                           class="bg-gradient-to-br from-gray-50 to-slate-50 dark:from-gray-700 dark:to-gray-700/80 rounded-xl p-6 border-2 border-gray-300 dark:border-gray-600 shadow-sm">
                       <div class="flex items-center justify-between mb-3">
                         <div class="flex items-center">
-                          <svg class="w-5 h-5 mr-2 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg class="w-5 h-5 mr-2 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
                           </svg>
-                          <h4 class="text-sm font-semibold text-gray-900">原始邮件 #{{ index + 1 }}</h4>
+                          <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100">原始邮件 #{{ index + 1 }}</h4>
                         </div>
-                        <span class="text-xs text-gray-500 bg-gray-200 px-2 py-1 rounded-full">{{ quote.date || '未知时间' }}</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400 bg-gray-200 dark:bg-gray-600 px-2 py-1 rounded-full">{{ quote.date || '未知时间' }}</span>
                       </div>
                       
                       <!-- 原始邮件信息 -->
-                      <div class="bg-white/80 rounded-lg p-4 mb-3 border border-gray-200 space-y-2">
+                      <div class="bg-white/80 dark:bg-gray-700/80 rounded-lg p-4 mb-3 border border-gray-200 dark:border-gray-600 space-y-2">
                         <div class="flex items-start">
-                          <span class="text-xs font-semibold text-purple-600 w-16 flex-shrink-0">发件人:</span>
+                          <span class="text-xs font-semibold text-purple-600 dark:text-purple-400 w-16 flex-shrink-0">发件人:</span>
                           <div class="flex flex-wrap gap-1 flex-1">
                             <span v-if="quote.from" 
-                                  class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium text-purple-700 bg-purple-50 border border-purple-200 break-all">
+                                  class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-900/40 border border-purple-200 dark:border-purple-600 break-all">
                               {{ quote.from }}
                             </span>
-                            <span v-else class="text-xs text-gray-500">未知</span>
+                            <span v-else class="text-xs text-gray-500 dark:text-gray-400">未知</span>
                           </div>
                         </div>
                         <div v-if="quote.to" class="flex items-start">
-                          <span class="text-xs font-semibold text-blue-600 w-16 flex-shrink-0">收件人:</span>
+                          <span class="text-xs font-semibold text-blue-600 dark:text-blue-400 w-16 flex-shrink-0">收件人:</span>
                           <div class="flex flex-wrap gap-1 flex-1">
                             <span v-for="(addr, idx) in (Array.isArray(quote.to) ? quote.to : quote.to.split(',').map(a => a.trim()).filter(a => a))" :key="idx"
-                                  class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium text-blue-700 bg-blue-50 border border-blue-200 break-all">
+                                  class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-600 break-all">
                               {{ addr }}
                             </span>
                           </div>
                         </div>
                         <div v-if="quote.cc" class="flex items-start">
-                          <span class="text-xs font-semibold text-green-600 w-16 flex-shrink-0">抄送:</span>
+                          <span class="text-xs font-semibold text-green-600 dark:text-green-400 w-16 flex-shrink-0">抄送:</span>
                           <div class="flex flex-wrap gap-1 flex-1">
                             <span v-for="(addr, idx) in (Array.isArray(quote.cc) ? quote.cc : quote.cc.split(',').map(a => a.trim()).filter(a => a))" :key="idx"
-                                  class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium text-green-700 bg-green-50 border border-green-200 break-all">
+                                  class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900/40 border border-green-200 dark:border-green-600 break-all">
                               {{ addr }}
                             </span>
                           </div>
                         </div>
                         <div class="flex items-start">
-                          <span class="text-xs font-semibold text-gray-600 w-16 flex-shrink-0">主题:</span>
-                          <span class="text-xs text-gray-900 break-all flex-1">{{ quote.subject || '无主题' }}</span>
+                          <span class="text-xs font-semibold text-gray-600 dark:text-gray-400 w-16 flex-shrink-0">主题:</span>
+                          <span class="text-xs text-gray-900 dark:text-gray-100 break-all flex-1">{{ quote.subject || '无主题' }}</span>
                         </div>
                       </div>
                       
                       <!-- 原始邮件正文 -->
-                      <div class="bg-white/60 rounded-lg p-4 border border-gray-200 max-h-64 overflow-y-auto">
-                        <div class="text-sm text-gray-700 leading-relaxed whitespace-pre-wrap break-words"
+                      <div class="bg-white/60 dark:bg-gray-700/60 rounded-lg p-4 border border-gray-200 dark:border-gray-600 max-h-64 overflow-y-auto">
+                        <div class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-wrap break-words"
                              style="word-break: break-word; overflow-wrap: break-word;">
                           {{ quote.body || '(无内容)' }}
                         </div>
@@ -2154,49 +2159,49 @@
                     <!-- HTML内容（仅在普通邮件且没有body时显示，经 DOMPurify 消毒防 XSS） -->
                     <div v-if="parsedEmailContent.quotes.length === 0 && sanitizedEmailHtml && (!selectedEmail?.body || !selectedEmail.body.trim()) && !selectedEmail?.error"
                          v-html="sanitizedEmailHtml"
-                         class="bg-gray-50 rounded-xl p-6 border border-gray-200 text-gray-800 leading-relaxed break-words"
+                         class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-200 leading-relaxed break-words"
                          style="word-break: break-word; overflow-wrap: break-word;">
                     </div>
                     
                     <!-- 错误提示（仅在真正有错误且没有内容时显示） -->
                     <div v-if="selectedEmail && selectedEmail.error && parsedEmailContent.quotes.length === 0 && (!selectedEmail.body || !selectedEmail.body.trim()) && (!selectedEmail.html || !selectedEmail.html.trim())" 
-                         class="flex items-center justify-center h-32 text-red-400 bg-red-50 rounded-xl border-2 border-red-200">
+                         class="flex items-center justify-center h-32 text-red-400 dark:text-red-300 bg-red-50 dark:bg-red-900/30 rounded-xl border-2 border-red-200 dark:border-red-700">
                       <div class="text-center">
-                        <svg class="w-12 h-12 mx-auto mb-2 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-12 h-12 mx-auto mb-2 text-red-300 dark:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        <p class="text-sm font-semibold text-red-600">无法加载邮件详情</p>
-                        <p class="text-xs text-red-500 mt-2">{{ selectedEmail.errorMessage || '邮件不存在或您没有权限访问' }}</p>
-                        <p class="text-xs text-gray-400 mt-1">邮件ID: {{ selectedEmail.id }}</p>
+                        <p class="text-sm font-semibold text-red-600 dark:text-red-400">无法加载邮件详情</p>
+                        <p class="text-xs text-red-500 dark:text-red-400 mt-2">{{ selectedEmail.errorMessage || '邮件不存在或您没有权限访问' }}</p>
+                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">邮件ID: {{ selectedEmail.id }}</p>
                       </div>
                     </div>
                     
                     <!-- 空内容提示（仅在普通邮件时显示，且没有错误） -->
                     <div v-else-if="parsedEmailContent.quotes.length === 0 && selectedEmail && !selectedEmail?.error && (!selectedEmail.body || !selectedEmail.body.trim()) && (!selectedEmail.html || !selectedEmail.html.trim())" 
-                         class="flex items-center justify-center h-32 text-gray-400 bg-gray-50 rounded-xl border border-gray-200">
+                         class="flex items-center justify-center h-32 text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-200 dark:border-gray-600">
                       <div class="text-center">
-                        <svg class="w-12 h-12 mx-auto mb-2 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-12 h-12 mx-auto mb-2 text-gray-300 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
-                        <p class="text-sm">邮件内容为空</p>
-                        <p class="text-xs text-gray-400 mt-2">邮件ID: {{ selectedEmail.id }}</p>
+                        <p class="text-sm dark:text-gray-300">邮件内容为空</p>
+                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">邮件ID: {{ selectedEmail.id }}</p>
                       </div>
                     </div>
                     
                     <!-- 加载中（仅在真正加载时显示） -->
-                    <div v-else-if="!selectedEmail" class="flex items-center justify-center h-32 text-gray-400 bg-gray-50 rounded-xl border border-gray-200">
+                    <div v-else-if="!selectedEmail" class="flex items-center justify-center h-32 text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-gray-200 dark:border-gray-600">
                       <div class="text-center">
-                        <svg class="w-12 h-12 mx-auto mb-2 text-gray-300 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-12 h-12 mx-auto mb-2 text-gray-300 dark:text-gray-500 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
                         </svg>
-                        <p class="text-sm">邮件内容加载中...</p>
+                        <p class="text-sm dark:text-gray-300">邮件内容加载中...</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <!-- 底部操作栏 -->
-                <div class="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between flex-wrap gap-3">
+                <div class="bg-gray-50 dark:bg-gray-700/50 px-6 py-4 border-t border-gray-200 dark:border-gray-600 flex items-center justify-between flex-wrap gap-3">
                   <!-- 左侧操作按钮 -->
                   <div class="flex items-center space-x-3 flex-wrap">
                     <!-- 答复按钮组（下拉菜单） -->
@@ -2210,18 +2215,18 @@
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                       </button>
-                      <div class="absolute left-0 bottom-full mb-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible reply-dropdown transition-all duration-200 z-50">
+                      <div class="absolute left-0 bottom-full mb-2 w-48 bg-white dark:bg-gray-700 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 opacity-0 invisible reply-dropdown transition-all duration-200 z-50">
                         <div class="py-2">
                           <button @click="openReplyDialog(false)" 
-                                  class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 flex items-center transition-colors">
-                            <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  class="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-700 dark:hover:text-blue-300 flex items-center transition-colors">
+                            <svg class="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
                             </svg>
                             单独答复
                           </button>
                           <button @click="openReplyDialog(true)" 
-                                  class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 flex items-center transition-colors">
-                            <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  class="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-700 dark:hover:text-blue-300 flex items-center transition-colors">
+                            <svg class="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                             </svg>
                             全部答复
@@ -2232,25 +2237,25 @@
                     
                     <!-- 移动到文件夹 -->
                     <div class="relative move-button-group">
-                      <button class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md">
-                        <svg class="w-4 h-4 mr-2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <button class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-600 border border-gray-300 dark:border-gray-500 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-700 transition-all duration-200 shadow-sm hover:shadow-md">
+                        <svg class="w-4 h-4 mr-2 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
                         </svg>
                         移动到
-                        <svg class="w-4 h-4 ml-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 ml-1.5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                       </button>
-                      <div class="absolute left-0 bottom-full mb-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-200 z-50">
+                      <div class="absolute left-0 bottom-full mb-2 w-56 bg-white dark:bg-gray-700 rounded-lg shadow-xl border border-gray-200 dark:border-gray-600 opacity-0 invisible move-button-group-hover:opacity-100 move-button-group-hover:visible transition-all duration-200 z-50">
                         <div class="py-2">
-                          <div v-if="getAvailableFolders(selectedEmail?.folder || 'inbox', selectedEmail).length === 0" class="px-4 py-2 text-sm text-gray-500">
+                          <div v-if="getAvailableFolders(selectedEmail?.folder || 'inbox', selectedEmail).length === 0" class="px-4 py-2 text-sm text-gray-500 dark:text-gray-400">
                             无可用目标文件夹
                           </div>
                           <button v-for="folder in getAvailableFolders(selectedEmail?.folder || 'inbox', selectedEmail)" 
                                   :key="folder.value"
                                   @click="handleMoveFolderAction(folder.value)"
-                                  class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-700 flex items-center transition-colors">
-                            <svg class="w-5 h-5 mr-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  class="w-full text-left px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-blue-900/40 hover:text-blue-700 dark:hover:text-blue-300 flex items-center transition-colors">
+                            <svg class="w-5 h-5 mr-3 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="getFolderIcon(folder.value)"></path>
                             </svg>
                             {{ folder.label }}
@@ -2261,7 +2266,7 @@
                     
                     <!-- 删除按钮 -->
                     <button @click="showDeleteConfirmDialog(selectedEmail?.id)" 
-                            class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-red-700 bg-red-50 border border-red-200 rounded-lg hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all duration-200 shadow-sm hover:shadow-md">
+                            class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-900/40 border border-red-200 dark:border-red-600 rounded-lg hover:bg-red-100 dark:hover:bg-red-800/50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-700 transition-all duration-200 shadow-sm hover:shadow-md">
                       <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                       </svg>
@@ -4552,8 +4557,9 @@ async function handleMoveFolder(event: Event) {
 
 // 处理移动到文件夹（新版本，直接传值）
 async function handleMoveFolderAction(folder: string) {
-  if (!folder || !selectedEmail?.id) return
-  await moveEmailToFolder(selectedEmail.id, folder)
+  const id = selectedEmail.value?.id
+  if (!folder || id == null || id === undefined) return
+  await moveEmailToFolder(id, folder)
 }
 
 
@@ -4665,7 +4671,7 @@ function getFolderIcon(folderValue: string): string {
 
 // 移动到文件夹
 async function moveEmailToFolder(emailId: number | string, folder: string) {
-  if (!emailId || !folder) return
+  if (emailId == null || emailId === '' || !folder) return
   
   try {
     const auth = sessionStorage.getItem('apiAuth')
@@ -4679,16 +4685,18 @@ async function moveEmailToFolder(emailId: number | string, folder: string) {
     })
     
     if (response.ok) {
-      const data = await response.json()
+      let data: { success?: boolean; error?: string }
+      try {
+        data = await response.json()
+      } catch {
+        data = {}
+      }
       if (data.success) {
-        // 更新邮件列表
-        const emailIndex = emails.value.findIndex((e: any) => e.id === emailId)
-        if (emailIndex !== -1) {
-          emails.value[emailIndex].folder = folder
-        }
-        // 如果当前查看的是该邮件，更新详情
-        if (selectedEmail?.id === emailId) {
-          selectedEmail.value.folder = folder
+        // 从当前列表中移除已移动的邮件，使列表立即更新
+        emails.value = emails.value.filter((e: any) => e.id != emailId)
+        // 如果当前查看的是该邮件，关闭详情并更新选中状态
+        if (selectedEmail.value && selectedEmail.value.id != null && selectedEmail.value.id == emailId) {
+          closeEmailDetail()
         }
         // 重新加载统计
         loadMailStats()
@@ -4697,9 +4705,17 @@ async function moveEmailToFolder(emailId: number | string, folder: string) {
         setTimeout(() => {
           notice.value = ''
         }, 2000)
+      } else {
+        notice.value = (data && data.error) || '移动邮件失败'
+        noticeType.value = 'error'
       }
     } else {
-      const errorData = await response.json()
+      let errorData: { error?: string } = {}
+      try {
+        errorData = await response.json()
+      } catch {
+        errorData = {}
+      }
       notice.value = errorData.error || '移动邮件失败'
       noticeType.value = 'error'
     }
@@ -6029,9 +6045,9 @@ onUnmounted(() => {
 })
 
 const noticeClass = computed(() => {
-  if (noticeType.value==='success') return 'text-green-600'
-  if (noticeType.value==='error') return 'text-red-600'
-  return 'text-yellow-700'
+  if (noticeType.value==='success') return 'text-green-600 dark:text-green-400'
+  if (noticeType.value==='error') return 'text-red-600 dark:text-red-400'
+  return 'text-yellow-700 dark:text-yellow-400'
 })
 
 // DNS服务状态相关函数

@@ -1,10 +1,10 @@
 <template>
   <Layout>
-    <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 py-4 sm:py-8">
+    <div class="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-4 sm:py-8">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- 页面标题 -->
         <div class="mb-4 sm:mb-8">
-          <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 flex items-center">
+          <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 flex items-center">
             <div class="p-2 sm:p-3 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg sm:rounded-xl mr-2 sm:mr-4">
               <svg class="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
@@ -13,35 +13,35 @@
             </div>
             系统设置
           </h1>
-          <p class="text-gray-600 mt-1 sm:mt-2 text-xs sm:text-sm">配置系统参数和高级选项</p>
+          <p class="text-gray-600 dark:text-gray-400 mt-1 sm:mt-2 text-xs sm:text-sm">配置系统参数和高级选项</p>
         </div>
 
         <!-- 加载状态 -->
         <div v-if="settingsLoading" class="flex items-center justify-center py-12">
-          <svg class="animate-spin h-12 w-12 text-purple-600" fill="none" viewBox="0 0 24 24">
+          <svg class="animate-spin h-12 w-12 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
-          <span class="ml-3 text-gray-600 text-lg">加载设置中...</span>
+          <span class="ml-3 text-gray-600 dark:text-gray-400 text-lg">加载设置中...</span>
         </div>
 
         <!-- 错误提示 -->
-        <div v-if="settingsError" class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div v-if="settingsError" class="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-600 rounded-lg">
           <div class="flex items-center">
-            <svg class="h-5 w-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-5 w-5 text-red-400 dark:text-red-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span class="text-sm text-red-600">{{ settingsError }}</span>
+            <span class="text-sm text-red-600 dark:text-red-300">{{ settingsError }}</span>
           </div>
         </div>
 
         <!-- 成功提示 -->
-        <div v-if="settingsSuccess" class="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div v-if="settingsSuccess" class="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-600 rounded-lg">
           <div class="flex items-center">
-            <svg class="h-5 w-5 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-5 w-5 text-green-400 dark:text-green-300 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
             </svg>
-            <span class="text-sm text-green-600">设置保存成功！</span>
+            <span class="text-sm text-green-600 dark:text-green-300">设置保存成功！</span>
           </div>
         </div>
 
@@ -49,33 +49,33 @@
         <div v-if="!settingsLoading" class="space-y-4 sm:space-y-6">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
             <!-- 常规设置 -->
-            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-blue-200 shadow-lg">
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-gray-800 dark:to-gray-800/90 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-blue-200 dark:border-gray-600 shadow-lg">
               <div class="flex items-center mb-3 sm:mb-4">
-                <div class="p-1.5 sm:p-2 bg-blue-100 rounded-lg">
-                  <svg class="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="p-1.5 sm:p-2 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                  <svg class="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                   </svg>
                 </div>
-                <h4 class="ml-2 sm:ml-3 text-base sm:text-lg font-semibold text-gray-900">常规设置</h4>
+                <h4 class="ml-2 sm:ml-3 text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">常规设置</h4>
               </div>
               
               <div class="space-y-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">系统名称</label>
-                  <input :value="systemSettings.general.systemName" type="text" readonly disabled class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-600 cursor-not-allowed">
-                  <p class="text-xs text-gray-500 mt-1">系统名称不可修改</p>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">系统名称</label>
+                  <input :value="systemSettings.general.systemName" type="text" readonly disabled class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-not-allowed">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">系统名称不可修改</p>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">管理员邮箱</label>
-                  <input v-model="systemSettings.general.adminEmail" type="email" readonly class="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-600 cursor-not-allowed">
-                  <p class="text-xs text-gray-500 mt-1">管理员邮箱由系统自动设置</p>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">管理员邮箱</label>
+                  <input v-model="systemSettings.general.adminEmail" type="email" readonly class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 cursor-not-allowed">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">管理员邮箱由系统自动设置</p>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">用户分页大小</label>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">用户分页大小</label>
                   <div class="relative">
-                    <select v-model="systemSettings.general.userPageSize" @change.stop="handleUserPageSizeChange" @input.stop="handleUserPageSizeChange" @click.stop :disabled="settingsSaving" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed cursor-pointer">
+                    <select v-model="systemSettings.general.userPageSize" @change.stop="handleUserPageSizeChange" @input.stop="handleUserPageSizeChange" @click.stop :disabled="settingsSaving" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-600 disabled:cursor-not-allowed cursor-pointer">
                       <option value="5">5 条/页</option>
                       <option value="10">10 条/页</option>
                       <option value="15">15 条/页</option>
@@ -84,78 +84,78 @@
                       <option value="50">50 条/页</option>
                     </select>
                     <div v-if="settingsSaving" class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                      <svg class="animate-spin h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24">
+                      <svg class="animate-spin h-4 w-4 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
                     </div>
                   </div>
-                  <p class="text-xs text-gray-500 mt-1">
-                    <span v-if="settingsSaving" class="text-blue-600">正在保存设置...</span>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <span v-if="settingsSaving" class="text-blue-600 dark:text-blue-400">正在保存设置...</span>
                     <span v-else>设置用户列表每页显示的用户数量</span>
                   </p>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">时区</label>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">时区</label>
                   <div class="relative">
-                    <select v-model="systemSettings.general.timezone" @change.stop="onTimezoneChange" @input.stop="onTimezoneChange" @click.stop :disabled="timezoneSaving" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed cursor-pointer">
+                    <select v-model="systemSettings.general.timezone" @change.stop="onTimezoneChange" @input.stop="onTimezoneChange" @click.stop :disabled="timezoneSaving" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-600 disabled:cursor-not-allowed cursor-pointer">
                       <optgroup v-for="(timezones, region) in availableTimezones" :key="region" :label="region">
                         <option v-for="timezone in timezones" :key="timezone" :value="timezone">{{ timezone }}</option>
                       </optgroup>
                     </select>
                     <div v-if="timezoneLoading || timezoneSaving" class="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
-                      <svg class="animate-spin h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24">
+                      <svg class="animate-spin h-4 w-4 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
                     </div>
                   </div>
-                  <p class="text-xs text-gray-500 mt-1">
-                    <span v-if="timezoneSaving" class="text-blue-600">正在修改时区，请稍候...</span>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <span v-if="timezoneSaving" class="text-blue-600 dark:text-blue-400">正在修改时区，请稍候...</span>
                     <span v-else>当前系统时区: {{ currentSystemTimezone }}</span>
                   </p>
                 </div>
                 
                 <!-- 备案号设置 -->
-                <div class="pt-4 border-t border-blue-200">
+                <div class="pt-4 border-t border-blue-200 dark:border-gray-600">
                   <div class="flex items-center justify-between mb-3">
                     <div>
-                      <label class="text-sm font-medium text-gray-700">显示备案号</label>
-                      <p class="text-xs text-gray-500">在页面底部显示ICP备案号</p>
+                      <label class="text-sm font-medium text-gray-700 dark:text-gray-300">显示备案号</label>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">在页面底部显示ICP备案号</p>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer">
                       <input v-model="systemSettings.general.icp.enabled" 
                              @change="saveSystemSettings()"
                              type="checkbox" 
                              class="sr-only peer">
-                      <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                      <div class="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-600 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-500 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
                     </label>
                   </div>
                   <div v-if="systemSettings.general.icp.enabled" class="space-y-3">
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">备案号</label>
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">备案号</label>
                       <input v-model="systemSettings.general.icp.number" 
                              @change="saveSystemSettings()"
                              @blur="saveSystemSettings()"
                              type="text" 
                              placeholder="例如：京ICP备12345678号"
-                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                      <p class="text-xs text-gray-500 mt-1">
-                        <span v-if="settingsSaving" class="text-blue-600">正在保存设置...</span>
+                             class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <span v-if="settingsSaving" class="text-blue-600 dark:text-blue-400">正在保存设置...</span>
                         <span v-else>请输入完整的ICP备案号</span>
                       </p>
                     </div>
                     <div>
-                      <label class="block text-sm font-medium text-gray-700 mb-1">备案号链接</label>
+                      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">备案号链接</label>
                       <input v-model="systemSettings.general.icp.url" 
                              @change="saveSystemSettings()"
                              @blur="saveSystemSettings()"
                              type="url" 
                              placeholder="https://beian.miit.gov.cn/"
-                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                      <p class="text-xs text-gray-500 mt-1">
-                        <span v-if="settingsSaving" class="text-blue-600">正在保存设置...</span>
+                             class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        <span v-if="settingsSaving" class="text-blue-600 dark:text-blue-400">正在保存设置...</span>
                         <span v-else>点击备案号时跳转的链接地址（默认：工信部备案查询网站）</span>
                       </p>
                     </div>
@@ -165,73 +165,73 @@
             </div>
             
             <!-- 安全设置 -->
-            <div class="bg-gradient-to-br from-red-50 to-pink-50 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-red-200 shadow-lg">
+            <div class="bg-gradient-to-br from-red-50 to-pink-50 dark:from-gray-800 dark:to-gray-800/90 p-4 sm:p-6 rounded-lg sm:rounded-xl border border-red-200 dark:border-gray-600 shadow-lg">
               <div class="flex items-center mb-3 sm:mb-4">
-                <div class="p-1.5 sm:p-2 bg-red-100 rounded-lg">
-                  <svg class="h-5 w-5 sm:h-6 sm:w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="p-1.5 sm:p-2 bg-red-100 dark:bg-red-900/50 rounded-lg">
+                  <svg class="h-5 w-5 sm:h-6 sm:w-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                   </svg>
                 </div>
-                <h4 class="ml-2 sm:ml-3 text-base sm:text-lg font-semibold text-gray-900">安全设置</h4>
+                <h4 class="ml-2 sm:ml-3 text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">安全设置</h4>
               </div>
               
               <div class="space-y-4">
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">会话超时（分钟）</label>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">会话超时（分钟）</label>
                   <input v-model.number="systemSettings.security.sessionTimeout" 
                          @change="saveSystemSettings()"
                          @blur="saveSystemSettings()"
                          type="number" 
                          min="5" 
                          max="1440" 
-                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                  <p class="text-xs text-gray-500 mt-1">
-                    <span v-if="settingsSaving" class="text-blue-600">正在保存设置...</span>
+                         class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <span v-if="settingsSaving" class="text-blue-600 dark:text-blue-400">正在保存设置...</span>
                     <span v-else>用户无操作后自动登出的时间（5-1440分钟）</span>
                   </p>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">最大登录尝试次数</label>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">最大登录尝试次数</label>
                   <input v-model.number="systemSettings.security.maxLoginAttempts" 
                          @change="saveSystemSettings()"
                          @blur="saveSystemSettings()"
                          type="number" 
                          min="3" 
                          max="20" 
-                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                  <p class="text-xs text-gray-500 mt-1">
-                    <span v-if="settingsSaving" class="text-blue-600">正在保存设置...</span>
+                         class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <span v-if="settingsSaving" class="text-blue-600 dark:text-blue-400">正在保存设置...</span>
                     <span v-else>超过此次数后账户将被临时锁定（3-20次）</span>
                   </p>
                 </div>
                 
                 <div>
-                  <label class="block text-sm font-medium text-gray-700 mb-1">密码最小长度</label>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">密码最小长度</label>
                   <input v-model.number="systemSettings.security.passwordMinLength" 
                          @change="saveSystemSettings()"
                          @blur="saveSystemSettings()"
                          type="number" 
                          min="6" 
                          max="32" 
-                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
-                  <p class="text-xs text-gray-500 mt-1">
-                    <span v-if="settingsSaving" class="text-blue-600">正在保存设置...</span>
+                         class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <span v-if="settingsSaving" class="text-blue-600 dark:text-blue-400">正在保存设置...</span>
                     <span v-else>用户密码的最小字符数（6-32个字符）</span>
                   </p>
                 </div>
                 
                 <div class="flex items-center justify-between">
                   <div>
-                    <label class="text-sm font-medium text-gray-700">要求特殊字符</label>
-                    <p class="text-xs text-gray-500">密码必须包含大小写字母、数字和特殊字符</p>
+                    <label class="text-sm font-medium text-gray-700 dark:text-gray-300">要求特殊字符</label>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">密码必须包含大小写字母、数字和特殊字符</p>
                   </div>
                   <label class="relative inline-flex items-center cursor-pointer">
                     <input v-model="systemSettings.security.requireSpecialChars" 
                            @change="saveSystemSettings()"
                            type="checkbox" 
                            class="sr-only peer">
-                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
+                    <div class="w-11 h-6 bg-gray-200 dark:bg-gray-600 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-600 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 dark:after:border-gray-500 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
                   </label>
                 </div>
                 
@@ -240,21 +240,21 @@
           </div>
           
           <!-- 邮件设置 -->
-          <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-xl border border-green-200 shadow-lg">
+          <div class="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-gray-800 dark:to-gray-800/90 p-6 rounded-xl border border-green-200 dark:border-gray-600 shadow-lg">
             <div class="flex items-center mb-4">
-              <div class="p-2 bg-green-100 rounded-lg">
-                <svg class="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="p-2 bg-green-100 dark:bg-green-900/50 rounded-lg">
+                <svg class="h-6 w-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                 </svg>
               </div>
-              <h4 class="ml-3 text-lg font-semibold text-gray-900">邮件设置</h4>
+              <h4 class="ml-3 text-lg font-semibold text-gray-900 dark:text-gray-100">邮件设置</h4>
             </div>
             
             <div class="space-y-4">
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">邮件分页大小</label>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">邮件分页大小</label>
                 <div class="relative">
-                  <select v-model="systemSettings.mail.pageSize" @change="saveMailSettings" :disabled="mailSettingsSaving" class="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed">
+                  <select v-model="systemSettings.mail.pageSize" @change="saveMailSettings" :disabled="mailSettingsSaving" class="mt-1 block w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-600 disabled:cursor-not-allowed">
                     <option value="5">5 条/页</option>
                     <option value="8">8 条/页</option>
                     <option value="10">10 条/页</option>
@@ -263,56 +263,56 @@
                     <option value="25">25 条/页</option>
                   </select>
                   <div v-if="mailSettingsSaving" class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <svg class="animate-spin h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24">
+                    <svg class="animate-spin h-4 w-4 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24">
                       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                       <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
                   </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-1">
-                  <span v-if="mailSettingsSaving" class="text-green-600">正在保存设置...</span>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <span v-if="mailSettingsSaving" class="text-green-600 dark:text-green-400">正在保存设置...</span>
                   <span v-else>设置邮件列表每页显示的邮件数量</span>
                 </p>
               </div>
               
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">最大邮箱大小（MB）</label>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">最大邮箱大小（MB）</label>
                 <div class="relative">
-                  <input v-model.number="systemSettings.mail.maxMailboxSize" @change="saveMailSettings" :disabled="mailSettingsSaving" type="number" min="100" max="10000" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed">
+                  <input v-model.number="systemSettings.mail.maxMailboxSize" @change="saveMailSettings" :disabled="mailSettingsSaving" type="number" min="100" max="10000" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-600 disabled:cursor-not-allowed">
                   <div v-if="mailSettingsSaving" class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <svg class="animate-spin h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24">
+                    <svg class="animate-spin h-4 w-4 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24">
                       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                       <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
                   </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-1">
-                  <span v-if="mailSettingsSaving" class="text-green-600">正在应用设置...</span>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <span v-if="mailSettingsSaving" class="text-green-600 dark:text-green-400">正在应用设置...</span>
                   <span v-else>设置单个用户邮箱的最大存储空间</span>
                 </p>
               </div>
               
               <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">最大邮件大小（MB）</label>
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">最大邮件大小（MB）</label>
                 <div class="relative">
-                  <input v-model.number="systemSettings.mail.maxMessageSize" @change="saveMailSettings" :disabled="mailSettingsSaving" type="number" min="1" max="100" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed">
+                  <input v-model.number="systemSettings.mail.maxMessageSize" @change="saveMailSettings" :disabled="mailSettingsSaving" type="number" min="1" max="100" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-600 disabled:cursor-not-allowed">
                   <div v-if="mailSettingsSaving" class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <svg class="animate-spin h-4 w-4 text-green-600" fill="none" viewBox="0 0 24 24">
+                    <svg class="animate-spin h-4 w-4 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24">
                       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                       <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
                   </div>
                 </div>
-                <p class="text-xs text-gray-500 mt-1">
-                  <span v-if="mailSettingsSaving" class="text-green-600">正在应用设置...</span>
+                <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  <span v-if="mailSettingsSaving" class="text-green-600 dark:text-green-400">正在应用设置...</span>
                   <span v-else>设置单封邮件的最大大小限制</span>
                 </p>
               </div>
               
               <!-- 域名管理 -->
-              <div class="border-t border-green-200 pt-4">
+              <div class="border-t border-green-200 dark:border-gray-600 pt-4">
                 <div class="flex items-center justify-between mb-3">
-                  <h5 class="text-sm font-medium text-gray-700">邮件域名管理</h5>
+                  <h5 class="text-sm font-medium text-gray-700 dark:text-gray-300">邮件域名管理</h5>
                   <button @click="showAddDomain = !showAddDomain" 
                           class="text-xs px-3 py-1 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
                     {{ showAddDomain ? '取消' : '添加域名' }}
@@ -320,14 +320,14 @@
                 </div>
                 
                 <!-- 添加域名表单 -->
-                <div v-if="showAddDomain" class="mb-4 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg border border-green-200 shadow-sm">
+                <div v-if="showAddDomain" class="mb-4 p-4 bg-gradient-to-r from-green-50 to-blue-50 dark:from-gray-700 dark:to-gray-700 rounded-lg border border-green-200 dark:border-gray-600 shadow-sm">
                   <div class="flex items-center space-x-3">
                     <div class="flex-1 relative">
                       <input v-model="newDomain" 
                              type="text" 
                              placeholder="输入域名，如: example.com" 
                              :disabled="domainAdding"
-                             class="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed transition-all duration-200"
+                             class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-600 dark:text-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent disabled:bg-gray-100 dark:disabled:bg-gray-600 disabled:cursor-not-allowed transition-all duration-200"
                              @click.stop
                              @focus.stop
                              @input.stop>
@@ -344,27 +344,27 @@
                   </div>
                   
                   <!-- 错误提示 -->
-                  <div v-if="domainError" class="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <div v-if="domainError" class="mt-3 p-3 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-600 rounded-lg">
                     <div class="flex items-center">
-                      <svg class="w-5 h-5 text-red-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-5 h-5 text-red-500 dark:text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
-                      <span class="text-sm text-red-700 font-medium">{{ domainError }}</span>
+                      <span class="text-sm text-red-700 dark:text-red-300 font-medium">{{ domainError }}</span>
                     </div>
                   </div>
                   
                   <!-- 成功提示 -->
-                  <div v-if="domainSuccess" class="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                  <div v-if="domainSuccess" class="mt-3 p-3 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-600 rounded-lg">
                     <div class="flex items-center">
-                      <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-5 h-5 text-green-500 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                       </svg>
-                      <span class="text-sm text-green-700 font-medium">{{ domainSuccess }}</span>
+                      <span class="text-sm text-green-700 dark:text-green-300 font-medium">{{ domainSuccess }}</span>
                     </div>
                   </div>
                   
-                  <p class="text-xs text-gray-600 mt-2 flex items-center">
-                    <svg class="w-4 h-4 text-blue-500 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <p class="text-xs text-gray-600 dark:text-gray-400 mt-2 flex items-center">
+                    <svg class="w-4 h-4 text-blue-500 dark:text-blue-400 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                     只有添加的域名才能接收邮件，其他域名将被拒绝
@@ -374,7 +374,7 @@
                 <!-- 域名列表 -->
                 <div class="space-y-3">
                   <div v-for="domain in (systemSettings.mail.domains || [])" :key="domain.id" 
-                       class="group flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200">
+                       class="group flex items-center justify-between p-4 bg-white dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 hover:border-green-300 dark:hover:border-green-500 hover:shadow-md transition-all duration-200">
                     <div class="flex items-center space-x-3">
                       <div class="flex-shrink-0">
                         <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center">
@@ -384,15 +384,15 @@
                         </div>
                       </div>
                       <div class="flex-1">
-                        <span class="text-sm font-semibold text-gray-800">{{ domain.name }}</span>
+                        <span class="text-sm font-semibold text-gray-800 dark:text-gray-100">{{ domain.name }}</span>
                         <div class="flex items-center space-x-2 mt-1">
-                          <span v-if="domain.isDefault" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                          <span v-if="domain.isDefault" class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300">
                             <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                               <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                             </svg>
                             默认域名
                           </span>
-                          <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                          <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300">
                             <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                               <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                               <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
@@ -404,7 +404,7 @@
                     </div>
                     <button @click="showDeleteDomainConfirm(domain.id)" 
                             :disabled="domain.isDefault || domain.isDnsDomain"
-                            class="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="p-2 text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
                             :title="domain.isDnsDomain ? 'DNS配置的域名不能删除' : (domain.isDefault ? '默认域名不能删除' : '删除域名')">
                       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
@@ -414,11 +414,11 @@
                   
                   <div v-if="!systemSettings.mail.domains || systemSettings.mail.domains.length === 0" class="text-center py-8">
                     <div class="flex flex-col items-center">
-                      <svg class="w-12 h-12 text-gray-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg class="w-12 h-12 text-gray-400 dark:text-gray-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
                       </svg>
-                      <p class="text-gray-500 text-sm">暂无配置的邮件域名</p>
-                      <p class="text-gray-400 text-xs mt-1">点击上方"添加域名"按钮开始配置</p>
+                      <p class="text-gray-500 dark:text-gray-400 text-sm">暂无配置的邮件域名</p>
+                      <p class="text-gray-400 dark:text-gray-500 text-xs mt-1">点击上方"添加域名"按钮开始配置</p>
                     </div>
                   </div>
                 </div>
@@ -429,10 +429,10 @@
         
         <!-- 操作按钮 -->
         <div v-if="!settingsLoading" class="mt-8 flex items-center justify-end space-x-3 relative z-10">
-          <button @click.stop="resetSystemSettings" type="button" class="px-6 py-2.5 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer">
+          <button @click.stop="resetSystemSettings" type="button" class="px-6 py-2.5 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-900 focus:ring-purple-500 transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer">
             重置
           </button>
-          <button @click.stop="saveSystemSettings(true)" type="button" :disabled="settingsSaving" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer">
+          <button @click.stop="saveSystemSettings(true)" type="button" :disabled="settingsSaving" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-900 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer">
             <svg v-if="settingsSaving" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -444,30 +444,30 @@
         <!-- 删除域名确认弹窗 -->
         <div v-if="showDeleteConfirm" class="fixed inset-0 z-50 overflow-y-auto">
           <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" @click="cancelDeleteDomain"></div>
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-              <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <div class="fixed inset-0 bg-gray-500 dark:bg-gray-900/80 bg-opacity-75 transition-opacity" @click="cancelDeleteDomain"></div>
+            <div class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-transparent dark:border-gray-600">
+              <div class="bg-white dark:bg-gray-800 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                 <div class="sm:flex sm:items-start">
-                  <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
-                    <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 dark:bg-red-900/50 sm:mx-0 sm:h-10 sm:w-10">
+                    <svg class="h-6 w-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                     </svg>
                   </div>
                   <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">确认删除域名</h3>
+                    <h3 class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-100">确认删除域名</h3>
                     <div class="mt-2">
-                      <p class="text-sm text-gray-500">
-                        确定要删除域名 <span class="font-semibold text-gray-900">{{ domainToDelete?.name }}</span> 吗？
+                      <p class="text-sm text-gray-500 dark:text-gray-400">
+                        确定要删除域名 <span class="font-semibold text-gray-900 dark:text-gray-100">{{ domainToDelete?.name }}</span> 吗？
                       </p>
-                      <p class="text-xs text-red-600 mt-2">此操作不可撤销，删除后该域名将无法接收邮件。</p>
+                      <p class="text-xs text-red-600 dark:text-red-400 mt-2">此操作不可撤销，删除后该域名将无法接收邮件。</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              <div class="bg-gray-50 dark:bg-gray-800/80 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button @click="confirmDeleteDomain" 
                         :disabled="domainDeleting"
-                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed">
                   <svg v-if="domainDeleting" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -476,7 +476,7 @@
                 </button>
                 <button @click="cancelDeleteDomain" 
                         :disabled="domainDeleting"
-                        class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed">
+                        class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 dark:border-gray-600 shadow-sm px-4 py-2 bg-white dark:bg-gray-700 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm disabled:opacity-50 disabled:cursor-not-allowed">
                   取消
                 </button>
               </div>

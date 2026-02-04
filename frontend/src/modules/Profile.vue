@@ -1,39 +1,39 @@
 <template>
   <Layout>
-    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-4 sm:py-8 px-4 sm:px-6 lg:px-8">
+    <div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-4 sm:py-8 px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto">
         <!-- 页面标题 -->
         <div class="mb-4 sm:mb-8">
-          <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">个人资料</h1>
-          <p class="text-gray-600 text-xs sm:text-sm">管理您的账户信息和设置</p>
+          <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-gray-100 mb-1 sm:mb-2">个人资料</h1>
+          <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">管理您的账户信息和设置</p>
         </div>
 
         <!-- 错误提示 -->
-        <div v-if="error" class="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+        <div v-if="error" class="mb-6 p-4 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-600 rounded-lg">
           <div class="flex items-center">
-            <svg class="h-5 w-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-5 w-5 text-red-600 dark:text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span class="text-sm text-red-600">{{ error }}</span>
+            <span class="text-sm text-red-600 dark:text-red-300">{{ error }}</span>
           </div>
         </div>
 
         <!-- 成功提示 -->
-        <div v-if="success" class="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+        <div v-if="success" class="mb-6 p-4 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-600 rounded-lg">
           <div class="flex items-center">
-            <svg class="h-5 w-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="h-5 w-5 text-green-600 dark:text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
-            <span class="text-sm text-green-600">{{ success }}</span>
+            <span class="text-sm text-green-600 dark:text-green-300">{{ success }}</span>
           </div>
         </div>
 
         <!-- 个人资料表单 -->
-        <div class="bg-white rounded-lg sm:rounded-xl shadow-lg overflow-hidden">
+        <div class="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl shadow-lg overflow-hidden border border-transparent dark:border-gray-600">
           <div class="p-4 sm:p-6">
             <!-- 头像上传区域 -->
             <div class="mb-6 sm:mb-8">
-              <label class="block text-xs sm:text-sm font-medium text-gray-700 mb-3 sm:mb-4">头像</label>
+              <label class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 sm:mb-4">头像</label>
               <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
                 <!-- 当前头像预览 -->
                 <div class="relative">
@@ -74,11 +74,11 @@
                       <span>{{ avatarUploading ? '上传中...' : '上传头像' }}</span>
                     </div>
                   </label>
-                  <p class="mt-2 text-xs text-gray-500">支持 JPG、PNG、GIF、WebP 格式，建议尺寸 200x200 像素</p>
+                  <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">支持 JPG、PNG、GIF、WebP 格式，建议尺寸 200x200 像素</p>
                   <button
                     v-if="avatarPreview && !avatarUploading"
                     @click="removeAvatar"
-                    class="mt-2 text-xs sm:text-sm text-red-600 hover:text-red-700"
+                    class="mt-2 text-xs sm:text-sm text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
                   >
                     移除头像
                   </button>
@@ -88,67 +88,67 @@
 
             <!-- 用户名 -->
             <div class="mb-4 sm:mb-6">
-              <label for="username" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
+              <label for="username" class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
                 用户名
               </label>
               <input
                 id="username"
                 v-model="formData.username"
                 type="text"
-                class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                class="w-full px-3 sm:px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                 placeholder="请输入用户名"
               />
             </div>
 
             <!-- 邮箱 -->
             <div class="mb-4 sm:mb-6">
-              <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
+              <label for="email" class="block text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 sm:mb-2">
                 邮箱
               </label>
               <input
                 id="email"
                 v-model="formData.email"
                 type="email"
-                class="w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
+                class="w-full px-3 sm:px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
                 placeholder="请输入邮箱地址"
               />
             </div>
 
             <!-- 密码 -->
             <div class="mb-6">
-              <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 新密码
               </label>
               <input
                 id="password"
                 v-model="formData.password"
                 type="password"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="留空则不修改密码"
               />
-              <p class="mt-1 text-xs text-gray-500">留空则不修改密码</p>
+              <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">留空则不修改密码</p>
             </div>
 
             <!-- 确认密码 -->
             <div class="mb-6" v-if="formData.password">
-              <label for="confirmPassword" class="block text-sm font-medium text-gray-700 mb-2">
+              <label for="confirmPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 确认密码
               </label>
               <input
                 id="confirmPassword"
                 v-model="formData.confirmPassword"
                 type="password"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 placeholder="请再次输入密码"
               />
             </div>
 
             <!-- 操作按钮 -->
-            <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200">
+            <div class="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200 dark:border-gray-600">
               <button
                 @click="resetForm"
                 type="button"
-                class="px-6 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200"
+                class="px-6 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
               >
                 重置
               </button>

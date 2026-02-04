@@ -2220,6 +2220,8 @@ hard_delete_email() {
 }
 
 # 移动邮件到文件夹（支持新表结构）
+# 重要：同一封邮件可能有多条记录（相同 base_message_id，如收件箱与已发送各一条），
+# 移动时需按 base_message_id 更新所有相关记录，否则刷新后会在两个文件夹中同时出现
 move_email() {
   local email_id="$1"
   local folder="$2"
@@ -2246,24 +2248,44 @@ move_email() {
     fi
   fi
   
-  # 获取当前文件夹ID（用于记录原文件夹）
-  local current_folder_id=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$(cat "$DB_PASS_FILE")" "$DB_NAME" -s -r -e "
-    SELECT folder_id FROM emails WHERE id='$email_id' LIMIT 1;
+  # 获取该邮件的 message_id，用于查找同一封邮件的所有记录（base_message_id 相同）
+  local message_id=$(mysql -h "$DB_HOST" -u "$DB_USER" -p"$(cat "$DB_PASS_FILE")" "$DB_NAME" -s -r -e "
+    SELECT message_id FROM emails WHERE id='$email_id' LIMIT 1;
   " 2>/dev/null | tail -1)
   
-  # 如果移动到trash（id=4），记录原文件夹
-  local update_sql="UPDATE emails SET folder_id=$folder_id, updated_at=CURRENT_TIMESTAMP"
-  if [[ "$folder_id" == "4" ]] || [[ "$folder" == "trash" ]]; then
-    # 移动到已删除文件夹时，记录原文件夹
-    if [[ -n "$current_folder_id" && "$current_folder_id" != "4" ]]; then
-      update_sql="$update_sql, original_folder_id=$current_folder_id"
-    fi
+  if [[ -z "$message_id" ]]; then
+    log "错误: 未找到邮件 id=$email_id"
+    return 1
   fi
-  update_sql="$update_sql WHERE id='$email_id'"
   
-  mysql_connect "$update_sql"
+  # 与 get_emails 一致：base_message_id 为 message_id 第一个 _ 之前的部分
+  local base_message_id=$(echo "$message_id" | cut -d'_' -f1)
+  local escaped_base_message_id=$(echo "$base_message_id" | sed "s/'/''/g" | sed 's/\\/\\\\/g')
   
-  log "邮件移动成功: id=$email_id, folder_id=$folder_id"
+  # 移动到已删除：每条记录将当前 folder_id 写入 original_folder_id，便于还原
+  # 移动到其他文件夹：统一更新 folder_id；若从已删除还原，可清空 original_folder_id
+  if [[ "$folder_id" == "4" ]] || [[ "$folder" == "trash" ]]; then
+    # 移动到已删除：对同一 base_message_id 的所有行，设置 folder_id=4 且 original_folder_id=当前 folder_id
+    mysql_connect "UPDATE emails
+      SET folder_id = $folder_id,
+          original_folder_id = CASE WHEN folder_id != 4 THEN folder_id ELSE original_folder_id END,
+          updated_at = CURRENT_TIMESTAMP
+      WHERE SUBSTRING_INDEX(message_id, '_', 1) = '$escaped_base_message_id';"
+  else
+    # 移动到非已删除：统一设置 folder_id，从已删除还原时清空 original_folder_id
+    mysql_connect "UPDATE emails
+      SET folder_id = $folder_id,
+          original_folder_id = NULL,
+          updated_at = CURRENT_TIMESTAMP
+      WHERE SUBSTRING_INDEX(message_id, '_', 1) = '$escaped_base_message_id';"
+  fi
+  
+  if [[ $? -ne 0 ]]; then
+    log "错误: 移动邮件失败 id=$email_id base_message_id=$base_message_id"
+    return 1
+  fi
+  
+  log "邮件移动成功: id=$email_id, base_message_id=$base_message_id, folder_id=$folder_id（已更新同封邮件所有记录）"
 }
 
 # 获取邮件统计
