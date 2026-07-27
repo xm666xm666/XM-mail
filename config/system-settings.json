@@ -1,0 +1,57 @@
+{
+  "general": {
+    "systemName": "XM邮件管理系统",
+    "adminEmail": "xm@localhost",
+    "timezone": "Asia/Shanghai",
+    "language": "zh-CN",
+    "autoBackup": true,
+    "backupInterval": 24,
+    "logRetention": 30,
+    "userPageSize": 10,
+    "icp": {
+      "enabled": false,
+      "number": "",
+      "url": "https://beian.miit.gov.cn/"
+    }
+  },
+  "security": {
+    "enableSSL": true,
+    "forceHTTPS": false,
+    "sessionTimeout": 30,
+    "maxLoginAttempts": 5,
+    "passwordMinLength": 8,
+    "requireSpecialChars": true
+  },
+  "mail": {
+    "maxMailboxSize": 1024,
+    "maxMessageSize": 500,
+    "enableSpamFilter": true,
+    "enableVirusScan": true,
+    "quarantineDays": 7,
+    "autoDeleteSpam": false,
+    "pageSize": 8,
+    "domains": [
+      { "id": 1, "name": "xmskills.com", "isDefault": true }
+    ]
+  },
+  "notifications": {
+    "emailAlerts": true,
+    "systemAlerts": true,
+    "securityAlerts": true,
+    "maintenanceAlerts": true,
+    "alertEmail": "xm@localhost",
+    "thresholds": {
+      "cpu": { "warning": 80, "critical": 90 },
+      "memory": { "warning": 80, "critical": 90 },
+      "disk": { "warning": 80, "critical": 90 },
+      "network": { "warning": 80, "critical": 90 }
+    }
+  },
+  "performance": {
+    "maxConnections": 1000,
+    "connectionTimeout": 30,
+    "enableCompression": true,
+    "cacheSize": 256,
+    "enableCaching": true
+  }
+}
