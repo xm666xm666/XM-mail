@@ -482,111 +482,101 @@ cd backend/dispatcher && npm list morgan ws node-pty multer express nodemailer
 ## 目录结构
 
 ```
-<项目目录>/                               # 项目根目录（可任意放置，start.sh 所在目录，由 BASE_DIR 解析）
-├── backend/                             # 后端核心目录
-│   ├── apache/                          # Apache 配置目录
-│   │   ├── httpd-vhost.conf             # 虚拟主机配置 (静态文件服务+API反向代理)
-│   │   ├── sudoers.d/                   # sudo 权限配置目录
-│   │   │   └── mailops                  # 邮件系统权限配置 (xm 用户 sudo 权限)
-│   │   └── systemd/                     # systemd 服务配置目录
-│   │       └── mail-ops-dispatcher.service  # 调度层服务单元 (mail-ops-dispatcher)
-│   │
-│   ├── dispatcher/                      # Node.js 调度层
-│   │   ├── package.json                 # 依赖配置 (Express, Nodemailer, UUID, Morgan, ws, node-pty, multer)
-│   │   └── server.js                    # API 服务器 (端口从 config/port-config.json 读取，默认 8081)
-│   │
-│   └── scripts/                        # Bash 脚本集合 (21 个 .sh + store_attachments.js)
-│       ├── app_user.sh                  # 应用用户管理 (Web 登录用户，app_users/app_accounts)
-│       ├── backup.sh                    # 备份与恢复 (数据库、配置、邮件数据)
-│       ├── cert_setup.sh                # SSL 证书 (Let's Encrypt/自签名)
-│       ├── db_setup.sh                  # 数据库初始化 (Postfix 虚拟用户表，4 张表)
-│       ├── dispatcher.sh                # 调度层服务管理
-│       ├── dns_setup.sh                 # DNS 配置 (Bind DNS/公网 DNS)
-│       ├── log_viewer.sh                # 系统日志查看
-│       ├── mail_db.sh                   # 邮件数据库管理 (9 张表，邮件 CRUD、文件夹、标签、存储统计、normalize-recipients)
-│       ├── mail_init.sh                 # 邮件系统初始化
-│       ├── mail_log_viewer.sh           # 邮件日志查看
-│       ├── mail_logger.sh               # 邮件操作日志记录
-│       ├── mail_port_control.sh         # 邮件端口控制 (25/587/993/995 单独启用/禁用)
-│       ├── mail_receiver.sh             # 邮件接收处理
-│       ├── mail_service_logger.sh       # 邮件服务日志集成
-│       ├── mail_setup.sh                # 邮件服务配置 (Postfix/Dovecot)
-│       ├── run_diagnosis.sh             # 系统诊断入口 (调用 start.sh check)
-│       ├── security.sh                  # 安全配置 (防火墙、SELinux、密码策略)
-│       ├── spam_filter.sh               # 垃圾邮件过滤配置 (数据库存储)
-│       ├── store_attachments.js         # 附件存储 (Node.js，path/content 型)
-│       ├── test_spam_filter.sh          # 垃圾邮件过滤测试
-│       ├── update_repos.sh              # 仓库源更新 (阿里云镜像)
-│       └── user_manage.sh               # 邮件用户管理 (虚拟用户 CRUD)
+<项目目录>/                               # 项目根目录（start.sh 所在目录，由 BASE_DIR 解析）
+├── backend/                             # 后端核心
+│   ├── apache/                          # Apache 配置模板
+│   │   ├── httpd-vhost.conf             # 虚拟主机（静态托管 + /api 反向代理）
+│   │   ├── sudoers.d/
+│   │   │   └── mailops                  # xm 用户受控 sudo 权限
+│   │   └── systemd/
+│   │       └── mail-ops-dispatcher.service  # 调度层 systemd 单元
+│   ├── dispatcher/                      # Node.js Express 调度层
+│   │   ├── package.json                 # Express / Morgan / UUID / Nodemailer / ws / node-pty / multer
+│   │   └── server.js                    # API 网关、脚本调度、WebSocket 终端（端口见 port-config.json）
+│   └── scripts/                         # Bash 脚本（21 个 .sh）+ store_attachments.js
+│       ├── app_user.sh                  # Web 应用用户（mailapp：注册/登录/重置等）
+│       ├── backup.sh                    # 全量备份、库恢复、定时备份
+│       ├── cert_setup.sh                # OpenSSL 自签/私有 CA、Apache SSL、HTTP→HTTPS
+│       ├── db_setup.sh                  # maildb 与 Postfix virtual_* 表初始化
+│       ├── dispatcher.sh                # mail-ops-dispatcher 重启/停止
+│       ├── dns_setup.sh                 # Bind / 公网 DNS、Apache HTTP 虚拟主机
+│       ├── log_viewer.sh                # /var/log/mail-ops 系统日志查看与清理
+│       ├── mail_db.sh                   # 邮件 CRUD、文件夹/标签、域用户、统计与垃圾过滤配置
+│       ├── mail_init.sh                 # 邮件库初始化、示例数据、服务与监控编排
+│       ├── mail_log_viewer.sh           # 邮件/用户操作日志查看、搜索、导出
+│       ├── mail_logger.sh               # 邮件操作审计日志写入
+│       ├── mail_port_control.sh         # 25/587/993/995 单独启停
+│       ├── mail_receiver.sh             # 收信解析并写入 maildb
+│       ├── mail_service_logger.sh       # Postfix/Dovecot 日志集成（rsyslog）
+│       ├── mail_setup.sh                # Postfix/Dovecot 安装配置与健康检查
+│       ├── run_diagnosis.sh             # 诊断入口（调用 start.sh check）
+│       ├── security.sh                  # 防火墙加固、certbot 占位、相关服务启停
+│       ├── spam_filter.sh               # 垃圾邮件检测与黑名单（库表配置）
+│       ├── store_attachments.js         # 附件入库（path / Base64 content）
+│       ├── test_spam_filter.sh          # spam_filter 回归测试
+│       ├── update_repos.sh              # Rocky/EPEL/Docker/K8s 阿里云源
+│       └── user_manage.sh               # 虚拟域用户与 Maildir（直接 mysql）
 │
-├── config/                              # 项目配置文件目录
-│   ├── port-config.json                 # 端口配置 (API、前端开发端口、Apache HTTP/HTTPS)
-│   └── system-settings.json             # 系统设置 (常规、安全、邮件、通知、性能)
+├── config/
+│   ├── port-config.json                 # API / 前端开发 / Apache HTTP·HTTPS 端口
+│   └── system-settings.json             # 常规、安全、邮件、通知、性能等系统设置
 │
-├── frontend/                            # Vue 3 前端目录
+├── frontend/                            # Vue 3 + Vite + Tailwind v4
 │   ├── src/
-│   │   ├── components/                  # 公共组件
-│   │   │   ├── AnimatedBackground.vue   # 动态背景 (渐变、极光、粒子、流星)
-│   │   │   ├── CopyrightFooter.vue      # 全站版权/页脚 (ICP、版本号、多场景 variant)
-│   │   │   ├── Layout.vue               # 统一布局 (导航栏、日志查看器、用户信息、页脚)
-│   │   │   └── Terminal.vue             # Web 终端 (WebSocket、伪终端 node-pty)
-│   │   ├── modules/                     # 页面组件 (10 个路由页面 + App.vue 根组件)
-│   │   │   ├── App.vue                  # 应用根组件
-│   │   │   ├── Changelog.vue             # 更新日志 (版本历史、分页)
-│   │   │   ├── Dashboard.vue            # 管理面板 (系统管理、用户管理、高级功能、邮件服务管理、图表)
-│   │   │   ├── Landing.vue              # 首页 (系统介绍、快速入口)
-│   │   │   ├── Login.vue                # 登录 (认证、验证码)
-│   │   │   ├── Mail.vue                 # 邮件管理 (收发、文件夹、标签)
-│   │   │   ├── Profile.vue              # 个人资料 (信息、密码、头像)
-│   │   │   ├── Register.vue             # 注册 (验证码)
-│   │   │   ├── Reset.vue                # 密码重置 (验证码)
-│   │   │   └── Settings.vue             # 系统设置 (常规、通知、性能、安全)
+│   │   ├── components/
+│   │   │   ├── AnimatedBackground.vue   # 动态背景
+│   │   │   ├── CopyrightFooter.vue      # 全站版权/页脚（多 variant）
+│   │   │   ├── Layout.vue               # 管理端布局、导航、日志与存储弹窗
+│   │   │   └── Terminal.vue             # Web 终端（WebSocket + node-pty）
+│   │   ├── modules/
+│   │   │   ├── App.vue                  # 根组件与路由容器
+│   │   │   ├── Changelog.vue            # 更新日志
+│   │   │   ├── Dashboard.vue            # 管理面板（系统/用户/SSL/服务等）
+│   │   │   ├── Landing.vue              # 首页
+│   │   │   ├── Login.vue / Register.vue / Reset.vue
+│   │   │   ├── Mail.vue                 # 邮件收发与文件夹
+│   │   │   ├── Profile.vue              # 个人资料
+│   │   │   └── Settings.vue             # 系统设置
 │   │   ├── utils/
-│   │   │   ├── activityTracker.ts       # 活动追踪 (会话超时)
-│   │   │   ├── csrf.ts                  # CSRF 令牌生成与请求头
-│   │   │   ├── userLogger.ts            # 用户操作日志
-│   │   │   └── versionManager.ts        # 版本号管理与同步
-│   │   └── main.ts                      # 应用入口 (Vue Router、路由守卫)
-│   ├── index.html                       # HTML 入口
-│   ├── package.json                     # 依赖 (Vue 3, Vite, Tailwind v4, Vue Router, Axios, Chart.js, xterm)
-│   ├── vite.config.ts                   # Vite 构建与开发服务器 (@tailwindcss/vite)
-│   └── favicon.ico                      # 网站图标
+│   │   │   ├── activityTracker.ts       # 会话活动与超时
+│   │   │   ├── csrf.ts                  # CSRF 请求头
+│   │   │   ├── userLogger.ts            # 前端操作日志
+│   │   │   └── versionManager.ts        # 版本号同步
+│   │   └── main.ts                      # 入口与路由守卫
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.ts
 │
-├── demo-mail-data.sql                   # 演示数据 SQL (初始化示例域名/用户)
-├── images/                              # 项目截图目录
-│   └── zh/                              # 中文截图 (快速预览用，01_首页.png ~ 38_布局.png)
-├── README.md                            # 项目主文档 (概述、架构、快速开始、命令参考、功能特性)
-├── UPDATE_GUIDE.md                      # 更新操作指南 (版本历史、升级步骤、维护操作)
-├── LICENSE                              # GPLv3 许可标识、前言摘要与官方完整条款链接
-├── start.sh                             # 一键部署与管理脚本 (部署、诊断、日志、故障排除)
-├── mail_CX.sh                           # 邮件系统数据库检测工具 (maildb/mailapp 检测报告)
-└── 更新文案.txt                         # 更新说明与临时文案
+├── images/
+│   └── zh/                              # 中文界面截图（README 快速预览）
+├── demo-mail-data.sql                   # 演示域名/用户 SQL
+├── LICENSE                              # GPLv3 标识与官方全文入口
+├── README.md                            # 项目主文档
+├── UPDATE_GUIDE.md                      # 版本更新与升级指南
+├── start.sh                             # 一键部署与运维入口
+└── mail_CX.sh                           # maildb/mailapp 检测报告工具
 ```
 
 ### 目录说明
 
-**后端目录 (`backend/`)**：
-- **`apache/`**：Apache 虚拟主机模板（`httpd-vhost.conf`）、sudoers 模板（`sudoers.d/mailops`）、systemd 单元（`systemd/mail-ops-dispatcher.service`），部署时由 `start.sh` 替换 `${BASE_DIR}`、端口等变量
-- **`dispatcher/`**：Node.js 24.x Express 调度层，提供 API 网关、脚本调度、WebSocket 终端、Basic 认证（basic-auth）；依赖 Express、Morgan、UUID、Nodemailer、ws、node-pty、multer；端口与密码从 `config/port-config.json` 与 `/etc/mail-ops/xm-admin.pass` 读取
-- **`scripts/`**：21 个 Bash 脚本 + store_attachments.js（邮件：mail_setup/mail_db/mail_receiver/mail_init/mail_port_control；用户与域：user_manage/app_user/db_setup；DNS/证书：dns_setup/cert_setup；系统：security/backup/dispatcher/update_repos/run_diagnosis；日志：log_viewer/mail_logger/mail_log_viewer/mail_service_logger；垃圾过滤：spam_filter/test_spam_filter；附件：store_attachments.js）
+**后端（`backend/`）**
+- **`apache/`**：虚拟主机模板、`sudoers.d/mailops`、调度层 systemd 单元；部署时由 `start.sh` 替换路径与端口变量
+- **`dispatcher/`**：Express API、脚本调度、WebSocket 终端、附件上传等；端口与管理员口令分别来自 `config/port-config.json`、`/etc/mail-ops/xm-admin.pass`
+- **`scripts/`**：业务与运维脚本（邮件、用户域、DNS/证书、安全备份、日志、垃圾过滤、附件存储）
 
-**前端目录 (`frontend/`)**：
-- **`src/components/`**：公共组件（`AnimatedBackground.vue` 动态背景；`CopyrightFooter.vue` 版权/页脚，含 dashboard / auth / marketing 三种展示形态；`Layout.vue` 布局/导航/系统状态/日志查看器/邮件存储弹窗/底栏；`Terminal.vue` Web 终端，WebSocket + node-pty）
-- **`src/modules/`**：10 个路由页面对应的业务组件（`Landing.vue`、`Login.vue`、`Register.vue`、`Reset.vue`、`Dashboard.vue`、`Mail.vue`、`Settings.vue`、`Profile.vue`、`Changelog.vue`）及根组件 `App.vue`（路由与布局容器）
-- **`src/utils/`**：工具（`activityTracker.ts` 活动追踪/会话超时、`csrf.ts` CSRF 令牌、`userLogger.ts` 用户操作日志、`versionManager.ts` 版本号同步）
-- **根目录**：`package.json`、`vite.config.ts`、`index.html`；Tailwind v4 使用 `@tailwindcss/vite` 与 `@theme` 在 CSS 中配置；开发端口从 `config/port-config.json` 的 `frontend.devPort` 读取（默认 5173）；`favicon.ico` 可选（index.html 引用）
+**前端（`frontend/`）**
+- **`src/components/`**：布局、版权页脚、动态背景、Web 终端
+- **`src/modules/`**：首页、认证、仪表盘、邮件、设置、资料、更新日志等页面
+- **`src/utils/`**：会话、CSRF、日志与版本工具；开发端口默认读 `config/port-config.json` 的 `frontend.devPort`（5173）
 
-**配置文件目录 (`config/`)**（路径相对于项目根目录）：
-- **`port-config.json`**：端口配置（`api.port` 8081、`frontend.devPort` 5173、`apache.httpPort` 80、`apache.httpsPort` 443）；修改后需 `./start.sh restart` 或 `fix-dispatcher` 生效
-- **`system-settings.json`**：系统设置（`general` 系统名/管理员邮箱/时区/语言/用户分页/ICP/自动备份/日志保留；`security` SSL/强制HTTPS/会话超时分钟/登录尝试次数/密码策略；`mail` 邮箱大小限制/消息大小/垃圾过滤/病毒扫描/域名管理/分页；`notifications` 告警开关/告警邮箱/CPU/内存/磁盘/网络阈值；`performance` 连接数/超时/压缩/缓存）
+**配置（`config/`）**
+- **`port-config.json`**：`api.port`、`frontend.devPort`、`apache.httpPort` / `httpsPort`；修改后需重启相关服务生效
+- **`system-settings.json`**：系统名、安全、邮件域与容量、通知阈值、性能等
 
-**根目录文件**：
-- **`start.sh`**：一键部署与管理（`start`/`start -d`、`check` 11 项诊断、`rebuild`、`status`、`restart`、`stop`、`restart-dispatcher`、`fix-dispatcher`、`logs`、`mail-logs`/`mail-logs-stats`、`fix-auth`/`fix-db`、`help`/`-h`/`--help`）
-- **`README.md`**：项目主文档（概述、架构、目录结构、快速开始、命令参考、功能特性、版本历史）
-- **`UPDATE_GUIDE.md`**：更新操作指南（版本升级步骤、维护操作、故障排除）
-- **`LICENSE`**：GNU **GPLv3** 授权说明（文件内为许可标识与前言摘要，**完整法律条文**以 GNU 官方发布的 GPLv3 文本为准）
-- **`mail_CX.sh`**：邮件系统数据库检测（maildb/mailapp 连接、表结构、健康报告，输出 Markdown 报告）
-- **`demo-mail-data.sql`**：演示数据 SQL（示例域名、用户，用于初始化演示环境）
+**根目录**
+- **`start.sh`**：部署（`start`/`start -d`）、诊断（`check`）、重建前端（`rebuild`）、服务启停与调度层修复、日志查看等
+- **`README.md` / `UPDATE_GUIDE.md` / `LICENSE`**：说明、版本历史与开源许可
+- **`mail_CX.sh` / `demo-mail-data.sql` / `images/`**：库检测、演示数据与预览截图
 
 ## 快速开始
 
@@ -1370,8 +1360,6 @@ chmod +x start.sh
 - 📚 **版本历史记录**：完整的版本更新历史和功能特性
 - 🔧 **故障排除**：常见问题解决和日志分析
 
-开发与仓库约定（Windows 编辑 / Rocky Linux 部署、`.sh` 使用 LF、`npm install` 时机等）见根目录 **[DEVELOPMENT.md](./DEVELOPMENT.md)**。
-
 ## 版本历史
 
 ### 最新版本概览
@@ -1623,7 +1611,6 @@ chmod +x start.sh
 
 - **README.md**：项目概述、架构、快速开始、命令参考、功能特性
 - **UPDATE_GUIDE.md**：版本升级步骤、维护操作、故障排除、日志分析
-- **DEVELOPMENT.md**：开发/运行环境差异、Shell 换行符、前端依赖安装约定
 - **LICENSE**：GPLv3 许可说明与官方全文入口
 - **在线演示**：<https://xm666.fun>（可访问截止 2026 年 12 月 16 日）
 
