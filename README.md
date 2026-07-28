@@ -88,7 +88,9 @@
 │        └──────────────────┬─────────────────────┘                 │
 │                           ▼                                       │
 │        ┌────────────────────────────────────────┐                 │
-│        │ Maildir 存储 /var/vmail/%d/%n/Maildir   │                 │
+│        │ Maildir 投递落点（Dovecot）              │                 │
+│        │ /var/vmail/%d/%n/Maildir                │                 │
+│        │ → mail_receiver 入库 maildb（最终存储） │                 │
 │        └────────────────────────────────────────┘                 │
 └──────────────────────────────┬──────────────────────────────────────┘
                                │
@@ -159,7 +161,7 @@ flowchart TB
     subgraph M["邮件服务层"]
         M1["Postfix<br/>SMTP<br/>25 / 587"]
         M2["Dovecot<br/>IMAP / POP3<br/>993 / 995"]
-        M3["Maildir 存储<br/>/var/vmail/%d/%n/Maildir"]
+        M3["Maildir 投递落点<br/>/var/vmail/%d/%n/Maildir<br/>mail_receiver → maildb"]
         M1 <-->|LMTP| M2
         M1 --> M3
         M2 --> M3
@@ -412,7 +414,8 @@ flowchart TB
 - **端口控制**: 25（SMTP）、587（Submission）、993（IMAPS）、995（POP3S）可单独启用/禁用（Dashboard 系统管理 → 服务管理 → 邮件服务标签页）
 - **数据库**: MariaDB (虚拟域/用户)
 - **认证**: SQL 认证 + SHA512-CRYPT
-- **存储**: Maildir 格式（`/var/vmail/%d/%n/Maildir`，%d 域名 %n 用户名）
+- **最终存储**: MariaDB `maildb`（`emails` 正文/HTML，`email_attachments` 附件元数据；大附件文件在 `/var/mail-ops/attachments/`）
+- **投递落点**: Dovecot Maildir（`/var/vmail/%d/%n/Maildir`，%d 域名 %n 用户名），由 `mail_receiver.sh` 解析后写入数据库
 - **虚拟邮箱**: MySQL 虚拟域支持
 - **SSL/TLS**: 自签名证书支持
 
@@ -873,7 +876,7 @@ chmod +x start.sh
 - **虚拟域支持**：支持多域名邮件服务，每个域名独立管理
 - **虚拟用户管理**：支持虚拟用户和邮件别名，灵活的用户管理
 - **邮件收发**：完整的邮件发送和接收功能，支持SMTP、IMAP、POP3协议
-- **邮件存储**：Maildir 格式（`/var/vmail/域名/用户/Maildir`），支持邮件附件和 HTML 邮件
+- **邮件存储**：最终写入 `maildb`（正文/HTML/附件元数据）；Dovecot 先投递到 Maildir（`/var/vmail/域名/用户/Maildir`）再由 `mail_receiver` 入库；大附件落盘 `/var/mail-ops/attachments/`
 - **文件夹系统**：5个系统文件夹（收件箱、已发送、草稿箱、垃圾邮件、已删除）+ 用户自定义文件夹
 - **邮件标签**：支持多标签分类（重要、星标、工作、个人等）
 - **邮件搜索**：支持关键词搜索、文件夹筛选、分页查询
@@ -964,7 +967,7 @@ chmod +x start.sh
 - **完整备份**：
   - 数据库备份（maildb、mailapp）
   - 配置文件备份（Apache、Postfix、Dovecot 配置 + 项目 `config/` 目录）
-  - 邮件数据备份（`/var/vmail/` Maildir 目录）
+  - 邮件数据备份（以 `maildb` 为主；另含 `/var/vmail/` Maildir 投递目录、`/var/mail-ops/attachments/` 附件文件）
 - **定时备份**：
   - 可配置备份间隔（每天、每周、每月、自定义天数）
   - 可配置备份时间（自定义小时、分钟、秒）
@@ -1271,7 +1274,7 @@ chmod +x start.sh
   - SSL/TLS支持
 - **IMAP/POP3服务（Dovecot）**：
   - SQL认证（MySQL查询）
-  - Maildir存储格式
+  - Maildir 投递落点（`/var/vmail/%d/%n/Maildir`），Web 侧最终内容由 `mail_receiver` 写入 `maildb`
   - SSL/TLS支持
   - 邮件索引和搜索
 - **数据库集成**：
@@ -1282,6 +1285,7 @@ chmod +x start.sh
 
 #### 6. 数据存储层
 **技术栈**：MariaDB 10.5+
+- **邮件最终存储**：Web 读写均以 `maildb` 为准（`emails.body` / `html_body`；附件见 `email_attachments`，小文件可存 `content_base64`，大文件路径指向 `/var/mail-ops/attachments/`）
 - **双数据库架构**：
   - **maildb数据库**（13张表）：
     - Postfix虚拟用户表（4张）：virtual_domains、virtual_users、virtual_aliases、shared_mailboxes
@@ -1317,8 +1321,8 @@ chmod +x start.sh
 
 **邮件收发流程**：
 ```
-外部邮件 → Postfix (SMTP) → LMTP → Dovecot → Maildir存储 → 数据库记录（mail_receiver.sh + mail_db.sh）
-发送邮件：用户操作 → Web界面 → API → Nodemailer → Postfix (SMTP) → 外部；同时存储到 maildb（mail_db.sh store）
+外部邮件 → Postfix (SMTP) → LMTP → Dovecot → Maildir（投递落点）→ mail_receiver.sh 解析 → maildb 最终存储（mail_db.sh + store_attachments.js）
+发送邮件：用户操作 → Web界面 → API → Nodemailer → Postfix (SMTP) → 外部；同时直接写入 maildb（mail_db.sh store）
 ```
 
 **认证流程**：
